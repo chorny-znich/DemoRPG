@@ -16,7 +16,7 @@ public:
 private:
   struct ScreenInputVisitor;
   sf::View mMainView{ sf::FloatRect({0, 0}, {gd::GraphicsResolution.x, gd::GraphicsResolution.y}) };
-  sf::Sprite mBackground{ dr::Textures::get("background") };
-  std::vector<sf::Text> mInfo;
+  sf::Sprite mBackground{ dr::Textures::get("main_menu_background") };
+  sf::Text mTitle{dr::TextManager::get("main_menu_title")};
   std::vector<dr::TextButton> mMenuButtons;
 };

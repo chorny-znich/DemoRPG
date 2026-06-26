@@ -54,9 +54,14 @@ struct MainMenuScreen::ScreenInputVisitor
 			if (screen.mMenuButtons[0].isClicked(mouseViewCoords))
 			{
 				clearUI();
+				//dr::ScreenManager::addScreen<AdventureScreen>("adventure_screen");
+			}
+			else if (screen.mMenuButtons[1].isClicked(mouseViewCoords))
+			{
+				clearUI();
 				dr::ScreenManager::addScreen<AboutScreen>("about_screen");
 			}
-			if (screen.mMenuButtons[1].isClicked(mouseViewCoords))
+			else if (screen.mMenuButtons[2].isClicked(mouseViewCoords))
 			{
 				clearUI();
 				dr::ScreenManager::destroyScreen();
@@ -69,15 +74,23 @@ struct MainMenuScreen::ScreenInputVisitor
 
 void MainMenuScreen::init()
 {
-	dr::TextButton aboutButton{ {150.f, 50.f}, dr::TextManager::get("normal_button") };
+	dr::TextButton playButton{ {250.f, 75.f}, dr::TextManager::get("main_menu_button") };
+	playButton.setString(dr::StringManager::get("play_button"));
+	playButton.setPosition({ 970.f, 780.f });
+	mMenuButtons.push_back(playButton);
+
+	dr::TextButton aboutButton{ {250.f, 75.f}, dr::TextManager::get("normal_button") };
 	aboutButton.setString(dr::StringManager::get("about_button"));
-	aboutButton.setPosition({ 865.f, 800.f });
+	aboutButton.setPosition({ 970.f, 880.f });
 	mMenuButtons.push_back(aboutButton);
 
-	dr::TextButton exitButton{ {150.f, 50.f}, dr::TextManager::get("normal_button") };
+	dr::TextButton exitButton{ {250.f, 75.f}, dr::TextManager::get("normal_button") };
 	exitButton.setString(dr::StringManager::get("exit_button"));
-	exitButton.setPosition({ 865.f, 875.f });
+	exitButton.setPosition({ 970.f, 980.f });
 	mMenuButtons.push_back(exitButton);
+
+	mTitle.setString(dr::StringManager::get("game_title"));
+	mTitle.setPosition({900.f, 35.f});
 }
 
 void MainMenuScreen::handleInput(const sf::Event& event, sf::RenderWindow& window)
@@ -91,6 +104,7 @@ void MainMenuScreen::render(sf::RenderWindow& window)
 	window.setView(mMainView);
 	window.draw(mBackground);
 
+	window.draw(mTitle);
 	for (auto& button : mMenuButtons)
 	{
 		button.render(window);
