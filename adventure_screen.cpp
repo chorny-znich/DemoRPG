@@ -52,4 +52,5 @@ void AdventureScreen::update(float dt)
 void AdventureScreen::render(sf::RenderWindow& window)
 {
 	window.setView(mMainView);
+	window.setView(mUIView);
 }
