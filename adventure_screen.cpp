@@ -38,6 +38,7 @@ struct AdventureScreen::ScreenInputVisitor
  */
 void AdventureScreen::init()
 {
+	mMapManager.loadMap(1, "floor_texture");
 }
 
 void AdventureScreen::handleInput(const sf::Event& event, sf::RenderWindow& window)
@@ -52,5 +53,6 @@ void AdventureScreen::update(float dt)
 void AdventureScreen::render(sf::RenderWindow& window)
 {
 	window.setView(mMainView);
+	window.draw(mMapManager.getCurrentMap());
 	window.setView(mUIView);
 }

@@ -25,6 +25,9 @@
     <Filter Include="Исходные файлы\Screen">
       <UniqueIdentifier>{795a3fe4-8e8f-4a1e-81d0-6ba28c8edd12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы ресурсов\Map">
+      <UniqueIdentifier>{8fe6a11d-95e4-41a1-bacd-57d81c3cada8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -71,6 +74,12 @@
       <Filter>Файлы ресурсов</Filter>
     </None>
     <None Include="data\texture_list.ini">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+    <None Include="data\maps\map_1.ini">
+      <Filter>Файлы ресурсов\Map</Filter>
+    </None>
+    <None Include="data\tile_map.ini">
       <Filter>Файлы ресурсов</Filter>
     </None>
   </ItemGroup>

@@ -14,4 +14,6 @@ private:
 
 	sf::View mMainView{ {0, 0}, {gd::GraphicsResolution.x, gd::GraphicsResolution.y} };
 	sf::View mUIView{ {0, 0}, {gd::GraphicsResolution.x, gd::GraphicsResolution.y} };
+
+	dr::MapManager mMapManager;
 };
