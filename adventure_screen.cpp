@@ -48,6 +48,8 @@ void AdventureScreen::handleInput(const sf::Event& event, sf::RenderWindow& wind
 
 void AdventureScreen::update(float dt)
 {
+	mMainView.setCenter({ 960.f, 540.f });
+	//mMainView.setCenter({ 0.f, 0.f });
 }
 
 void AdventureScreen::render(sf::RenderWindow& window)
