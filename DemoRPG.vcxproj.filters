@@ -28,6 +28,12 @@
     <Filter Include="Файлы ресурсов\Map">
       <UniqueIdentifier>{8fe6a11d-95e4-41a1-bacd-57d81c3cada8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Player">
+      <UniqueIdentifier>{bc0a1304-bc2b-4ed8-a22d-8fd8364dff20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Player">
+      <UniqueIdentifier>{f538d305-5446-4074-8ca7-5fc853fdb7e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,6 +51,9 @@
     <ClCompile Include="adventure_screen.cpp">
       <Filter>Исходные файлы\Screen</Filter>
     </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>Исходные файлы\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_engine.h">
@@ -61,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="adventure_screen.h">
       <Filter>Файлы заголовков\Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>Файлы заголовков\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

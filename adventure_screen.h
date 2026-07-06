@@ -1,6 +1,9 @@
 #pragma once
+#include "player.h"
 #include "game_data.h"
 #include <disreality_engine.h>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Rect.hpp>
 
 class AdventureScreen : public dr::Screen
 {
@@ -16,4 +19,6 @@ private:
 	sf::View mUIView{ {0, 0}, {gd::GraphicsResolution.x, gd::GraphicsResolution.y} };
 
 	dr::MapManager mMapManager;
+
+	Player mPlayer{dr::TileDatabase::instance().getSprite(18)};
 };
