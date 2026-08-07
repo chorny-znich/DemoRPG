@@ -38,7 +38,9 @@ struct AdventureScreen::ScreenInputVisitor
  */
 void AdventureScreen::init()
 {
-	mMapManager.loadMap(1, "floor_texture");
+	mMapManager.loadMap(1);
+
+	mPlayer.init();
 }
 
 void AdventureScreen::handleInput(const sf::Event& event, sf::RenderWindow& window)
@@ -49,6 +51,7 @@ void AdventureScreen::handleInput(const sf::Event& event, sf::RenderWindow& wind
 void AdventureScreen::update(float dt)
 {
 	mMainView.setCenter({ 960.f, 540.f });
+	mPlayer.update(dt);
 	//mMainView.setCenter({ 0.f, 0.f });
 }
 
@@ -56,5 +59,6 @@ void AdventureScreen::render(sf::RenderWindow& window)
 {
 	window.setView(mMainView);
 	window.draw(mMapManager.getCurrentMap());
+	window.draw(mPlayer);
 	window.setView(mUIView);
 }

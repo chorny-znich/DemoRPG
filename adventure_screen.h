@@ -20,5 +20,5 @@ private:
 
 	dr::MapManager mMapManager;
 
-	Player mPlayer{dr::TileDatabase::instance().getSprite(18)};
+	Player mPlayer{ sf::IntRect{ {0, 32}, {24, 32} }, dr::Textures::get("player_texture") };
 };

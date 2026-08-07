@@ -19,14 +19,14 @@ enum class PlayerState
 class Player : public dr::GameActor
 {
 public:
-	Player(sf::Sprite sprite);
-	/*
-	void init();
-	sf::Sprite& getCurrentSprite();
+	Player(sf::IntRect rect, const sf::Texture& texture);
 
-	//void init(sf::Vector2f position);
-	void update(sf::Time dt);
-	void render(sf::RenderWindow& window);
+	void init();
+	/*	sf::Sprite& getCurrentSprite();
+
+	void init(sf::Vector2f position);*/
+	void update(float dt) override;
+	/*
 
 	int switchAnimFrame(sf::Time dt);
 
@@ -44,15 +44,17 @@ public:
 	RPStats& getRPStatsComponent();
 
 	Inventory& getInventory();
-	Equipment& getEquipment();*/
+	Equipment& getEquipment();
 	private:
-		/*sf::Sprite mCurrentSprite;
-		sf::Vector2f mPosition{ 256.f, 256.f };
-		sf::Vector2i mMapPosition{ 2, 2 };
+		sf::Sprite mCurrentSprite;
+		sf::Vector2f mPosition{ 256.f, 256.f };*/
+		sf::Vector2i mMapPosition{ 2, 2 };/*
 		GameData::Movement mMovement{ 0, 0 };
 		GameData::MoveDirections mMoveDirection{ GameData::MoveDirections::NONE };
 		float mMoveDestination;
-
+		*/
+		dr::CursorComponent mCursor;
+		/*
 		RPStats mRPStats;
 		Inventory mInventory;
 		Equipment mEquipment;
