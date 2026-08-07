@@ -19,6 +19,7 @@ private:
 	sf::View mUIView{ {0, 0}, {gd::GraphicsResolution.x, gd::GraphicsResolution.y} };
 
 	dr::MapManager mMapManager;
+	dr::CursorComponent mCursor{ mMainView };
 
 	Player mPlayer{ sf::IntRect{ {0, 32}, {24, 32} }, dr::Textures::get("player_texture") };
 };

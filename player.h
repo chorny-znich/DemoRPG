@@ -52,9 +52,7 @@ public:
 		GameData::Movement mMovement{ 0, 0 };
 		GameData::MoveDirections mMoveDirection{ GameData::MoveDirections::NONE };
 		float mMoveDestination;
-		*/
-		dr::CursorComponent mCursor;
-		/*
+		
 		RPStats mRPStats;
 		Inventory mInventory;
 		Equipment mEquipment;
