@@ -1,5 +1,7 @@
 #pragma once
+#include "game_world.h"
 #include "player.h"
+#include "grid_controller.h"
 #include "game_data.h"
 #include <disreality_engine.h>
 #include <SFML/Graphics/Texture.hpp>
@@ -17,9 +19,4 @@ private:
 
 	sf::View mMainView{ {0, 0}, {gd::GraphicsResolution.x, gd::GraphicsResolution.y} };
 	sf::View mUIView{ {0, 0}, {gd::GraphicsResolution.x, gd::GraphicsResolution.y} };
-
-	dr::MapManager mMapManager;
-	dr::CursorComponent mCursor{ mMainView };
-
-	Player mPlayer{ sf::IntRect{ {0, 32}, {24, 32} }, dr::Textures::get("player_texture") };
 };

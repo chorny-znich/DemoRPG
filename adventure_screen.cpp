@@ -1,4 +1,5 @@
 #include "adventure_screen.h"
+#include "game_world.h"
 
 /**
  * @brief For handling Events in handleInput method
@@ -16,7 +17,7 @@ struct AdventureScreen::ScreenInputVisitor
 	void operator()(const sf::Event::MouseMoved& mouseMoved)
 	{
 		sf::Vector2f mouseViewCoords = window.mapPixelToCoords(mouseMoved.position);
-		screen.mCursor.handleInput(mouseMoved.position, window);
+		GameWorld::instance().getGridController().handleInput(mouseMoved.position, window);
 	}
 
 	/**
@@ -39,12 +40,7 @@ struct AdventureScreen::ScreenInputVisitor
  */
 void AdventureScreen::init()
 {
-	mMapManager.loadMap(1);
-	mCursor.setMapSize({ static_cast<int>(mMapManager.getCurrentMap().getMapSize().x),
-		static_cast<int>(mMapManager.getCurrentMap().getMapSize().y) });
-	mCursor.init();
-
-	mPlayer.init();
+	GameWorld::instance().init(mMainView);
 }
 
 void AdventureScreen::handleInput(const sf::Event& event, sf::RenderWindow& window)
@@ -55,16 +51,15 @@ void AdventureScreen::handleInput(const sf::Event& event, sf::RenderWindow& wind
 void AdventureScreen::update(float dt)
 {
 	mMainView.setCenter({ 960.f, 540.f });
-	mCursor.update(dt);
-	mPlayer.update(dt);
+	GameWorld::instance().update(dt);
 	//mMainView.setCenter({ 0.f, 0.f });
 }
 
 void AdventureScreen::render(sf::RenderWindow& window)
 {
 	window.setView(mMainView);
-	window.draw(mMapManager.getCurrentMap());
-	window.draw(mPlayer);
-	mCursor.render(window);
+	window.draw(GameWorld::instance().getMapManager().getCurrentMap());
+	window.draw(GameWorld::instance().getPlayer());
+	GameWorld::instance().getGridController().getCursorComponent().render(window);
 	window.setView(mUIView);
 }
