@@ -28,38 +28,44 @@ void GridController::handleInput(sf::Vector2i mouseWindowPos, sf::RenderWindow& 
   }*/
 }
 
-bool GridController::checkForPlayer(const sf::Vector2i& pos)
-{ /*
-  if (mTilePosition.x == pos.x) {
-    if (std::abs(mTilePosition.y - pos.y) == 1) {
-      changeCursorColor(sf::Color::Green);
+/**
+ * @brief 
+ * @param pos 
+ * @return 
+ */
+bool GridController::checkForPlayer(const sf::Vector2i pos)
+{ 
+  sf::Vector2i tilePosition = mCursorComponent.getTilePosition();
+  if (tilePosition.x == pos.x) {
+    if (std::abs(tilePosition.y - pos.y) == 1) {
+      mCursorComponent.changeCursorColor(sf::Color::Green);
       mPlayerNear = true;
       return true;
     }
-    else if (mTilePosition.y - pos.y == 0) {
-      changeCursorColor(sf::Color::Black);
+    else if (tilePosition.y - pos.y == 0) {
+      mCursorComponent.changeCursorColor(sf::Color::Black);
     }
     else {
-      changeCursorColor(sf::Color::Red);
+      mCursorComponent.changeCursorColor(sf::Color::Red);
     }
   }
-  else if (mTilePosition.y == pos.y) {
-    if (std::abs(mTilePosition.x - pos.x) == 1) {
-      changeCursorColor(sf::Color::Green);
+  else if (tilePosition.y == pos.y) {
+    if (std::abs(tilePosition.x - pos.x) == 1) {
+      mCursorComponent.changeCursorColor(sf::Color::Green);
       mPlayerNear = true;
       return true;
     }
-    else if (mTilePosition.x - pos.x == 0) {
-      changeCursorColor(sf::Color::Black);
+    else if (tilePosition.x - pos.x == 0) {
+      mCursorComponent.changeCursorColor(sf::Color::Black);
     }
     else {
-      changeCursorColor(sf::Color::Red);
+      mCursorComponent.changeCursorColor(sf::Color::Red);
     }
   }
   else {
-    changeCursorColor(sf::Color::Red);
+    mCursorComponent.changeCursorColor(sf::Color::Red);
   }
-  mPlayerNear = false;*/
+  mPlayerNear = false;
   return false;
 }
 

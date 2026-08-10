@@ -36,9 +36,9 @@ public:
 	//sf::Vector2f getCenter() const;
 	void setStartPosition();
 	sf::Vector2f getPosition() const;
-	void setMapPosition(sf::Vector2i pos);
+	void setMapPosition(sf::Vector2i pos);*/
 	const sf::Vector2i getMapPosition() const;
-
+	/*
 	void setPlayerState(PlayerState state);
 	PlayerState getPlayerState() const;
 	RPStats& getRPStatsComponent();

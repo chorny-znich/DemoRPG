@@ -11,7 +11,7 @@ public:
   GridController(sf::View& view);
   void handleInput(sf::Vector2i mouseWindowPos, sf::RenderWindow& window);
 
-  bool checkForPlayer(const sf::Vector2i& pos);
+  bool checkForPlayer(const sf::Vector2i pos);
   bool checkForEnemy(const std::vector<gd::Position> enemiesPos);
   gd::MoveDirections getDirection(const sf::Vector2i& pos) const;
   void setPlayerMoveStatus(bool move);

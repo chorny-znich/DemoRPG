@@ -23,6 +23,7 @@ public:
 
 	void init(sf::View& view);
 	void update(float dt);
+
 	dr::MapManager& getMapManager();
 	Player& getPlayer();
 	GridController& getGridController();

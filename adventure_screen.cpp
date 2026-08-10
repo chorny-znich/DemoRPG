@@ -18,6 +18,8 @@ struct AdventureScreen::ScreenInputVisitor
 	{
 		sf::Vector2f mouseViewCoords = window.mapPixelToCoords(mouseMoved.position);
 		GameWorld::instance().getGridController().handleInput(mouseMoved.position, window);
+		GameWorld::instance().getGridController().checkForPlayer(
+			GameWorld::instance().getPlayer().getMapPosition());
 	}
 
 	/**

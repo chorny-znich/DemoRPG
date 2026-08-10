@@ -21,3 +21,12 @@ void Player::update(float dt)
 {
 	mSprite.setPosition({mMapPosition.x * 128.f, mMapPosition.y * 128.f});
 }
+
+/**
+ * @brief Get player's position in tile coordinates
+ * @return sf::Vector 2i with player's coordinates
+ */
+const sf::Vector2i Player::getMapPosition() const
+{
+	return mMapPosition;
+}

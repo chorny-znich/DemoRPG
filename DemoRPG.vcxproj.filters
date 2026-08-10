@@ -60,11 +60,11 @@
     <ClCompile Include="player.cpp">
       <Filter>Исходные файлы\Player</Filter>
     </ClCompile>
-    <ClCompile Include="grid_controller.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="game_world.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="grid_controller.cpp">
+      <Filter>Исходные файлы\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
