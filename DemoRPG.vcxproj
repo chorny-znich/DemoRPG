@@ -134,6 +134,7 @@
     <ClCompile Include="about_screen.cpp" />
     <ClCompile Include="adventure_screen.cpp" />
     <ClCompile Include="game_engine.cpp" />
+    <ClCompile Include="grid_controller.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main_menu_screen.cpp" />
     <ClCompile Include="player.cpp" />
@@ -143,6 +144,7 @@
     <ClInclude Include="adventure_screen.h" />
     <ClInclude Include="game_data.h" />
     <ClInclude Include="game_engine.h" />
+    <ClInclude Include="grid_controller.h" />
     <ClInclude Include="main_menu_screen.h" />
     <ClInclude Include="player.h" />
   </ItemGroup>

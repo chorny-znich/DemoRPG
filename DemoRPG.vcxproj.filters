@@ -54,6 +54,9 @@
     <ClCompile Include="player.cpp">
       <Filter>Исходные файлы\Player</Filter>
     </ClCompile>
+    <ClCompile Include="grid_controller.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_engine.h">
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="player.h">
       <Filter>Файлы заголовков\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="grid_controller.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
