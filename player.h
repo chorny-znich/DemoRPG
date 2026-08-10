@@ -17,7 +17,7 @@ enum class PlayerState
 /**
  * @brief 
  */
-class Player : public dr::GameActor
+class Player : public dr::DynamicEntity
 {
 public:
 	Player(sf::IntRect rect, const sf::Texture& texture);
@@ -53,8 +53,8 @@ public:
 		gd::Movement mMovement{ 0, 0 };
 		gd::MoveDirections mMoveDirection{ gd::MoveDirections::NONE };
 		/*float mMoveDestination;
-		
-		RPStats mRPStats;
+		*/
+		/*RPStats mRPStats;
 		Inventory mInventory;
 		Equipment mEquipment;
 		*/

@@ -6,12 +6,16 @@
  * @param rect 
  */
 Player::Player(sf::IntRect rect, const sf::Texture& texture) :
-  dr::GameActor(rect, texture)
+  dr::DynamicEntity(rect, texture)
 {
 }
 
 void Player::init()
 {
+    dr::DynamicEntity::init("player_animation");
+    mAnimationComponent.setCurrentAnimation("idle");
+    mAnimationComponent.setFrameDuration(0.375f);
+    mSprite.setTextureRect(mAnimationComponent.getCurrentRect());
 	mSprite.setOrigin({ - 10.f, -4.f });
 	mSprite.setScale({ 3.f, 3.f });
 	mMapPosition = { 1, 1 };
@@ -19,6 +23,8 @@ void Player::init()
 
 void Player::update(float dt)
 {
+    dr::DynamicEntity::update(dt);
+    mSprite.setTextureRect(mAnimationComponent.getCurrentRect());
 	mSprite.setPosition({mMapPosition.x * 128.f, mMapPosition.y * 128.f});
 }
 
