@@ -87,25 +87,26 @@ bool GridController::checkForEnemy(const std::vector<gd::Position> enemiesPos)
   return false;
 }
 
-gd::MoveDirections GridController::getDirection(const sf::Vector2i& pos) const
+gd::MoveDirections GridController::getDirection(const sf::Vector2i pos) const
 { 
+  sf::Vector2i tilePosition = mCursorComponent.getTilePosition();
   gd::MoveDirections result = gd::MoveDirections::NONE;
-  /*if (mTilePosition.x == pos.x) {
-    if (mTilePosition.y - pos.y == 1) {
-      result = GameData::MoveDirections::DOWN;
+  if (tilePosition.x == pos.x) {
+    if (tilePosition.y - pos.y == 1) {
+      result = gd::MoveDirections::DOWN;
     }
-    else if (mTilePosition.y - pos.y == -1) {
-      result = GameData::MoveDirections::UP;
+    else if (tilePosition.y - pos.y == -1) {
+      result = gd::MoveDirections::UP;
     }
   }
-  else if (mTilePosition.y == pos.y) {
-    if (mTilePosition.x - pos.x == 1) {
-      result = GameData::MoveDirections::RIGHT;
+  else if (tilePosition.y == pos.y) {
+    if (tilePosition.x - pos.x == 1) {
+      result = gd::MoveDirections::RIGHT;
     }
-    else if (mTilePosition.x - pos.x == -1) {
-      result = GameData::MoveDirections::LEFT;
+    else if (tilePosition.x - pos.x == -1) {
+      result = gd::MoveDirections::LEFT;
     }
-  }*/
+  }
   return result;
 }
 

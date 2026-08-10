@@ -5,6 +5,17 @@
 #include <SFML/Graphics/View.hpp>
 #include <memory>
 
+enum class GameplayState
+{
+	START,
+	PLAYER_INPUT,
+	PLAYER_PROCESS,
+	PLAYER_ANIMATION,
+	ENEMY_PROCESS,
+	ENEMY_ANIMATION,
+	GAME_OVER
+};
+
 /**
  * @brief 
  */
@@ -24,21 +35,19 @@ public:
 	void init(sf::View& view);
 	void update(float dt);
 
+	bool isLocationPassable();
+	bool checkMovementPossibility();
+	void startMovePlayer();
+	void movePlayer();
+
 	dr::MapManager& getMapManager();
 	Player& getPlayer();
 	GridController& getGridController();
+
+	GameplayState getGameplayState() const;
 private:
-	enum class GameplayState
-	{
-		START,
-		PLAYER_INPUT,
-		PLAYER_PROCESS,
-		PLAYER_ANIMATION,
-		ENEMY_PROCESS,
-		ENEMY_ANIMATION,
-		GAME_OVER
-	};
-	GameplayState mState{ GameplayState::START };
+	
+	GameplayState mState{ GameplayState::PLAYER_INPUT };
 
 	dr::MapManager mMapManager;
 	std::unique_ptr<Player> mPlayer{};

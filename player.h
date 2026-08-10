@@ -1,4 +1,5 @@
 #pragma once
+#include "game_data.h"
 #include <disreality_engine.h>
 
 /**
@@ -30,13 +31,13 @@ public:
 
 	int switchAnimFrame(sf::Time dt);
 
-	void setMovement(GameData::Movement mov);
-	GameData::Movement getMovement() const;
-	void setMoveDirection(GameData::MoveDirections moveDirection);
+	void setMovement(GameData::Movement mov);*/
+	gd::Movement getMovement() const;
+	void setMoveDirection(gd::MoveDirections moveDirection);/*
 	//sf::Vector2f getCenter() const;
 	void setStartPosition();
-	sf::Vector2f getPosition() const;
-	void setMapPosition(sf::Vector2i pos);*/
+	sf::Vector2f getPosition() const;*/
+	void setMapPosition(sf::Vector2i pos);
 	const sf::Vector2i getMapPosition() const;
 	/*
 	void setPlayerState(PlayerState state);
@@ -44,25 +45,25 @@ public:
 	RPStats& getRPStatsComponent();
 
 	Inventory& getInventory();
-	Equipment& getEquipment();
-	private:
+	Equipment& getEquipment();*/
+	private:/*
 		sf::Sprite mCurrentSprite;
 		sf::Vector2f mPosition{ 256.f, 256.f };*/
-		sf::Vector2i mMapPosition{ 2, 2 };/*
-		GameData::Movement mMovement{ 0, 0 };
-		GameData::MoveDirections mMoveDirection{ GameData::MoveDirections::NONE };
-		float mMoveDestination;
+		sf::Vector2i mMapPosition{ 2, 2 };
+		gd::Movement mMovement{ 0, 0 };
+		gd::MoveDirections mMoveDirection{ gd::MoveDirections::NONE };
+		/*float mMoveDestination;
 		
 		RPStats mRPStats;
 		Inventory mInventory;
 		Equipment mEquipment;
-
+		*/
 		float mSpeed;
 		bool mMoveLeft;
 		bool mMoveRight;
 		bool mMoveUp;
 		bool mMoveDown;
-
+		/*
 		int mAnimFrame;
 		float mAnimTime;
 		bool mIsAnimated;

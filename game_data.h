@@ -20,4 +20,5 @@ namespace gd
   const sf::Vector2f GraphicsResolution{ 1920.f, 1080.f };
 
   using Position = std::pair<int16_t, int16_t>;
+  using Movement = std::pair<int16_t, int16_t>;
 }

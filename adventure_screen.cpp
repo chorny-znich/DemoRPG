@@ -18,8 +18,8 @@ struct AdventureScreen::ScreenInputVisitor
 	{
 		sf::Vector2f mouseViewCoords = window.mapPixelToCoords(mouseMoved.position);
 		GameWorld::instance().getGridController().handleInput(mouseMoved.position, window);
-		GameWorld::instance().getGridController().checkForPlayer(
-			GameWorld::instance().getPlayer().getMapPosition());
+		GameWorld::instance().checkMovementPossibility();
+		
 	}
 
 	/**
@@ -31,6 +31,11 @@ struct AdventureScreen::ScreenInputVisitor
 		if (mouseButton.button == sf::Mouse::Button::Left)
 		{
 			sf::Vector2f mouseViewCoords = window.mapPixelToCoords(mouseButton.position);
+			if (GameWorld::instance().checkMovementPossibility() && 
+				GameWorld::instance().getGameplayState() == GameplayState::PLAYER_INPUT)
+			{
+				GameWorld::instance().startMovePlayer();
+			}
 		}
 	}
 

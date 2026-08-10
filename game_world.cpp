@@ -17,6 +17,50 @@ void GameWorld::update(float dt)
   mGridController->getCursorComponent().update(dt);
 }
 
+bool GameWorld::isLocationPassable()
+{
+  return mMapManager.getCurrentMap().getLocation(mGridController->getCursorComponent().getTileId()).mPassable;
+}
+
+/**
+ * @brief 
+ * @return 
+ */
+bool GameWorld::checkMovementPossibility()
+{
+  bool result = GameWorld::instance().getGridController().checkForPlayer(
+    GameWorld::instance().getPlayer().getMapPosition());
+  if (!GameWorld::instance().isLocationPassable())
+  {
+    GameWorld::instance().getGridController().getCursorComponent().changeCursorColor(sf::Color::Red);
+    result = false;
+  }
+  return result;
+}
+
+/**
+ * @brief 
+ */
+void GameWorld::startMovePlayer()
+{
+  if (isLocationPassable())
+  {
+    mState = GameplayState::PLAYER_PROCESS;
+    mPlayer->setMoveDirection(mGridController->getDirection(mPlayer->getMapPosition()));
+    mPlayer->setMapPosition({ mPlayer->getMapPosition().x + mPlayer->getMovement().first,
+      mPlayer->getMapPosition().y + mPlayer->getMovement().second });
+    movePlayer();
+  }
+}
+
+/**
+ * @brief 
+ */
+void GameWorld::movePlayer()
+{
+  mState = GameplayState::PLAYER_INPUT;
+}
+
 dr::MapManager& GameWorld::getMapManager()
 {
   return mMapManager;
@@ -30,4 +74,9 @@ Player& GameWorld::getPlayer()
 GridController& GameWorld::getGridController()
 {
   return *mGridController;
+}
+
+GameplayState GameWorld::getGameplayState() const
+{
+  return mState;
 }

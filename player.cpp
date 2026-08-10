@@ -23,6 +23,51 @@ void Player::update(float dt)
 }
 
 /**
+ * @brief 
+ * @return 
+ */
+gd::Movement Player::getMovement() const
+{
+  return mMovement;
+}
+
+void Player::setMoveDirection(gd::MoveDirections moveDirection)
+{
+  mMoveDirection = moveDirection;
+  switch (mMoveDirection) {
+  case gd::MoveDirections::RIGHT:
+    mMoveRight = true;
+    //mMoveDestination = mCurrentSprite.getPosition().x + 128.f;
+    mMovement = { 1, 0 };
+    break;
+  case gd::MoveDirections::LEFT:
+    mMoveLeft = true;
+    //mMoveDestination = mCurrentSprite.getPosition().x - 128.f;
+    mMovement = { -1, 0 };
+    break;
+  case gd::MoveDirections::UP:
+    mMoveUp = true;
+    //mMoveDestination = mCurrentSprite.getPosition().y - 128.f;
+    mMovement = { 0, -1 };
+    break;
+  case gd::MoveDirections::DOWN:
+    mMoveDown = true;
+    //mMoveDestination = mCurrentSprite.getPosition().y + 128.f;
+    mMovement = { 0, 1 };
+    break;
+  }
+}
+
+/**
+ * @brief 
+ * @param pos 
+ */
+void Player::setMapPosition(sf::Vector2i pos)
+{
+	mMapPosition = pos;
+}
+
+/**
  * @brief Get player's position in tile coordinates
  * @return sf::Vector 2i with player's coordinates
  */
