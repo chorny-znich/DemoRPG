@@ -103,13 +103,14 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>D:\vargar\repository\lib\DisRealityEngine\include;D:\vargar\repository\lib\SFML3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\vargar\repository\lib\DisRealityEngine\include;D:\vargar\repository\game\DemoRPG\ImGui;D:\vargar\repository\lib\SFML3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996;4834;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>D:\vargar\repository\lib\DisRealityEngine\libDebug;D:\vargar\repository\lib\SFML3\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;sfml-network-d.lib;DisRealityEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;sfml-network-d.lib;DisRealityEngine.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -136,6 +137,12 @@
     <ClCompile Include="game_engine.cpp" />
     <ClCompile Include="game_world.cpp" />
     <ClCompile Include="grid_controller.cpp" />
+    <ClCompile Include="ImGui\imgui-SFML.cpp" />
+    <ClCompile Include="ImGui\imgui.cpp" />
+    <ClCompile Include="ImGui\imgui_demo.cpp" />
+    <ClCompile Include="ImGui\imgui_draw.cpp" />
+    <ClCompile Include="ImGui\imgui_tables.cpp" />
+    <ClCompile Include="ImGui\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main_menu_screen.cpp" />
     <ClCompile Include="player.cpp" />
@@ -147,12 +154,21 @@
     <ClInclude Include="game_engine.h" />
     <ClInclude Include="game_world.h" />
     <ClInclude Include="grid_controller.h" />
+    <ClInclude Include="ImGui\imconfig.h" />
+    <ClInclude Include="ImGui\imgui-SFML.h" />
+    <ClInclude Include="ImGui\imgui-SFML_export.h" />
+    <ClInclude Include="ImGui\imgui.h" />
+    <ClInclude Include="ImGui\imgui_internal.h" />
+    <ClInclude Include="ImGui\imstb_rectpack.h" />
+    <ClInclude Include="ImGui\imstb_textedit.h" />
+    <ClInclude Include="ImGui\imstb_truetype.h" />
     <ClInclude Include="main_menu_screen.h" />
     <ClInclude Include="player.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config\engine_config.ini" />
     <None Include="data\animations\player_animation.ini" />
+    <None Include="data\animation_list.ini" />
     <None Include="data\maps\map_1.ini" />
     <None Include="data\strings.ini" />
     <None Include="data\texture_list.ini" />

@@ -1,5 +1,8 @@
 #include "game_world.h"
 
+#include <imgui.h>
+#include <imgui-SFML.h>
+
 void GameWorld::init(sf::View& view)
 {
   mMapManager.loadMap(1);
@@ -14,7 +17,28 @@ void GameWorld::init(sf::View& view)
 void GameWorld::update(float dt)
 {
   mPlayer->update(dt);
+  if (mState == GameplayState::PLAYER_ANIMATION && !mPlayer->isAnimated())
+  {
+    mState = GameplayState::PLAYER_INPUT;
+  }
+
   mGridController->getCursorComponent().update(dt);
+
+  // DEBUG SECTION
+  std::string currentState{};
+  switch (mState)
+  {
+  case GameplayState::PLAYER_INPUT:
+    currentState = "player input";
+    break;
+  case GameplayState::PLAYER_ANIMATION:
+    currentState = "player animation";
+    break;
+  }
+  ImGui::Begin("Debug window");
+  ImGui::Text(currentState.c_str());
+  ImGui::End();
+  //
 }
 
 bool GameWorld::isLocationPassable()
@@ -45,10 +69,10 @@ void GameWorld::startMovePlayer()
 {
   if (isLocationPassable())
   {
-    mState = GameplayState::PLAYER_PROCESS;
+    mState = GameplayState::PLAYER_ANIMATION;
     mPlayer->setMoveDirection(mGridController->getDirection(mPlayer->getMapPosition()));
-    mPlayer->setMapPosition({ mPlayer->getMapPosition().x + mPlayer->getMovement().first,
-      mPlayer->getMapPosition().y + mPlayer->getMovement().second });
+    //mPlayer->setMapPosition({ mPlayer->getMapPosition().x + mPlayer->getMovement().first,
+      //mPlayer->getMapPosition().y + mPlayer->getMovement().second });
     movePlayer();
   }
 }
@@ -58,7 +82,7 @@ void GameWorld::startMovePlayer()
  */
 void GameWorld::movePlayer()
 {
-  mState = GameplayState::PLAYER_INPUT;
+  //mState = GameplayState::PLAYER_INPUT;
 }
 
 dr::MapManager& GameWorld::getMapManager()

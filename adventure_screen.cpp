@@ -1,6 +1,9 @@
 #include "adventure_screen.h"
 #include "game_world.h"
 
+#include <imgui.h>
+#include <imgui-SFML.h>
+
 /**
  * @brief For handling Events in handleInput method
  */
@@ -47,16 +50,19 @@ struct AdventureScreen::ScreenInputVisitor
  */
 void AdventureScreen::init()
 {
+	ImGui::SFML::Init(dr::ImguiHelper::getWindow());
 	GameWorld::instance().init(mMainView);
 }
 
 void AdventureScreen::handleInput(const sf::Event& event, sf::RenderWindow& window)
 {
 	event.visit(ScreenInputVisitor{ *this, window });
+	ImGui::SFML::ProcessEvent(window, event);
 }
 
 void AdventureScreen::update(float dt)
 {
+	ImGui::SFML::Update(dr::ImguiHelper::getWindow(), dr::ImguiHelper::getTime());
 	mMainView.setCenter({ 960.f, 540.f });
 	GameWorld::instance().update(dt);
 	//mMainView.setCenter({ 0.f, 0.f });
@@ -69,4 +75,6 @@ void AdventureScreen::render(sf::RenderWindow& window)
 	window.draw(GameWorld::instance().getPlayer());
 	GameWorld::instance().getGridController().getCursorComponent().render(window);
 	window.setView(mUIView);
+
+	ImGui::SFML::Render(window);
 }
