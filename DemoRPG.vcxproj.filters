@@ -40,6 +40,12 @@
     <Filter Include="Исходные файлы\Game">
       <UniqueIdentifier>{c6fb7f51-68a8-412b-9660-4a7edc059bc6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\ImGui">
+      <UniqueIdentifier>{9073c046-3283-4613-8fec-b47bea98dafd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\ImGui">
+      <UniqueIdentifier>{33113d00-74a1-49eb-a6a3-a37f5aec4883}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -65,6 +71,24 @@
     </ClCompile>
     <ClCompile Include="grid_controller.cpp">
       <Filter>Исходные файлы\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui.cpp">
+      <Filter>Исходные файлы\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_demo.cpp">
+      <Filter>Исходные файлы\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_draw.cpp">
+      <Filter>Исходные файлы\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_tables.cpp">
+      <Filter>Исходные файлы\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_widgets.cpp">
+      <Filter>Исходные файлы\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui-SFML.cpp">
+      <Filter>Исходные файлы\ImGui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +116,30 @@
     <ClInclude Include="grid_controller.h">
       <Filter>Файлы заголовков\Game</Filter>
     </ClInclude>
+    <ClInclude Include="ImGui\imconfig.h">
+      <Filter>Файлы заголовков\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui.h">
+      <Filter>Файлы заголовков\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_internal.h">
+      <Filter>Файлы заголовков\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui-SFML.h">
+      <Filter>Файлы заголовков\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui-SFML_export.h">
+      <Filter>Файлы заголовков\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_rectpack.h">
+      <Filter>Файлы заголовков\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_textedit.h">
+      <Filter>Файлы заголовков\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_truetype.h">
+      <Filter>Файлы заголовков\ImGui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="config\engine_config.ini">
@@ -113,6 +161,9 @@
       <Filter>Файлы ресурсов</Filter>
     </None>
     <None Include="data\animations\player_animation.ini">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+    <None Include="data\animation_list.ini">
       <Filter>Файлы ресурсов</Filter>
     </None>
   </ItemGroup>
