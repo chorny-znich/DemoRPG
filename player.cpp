@@ -93,6 +93,17 @@ void Player::update(float dt)
 
 /**
  * @brief 
+ * @param pos Player's position in tile coordinates 
+ */
+void Player::spawn(sf::Vector2i pos)
+{
+  mMapPosition = pos;
+  mSprite.setPosition({ static_cast<float>(mMapPosition.x) * dr::SpriteDatabase::instance().getTileSize().x,
+    static_cast<float>(mMapPosition.y) * dr::SpriteDatabase::instance().getTileSize().y });
+}
+
+/**
+ * @brief 
  * @return 
  */
 gd::Movement Player::getMovement() const

@@ -24,6 +24,8 @@ public:
 
 	void init();
 	void update(float dt) override;
+
+	void spawn(sf::Vector2i pos);
 	/*
 
 	int switchAnimFrame(sf::Time dt);

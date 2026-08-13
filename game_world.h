@@ -35,6 +35,8 @@ public:
 	void init(sf::View& view);
 	void update(float dt);
 
+	void changeMap(uint16_t id, sf::Vector2i pos);
+
 	bool isLocationPassable();
 	bool checkMovementPossibility();
 	void startMovePlayer();

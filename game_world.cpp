@@ -5,10 +5,10 @@
 
 void GameWorld::init(sf::View& view)
 {
-  mMapManager.loadMap(1);
   mPlayer = std::make_unique<Player>(sf::IntRect{ {0, 32}, {24, 32} }, dr::Textures::get("player_texture"));
   mPlayer->init();
   mGridController = std::make_unique<GridController>(view);
+  changeMap(1, { 1, 1 });
   mGridController->getCursorComponent().setMapSize({ static_cast<int>(mMapManager.getCurrentMap().getMapSize().x),
     static_cast<int>(mMapManager.getCurrentMap().getMapSize().y) });
   mGridController->getCursorComponent().init();
@@ -20,6 +20,15 @@ void GameWorld::update(float dt)
   if (mState == GameplayState::PLAYER_ANIMATION && !mPlayer->isAnimated())
   {
     mState = GameplayState::PLAYER_INPUT;
+  }
+
+  dr::Map& currentMap = GameWorld::instance().getMapManager().getCurrentMap();
+  sf::Vector2i playerTile = GameWorld::instance().getPlayer().getMapPosition();
+  uint16_t locID = playerTile.y * currentMap.getMapSize().y + playerTile.x;
+  dr::Location& loc = currentMap.getLocation(locID);
+  if (loc.isTransfer)
+  {
+    changeMap(loc.mapTransfer.targetMapId, loc.mapTransfer.targetTilePos);
   }
 
   mGridController->getCursorComponent().update(dt);
@@ -39,6 +48,19 @@ void GameWorld::update(float dt)
   ImGui::Text(currentState.c_str());
   ImGui::End();
   //
+}
+
+/**
+ * @brief 
+ * @param id 
+ * @param pos 
+ */
+void GameWorld::changeMap(uint16_t id, sf::Vector2i pos)
+{
+  mMapManager.loadMap(id);
+  mGridController->getCursorComponent().setMapSize({ static_cast<int>(mMapManager.getCurrentMap().getMapSize().x),
+    static_cast<int>(mMapManager.getCurrentMap().getMapSize().y) });
+  mPlayer->spawn(pos);
 }
 
 bool GameWorld::isLocationPassable()
@@ -71,8 +93,6 @@ void GameWorld::startMovePlayer()
   {
     mState = GameplayState::PLAYER_ANIMATION;
     mPlayer->setMoveDirection(mGridController->getDirection(mPlayer->getMapPosition()));
-    //mPlayer->setMapPosition({ mPlayer->getMapPosition().x + mPlayer->getMovement().first,
-      //mPlayer->getMapPosition().y + mPlayer->getMovement().second });
     movePlayer();
   }
 }
