@@ -38,6 +38,7 @@ public:
 	sf::Vector2f getPosition() const;*/
 	void setMapPosition(sf::Vector2i pos);
 	const sf::Vector2i getMapPosition() const;
+	const sf::Vector2f getScreenPosition() const;
 	bool isAnimated() const;
 	/*
 	void setPlayerState(PlayerState state);

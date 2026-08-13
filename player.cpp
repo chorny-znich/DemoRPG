@@ -14,10 +14,10 @@ Player::Player(sf::IntRect rect, const sf::Texture& texture) :
 
 void Player::init()
 {
-    dr::DynamicEntity::init("player_animation");
-    mAnimationComponent.setCurrentAnimation("idle");
-    mAnimationComponent.setFrameDuration(0.325f);
-    mSprite.setTextureRect(mAnimationComponent.getCurrentRect());
+  dr::DynamicEntity::init("player_animation");
+  mAnimationComponent.setCurrentAnimation("idle");
+  mAnimationComponent.setFrameDuration(0.325f);
+  mSprite.setTextureRect(mAnimationComponent.getCurrentRect());
 	mSprite.setOrigin({ - 10.f, -4.f });
 	mSprite.setScale({ 3.f, 3.f });
 	mMapPosition = { 1, 1 };
@@ -30,12 +30,11 @@ void Player::update(float dt)
 
     if (mMoveRight) 
     {
-      mSprite.move({ mSpeed * dt, 0.0f });
-      if (mSprite.getPosition().x > mMoveDestination) 
+      this->move({ mSpeed * dt, 0.0f });
+      if (this->getPosition().x > mMoveDestination) 
       {
         mMoveRight = false;
         mIsAnimated = false;
-        //mPosition = mCurrentSprite.getPosition();
         mMapPosition = { mMapPosition.x + mMovement.first, mMapPosition.y + mMovement.second };
         mMovement = { 0, 0 };
         mAnimationComponent.setCurrentAnimation("idle");
@@ -45,12 +44,11 @@ void Player::update(float dt)
 
     if (mMoveLeft)
     {
-      mSprite.move({ -mSpeed * dt, 0.0f });
-      if (mSprite.getPosition().x < mMoveDestination)
+      this->move({ -mSpeed * dt, 0.0f });
+      if (this->getPosition().x < mMoveDestination)
       {
         mMoveLeft = false;
         mIsAnimated = false;
-        //mPosition = mCurrentSprite.getPosition();
         mMapPosition = { mMapPosition.x + mMovement.first, mMapPosition.y + mMovement.second };
         mMovement = { 0, 0 };
         mAnimationComponent.setCurrentAnimation("idle");
@@ -60,12 +58,11 @@ void Player::update(float dt)
 
     if (mMoveUp)
     {
-      mSprite.move({ 0.0f, -mSpeed * dt });
-      if (mSprite.getPosition().y < mMoveDestination)
+      this->move({ 0.0f, -mSpeed * dt });
+      if (this->getPosition().y < mMoveDestination)
       {
         mMoveUp = false;
         mIsAnimated = false;
-        //mPosition = mCurrentSprite.getPosition();
         mMapPosition = { mMapPosition.x + mMovement.first, mMapPosition.y + mMovement.second };
         mMovement = { 0, 0 };
         mAnimationComponent.setCurrentAnimation("idle");
@@ -75,12 +72,11 @@ void Player::update(float dt)
 
     if (mMoveDown)
     {
-      mSprite.move({ 0.0f, mSpeed * dt });
-      if (mSprite.getPosition().y > mMoveDestination)
+      this->move({ 0.0f, mSpeed * dt });
+      if (this->getPosition().y > mMoveDestination)
       {
         mMoveDown = false;
         mIsAnimated = false;
-        //mPosition = mCurrentSprite.getPosition();
         mMapPosition = { mMapPosition.x + mMovement.first, mMapPosition.y + mMovement.second };
         mMovement = { 0, 0 };
         mAnimationComponent.setCurrentAnimation("idle");
@@ -117,7 +113,7 @@ void Player::setMoveDirection(gd::MoveDirections moveDirection)
   switch (mMoveDirection) {
   case gd::MoveDirections::RIGHT:
     mMoveRight = true;
-    mMoveDestination = mSprite.getPosition().x + dr::SpriteDatabase::instance().getTileSize().x;
+    mMoveDestination = getPosition().x + dr::SpriteDatabase::instance().getTileSize().x;
     mMovement = { 1, 0 };
     mIsAnimated = true;
     mAnimationComponent.setCurrentAnimation("move_right");
@@ -125,7 +121,7 @@ void Player::setMoveDirection(gd::MoveDirections moveDirection)
     break;
   case gd::MoveDirections::LEFT:
     mMoveLeft = true;
-    mMoveDestination = mSprite.getPosition().x - dr::SpriteDatabase::instance().getTileSize().x;
+    mMoveDestination = getPosition().x - dr::SpriteDatabase::instance().getTileSize().x;
     mMovement = { -1, 0 };
     mIsAnimated = true;
     mAnimationComponent.setCurrentAnimation("move_left");
@@ -133,7 +129,7 @@ void Player::setMoveDirection(gd::MoveDirections moveDirection)
     break;
   case gd::MoveDirections::UP:
     mMoveUp = true;
-    mMoveDestination = mSprite.getPosition().y - dr::SpriteDatabase::instance().getTileSize().y;
+    mMoveDestination = getPosition().y - dr::SpriteDatabase::instance().getTileSize().y;
     mMovement = { 0, -1 };
     mIsAnimated = true;
     mAnimationComponent.setCurrentAnimation("move_up");
@@ -141,7 +137,7 @@ void Player::setMoveDirection(gd::MoveDirections moveDirection)
     break;
   case gd::MoveDirections::DOWN:
     mMoveDown = true;
-    mMoveDestination = mSprite.getPosition().y + dr::SpriteDatabase::instance().getTileSize().y;
+    mMoveDestination = getPosition().y + dr::SpriteDatabase::instance().getTileSize().y;
     mMovement = { 0, 1 };
     mIsAnimated = true;
     mAnimationComponent.setCurrentAnimation("move_down");
@@ -166,6 +162,12 @@ void Player::setMapPosition(sf::Vector2i pos)
 const sf::Vector2i Player::getMapPosition() const
 {
 	return mMapPosition;
+}
+
+const sf::Vector2f Player::getScreenPosition() const
+{
+  return { static_cast<float>(mMapPosition.x) * dr::SpriteDatabase::instance().getTileSize().x,
+    static_cast<float>(mMapPosition.y) * dr::SpriteDatabase::instance().getTileSize().y };
 }
 
 bool Player::isAnimated() const
