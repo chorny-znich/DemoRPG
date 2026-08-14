@@ -17,6 +17,8 @@ public:
 private:
 	struct ScreenInputVisitor;
 
-	sf::View mMainView{ {0, 0}, {gd::GraphicsResolution.x, gd::GraphicsResolution.y} };
-	sf::View mUIView{ {0, 0}, {gd::GraphicsResolution.x, gd::GraphicsResolution.y} };
+	sf::View mMainView{ {gd::GraphicsResolution.x / 2.f, gd::GraphicsResolution.y / 2.f}, 
+		{gd::GraphicsResolution.x, gd::GraphicsResolution.y} };
+	sf::View mUIView{ {gd::GraphicsResolution.x / 2.f, gd::GraphicsResolution.y / 2.f}, 
+		{gd::GraphicsResolution.x, gd::GraphicsResolution.y} };
 };

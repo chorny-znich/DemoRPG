@@ -52,7 +52,6 @@ void AdventureScreen::init()
 {
 	ImGui::SFML::Init(dr::ImguiHelper::getWindow());
 	GameWorld::instance().init(mMainView);
-	mMainView.setCenter({ 960.f, 540.f });
 }
 
 void AdventureScreen::handleInput(const sf::Event& event, sf::RenderWindow& window)

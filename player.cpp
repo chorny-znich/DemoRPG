@@ -21,7 +21,7 @@ void Player::init()
 	mSprite.setOrigin({ - 10.f, -4.f });
 	mSprite.setScale({ 3.f, 3.f });
 	mMapPosition = { 1, 1 };
-  mSprite.setPosition({ mMapPosition.x * 128.f, mMapPosition.y * 128.f });
+  setPosition({ mMapPosition.x * 128.f, mMapPosition.y * 128.f });
 }
 
 void Player::update(float dt)
@@ -30,8 +30,8 @@ void Player::update(float dt)
 
     if (mMoveRight) 
     {
-      this->move({ mSpeed * dt, 0.0f });
-      if (this->getPosition().x > mMoveDestination) 
+      move({ mSpeed * dt, 0.0f });
+      if (getPosition().x > mMoveDestination) 
       {
         mMoveRight = false;
         mIsAnimated = false;
@@ -44,8 +44,8 @@ void Player::update(float dt)
 
     if (mMoveLeft)
     {
-      this->move({ -mSpeed * dt, 0.0f });
-      if (this->getPosition().x < mMoveDestination)
+      move({ -mSpeed * dt, 0.0f });
+      if (getPosition().x < mMoveDestination)
       {
         mMoveLeft = false;
         mIsAnimated = false;
@@ -58,8 +58,8 @@ void Player::update(float dt)
 
     if (mMoveUp)
     {
-      this->move({ 0.0f, -mSpeed * dt });
-      if (this->getPosition().y < mMoveDestination)
+      move({ 0.0f, -mSpeed * dt });
+      if (getPosition().y < mMoveDestination)
       {
         mMoveUp = false;
         mIsAnimated = false;
@@ -72,8 +72,8 @@ void Player::update(float dt)
 
     if (mMoveDown)
     {
-      this->move({ 0.0f, mSpeed * dt });
-      if (this->getPosition().y > mMoveDestination)
+      move({ 0.0f, mSpeed * dt });
+      if (getPosition().y > mMoveDestination)
       {
         mMoveDown = false;
         mIsAnimated = false;
@@ -94,7 +94,7 @@ void Player::update(float dt)
 void Player::spawn(sf::Vector2i pos)
 {
   mMapPosition = pos;
-  mSprite.setPosition({ static_cast<float>(mMapPosition.x) * dr::SpriteDatabase::instance().getTileSize().x,
+  setPosition({static_cast<float>(mMapPosition.x) * dr::SpriteDatabase::instance().getTileSize().x,
     static_cast<float>(mMapPosition.y) * dr::SpriteDatabase::instance().getTileSize().y });
 }
 
@@ -162,12 +162,6 @@ void Player::setMapPosition(sf::Vector2i pos)
 const sf::Vector2i Player::getMapPosition() const
 {
 	return mMapPosition;
-}
-
-const sf::Vector2f Player::getScreenPosition() const
-{
-  return { static_cast<float>(mMapPosition.x) * dr::SpriteDatabase::instance().getTileSize().x,
-    static_cast<float>(mMapPosition.y) * dr::SpriteDatabase::instance().getTileSize().y };
 }
 
 bool Player::isAnimated() const

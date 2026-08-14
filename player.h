@@ -34,11 +34,9 @@ public:
 	gd::Movement getMovement() const;
 	void setMoveDirection(gd::MoveDirections moveDirection);/*
 	//sf::Vector2f getCenter() const;
-	void setStartPosition();
-	sf::Vector2f getPosition() const;*/
+	void setStartPosition();*/
 	void setMapPosition(sf::Vector2i pos);
 	const sf::Vector2i getMapPosition() const;
-	const sf::Vector2f getScreenPosition() const;
 	bool isAnimated() const;
 	/*
 	void setPlayerState(PlayerState state);
@@ -47,8 +45,7 @@ public:
 
 	Inventory& getInventory();
 	Equipment& getEquipment();*/
-	private:/*
-		sf::Vector2f mPosition{ 256.f, 256.f };*/
+	private:
 		sf::Vector2i mMapPosition{ 2, 2 };
 		gd::Movement mMovement{ 0, 0 };
 		gd::MoveDirections mMoveDirection{ gd::MoveDirections::NONE };
@@ -64,13 +61,4 @@ public:
 		bool mMoveUp{ false };
 		bool mMoveDown{ false };
 		bool mIsAnimated{ false };
-		/*
-		int mAnimFrame;
-		float mAnimTime;
-		bool mIsAnimated;
-
-		PlayerState mPlayerState{ PlayerState::ACT };
-
-		void create();
-		*/
 };
