@@ -25,7 +25,8 @@ protected:
 	const std::map<size_t, size_t> LevelCap{
 		{0, 0}, {1, 25}, {2, 100}, {3, 250}, {4, 500}, {5, 1000}
 	};
-	const std::map<size_t, std::unordered_map<std::string, size_t>> Adventurer{
+	const std::map<size_t, std::unordered_map<std::string, size_t>> Adventurer
+	{
 		{1, {{"attack", 0}, {"defence", 0}, {"health", 5}, {"skill point", 1}}},
 		{2, {{"attack", 0}, {"defence", 1}, {"health", 0}, {"skill point", 1}}},
 		{3, {{"attack", 1}, {"defence", 0}, {"health", 5}, {"skill point", 1}}},
@@ -41,19 +42,21 @@ protected:
 		{PrimaryStats::Intellect, 1},
 		{PrimaryStats::Charisma, 1}
 	};
-	std::unordered_map<std::string, int> mSecondaryStats{
-		{"Attack", 0},
-		{"Ranged attack", 0},
-		{"Defence", 0},
-		{"Attention", 0 },
-		{"Reaction", 0},
-		{"Sight", 0}
+	std::unordered_map<SecondaryStats, int> mSecondaryStats
+	{
+		{SecondaryStats::Attack, 0},
+		{SecondaryStats::Ranged_Attack, 0},
+		{SecondaryStats::Defence, 0},
+		{SecondaryStats::Attention, 0 },
+		{SecondaryStats::Reaction, 0},
+		{SecondaryStats::Sight, 0}
 	};
-	std::unordered_map<std::string, int> mSkills{
-		{"Search", 0},
-		{"Athletic", 0},
-		{"Dodge", 0 },
-		{"Deft hands", 0}
+	std::unordered_map<Skills, int> mSkills
+	{
+		{Skills::Search, 0},
+		{Skills::Athletic, 0},
+		{Skills::Dodge, 0 },
+		{Skills::Deft_Hands, 0}
 	};
 
 private:
@@ -96,7 +99,7 @@ public:
 	size_t getMoney() const;
 	size_t& getMoney();
 	void setBaseDefence(size_t value);
-	void updateDefence();
+	//void updateDefence();
 	void setDamage(sf::Vector2u dmg);
 	sf::Vector2u getDamage() const;
 	size_t getDamageValue() const;
@@ -116,28 +119,28 @@ public:
 	void updateAttention();
 
 	// Primary stats
-	void increasePrimaryStat(const std::string& str);
-	void decreasePrimaryStat(const std::string& str);
-	size_t getPrimaryStatValue(const std::string& str);
-	std::unordered_map<std::string, int>& getPrimaryStats();
-	void showPrimaryStats() const;
+	void increasePrimaryStat(PrimaryStats name);
+	void decreasePrimaryStat(PrimaryStats name);
+	size_t getPrimaryStatValue(PrimaryStats name);
+	std::unordered_map<PrimaryStats, int>& getPrimaryStats();
+	//void showPrimaryStats() const;
 	// Secondary stats
-	void setSecondaryStatValue(const std::string& str, size_t value);
-	size_t getSecondaryStatValue(const std::string& str) const;
-	std::unordered_map<std::string, int>& getSecondaryStats();
-	void showSecondaryStats() const;
+	void setSecondaryStatValue(SecondaryStats stat, uint16_t value);
+	size_t getSecondaryStatValue(SecondaryStats stat) const;
+	std::unordered_map<SecondaryStats, int>& getSecondaryStats();
+	//void showSecondaryStats() const;
 	// Skills
-	void setSkillValue(const std::string& str, size_t value);
-	void increaseSkill(const std::string& str);
-	size_t getSkillValue(const std::string& str);
-	bool isSkillExist(const std::string& name) const;
-	std::unordered_map<std::string, int>& getSkills();
+	void setSkillValue(Skills name, uint16_t value);
+	void increaseSkill(Skills name);
+	uint16_t getSkillValue(Skills name);
+	bool isSkillExist(Skills name) const;
+	std::unordered_map<Skills, int>& getSkills();
 	//std::string showSkills();
-	void increaseSkillPoints(size_t value);
-	void decreaseSkillPoints(size_t value);
-	size_t getSkillPoints() const;
+	//void increaseSkillPoints(size_t value);
+	//void decreaseSkillPoints(size_t value);
+	//size_t getSkillPoints() const;
 	//void updateStatsFromSkills();
 
-	std::map<size_t, size_t> getLevelCap() const;
-	std::unordered_map<std::string, size_t> getLevelupResult() const;
+	//std::map<size_t, size_t> getLevelCap() const;
+	//std::unordered_map<std::string, size_t> getLevelupResult() const;
 };

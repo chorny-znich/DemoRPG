@@ -52,6 +52,9 @@
     <Filter Include="Файлы заголовков\RPSystem">
       <UniqueIdentifier>{32687cc0-75f6-48c1-b8c2-b4a80560ec65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\RPSystem">
+      <UniqueIdentifier>{7cfb589e-166a-4c53-8dd4-1b88929a4e0d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -97,7 +100,7 @@
       <Filter>Исходные файлы\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="rp_stats_component.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\RPSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
