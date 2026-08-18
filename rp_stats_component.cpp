@@ -4,7 +4,7 @@
 #include <disreality_engine.h>
 #include <format>
 
-void RPStats::update()
+void RPStatsComponent::update()
 {
 	/*ImGui::Begin("Player statistics");
 	ImGui::Text(std::format("Name: {}", mName).c_str());
@@ -12,16 +12,16 @@ void RPStats::update()
 	ImGui::End();*/
 }
 
-void RPStats::setName(const std::string& name)
+void RPStatsComponent::setName(const std::string& name)
 {
 	mName = name;
 }
-const std::string& RPStats::getName() const
+const std::string& RPStatsComponent::getName() const
 {
 	return mName;
 }
 
-size_t RPStats::getLevel() const
+size_t RPStatsComponent::getLevel() const
 {
 	return mLevel;
 }
@@ -30,7 +30,7 @@ size_t RPStats::getLevel() const
  * @brief Check if the player gain a new level
  * @return
  */
-bool RPStats::levelupCheck()
+bool RPStatsComponent::levelupCheck()
 {
 	if (mExperience >= LevelCap.at(mLevel + 1)) {
 		levelup();
@@ -40,7 +40,7 @@ bool RPStats::levelupCheck()
 	return false;
 }
 
-void RPStats::levelup()
+void RPStatsComponent::levelup()
 {
 	mLevel++;
 	/*setSecondaryStatValue(SecondaryStats::Attack, getSecondaryStatValue(SecondaryStats::Attack) +
@@ -51,77 +51,77 @@ void RPStats::levelup()
 	//increaseSkillPoints(Adventurer.at(mLevel).at("skill point"));
 }
 
-void RPStats::showLevelupMessage(bool show)
+void RPStatsComponent::showLevelupMessage(bool show)
 {
 	mLevelupMessage = show;
 }
 
-bool RPStats::isLevelupMessageShow() const
+bool RPStatsComponent::isLevelupMessageShow() const
 {
 	return mLevelupMessage;
 }
 
-void RPStats::setExperience(size_t exp)
+void RPStatsComponent::setExperience(size_t exp)
 {
 	mExperience = exp;
 }
 
-void RPStats::increaseExperience(size_t exp)
+void RPStatsComponent::increaseExperience(size_t exp)
 {
 	mExperience += exp;
 }
 
-size_t RPStats::getExperience() const
+size_t RPStatsComponent::getExperience() const
 {
 	return mExperience;
 }
 
-size_t& RPStats::getExperience()
+size_t& RPStatsComponent::getExperience()
 {
 	return mExperience;
 }
 
-void RPStats::setExperienceForKill(size_t exp)
+void RPStatsComponent::setExperienceForKill(size_t exp)
 {
 	mExperienceForKill = exp;
 }
 
-size_t RPStats::getExperienceForKill() const
+size_t RPStatsComponent::getExperienceForKill() const
 {
 	return mExperienceForKill;
 }
 
-void RPStats::setMoney(size_t money)
+void RPStatsComponent::setMoney(size_t money)
 {
 	mMoney = money;
 }
 
-void RPStats::increaseMoney(size_t money)
+void RPStatsComponent::increaseMoney(size_t money)
 {
 	mMoney += money;
 }
 
-void RPStats::decreaseMoney(size_t money)
+void RPStatsComponent::decreaseMoney(size_t money)
 {
 	mMoney = (money > mMoney) ? 0 : mMoney - money;
 }
 
-size_t RPStats::getMoney() const
+size_t RPStatsComponent::getMoney() const
 {
 	return mMoney;
 }
 
-size_t& RPStats::getMoney()
+size_t& RPStatsComponent::getMoney()
 {
 	return mMoney;
 }
 
-void RPStats::setBaseDefence(size_t value)
+void RPStatsComponent::setBaseDefence(size_t value)
 {
 	mBaseDefence = value;
 }
 /*
-void RPStats::updateDefence()
+void RPStatsComponent::updateDefence()
 {
 	size_t result = mBaseDefence;
 	/*for (size_t i = 1; i < mLevel; i++) {
@@ -131,42 +131,42 @@ void RPStats::updateDefence()
 	setSecondaryStatValue("Defence", result);
 }
 */
-void RPStats::setDamage(sf::Vector2u dmg)
+void RPStatsComponent::setDamage(sf::Vector2u dmg)
 {
 	mDamage = dmg;
 }
 
-sf::Vector2u RPStats::getDamage() const
+sf::Vector2u RPStatsComponent::getDamage() const
 {
 	return mDamage;
 }
 
-size_t RPStats::getDamageValue() const
+size_t RPStatsComponent::getDamageValue() const
 {
 	return dr::EngineUtility::getRandomInRange(mDamage.x, mDamage.y);
 }
 
-void RPStats::setRangedDamage(sf::Vector2u rdmg)
+void RPStatsComponent::setRangedDamage(sf::Vector2u rdmg)
 {
 	mRangedDamage = rdmg;
 }
 
-sf::Vector2u RPStats::getRangedDamage() const
+sf::Vector2u RPStatsComponent::getRangedDamage() const
 {
 	return mRangedDamage;
 }
 
-size_t RPStats::getRangedDamageValue() const
+size_t RPStatsComponent::getRangedDamageValue() const
 {
 	return dr::EngineUtility::getRandomInRange(mRangedDamage.x, mRangedDamage.y);
 }
 
-void RPStats::setArmor(size_t armor)
+void RPStatsComponent::setArmor(size_t armor)
 {
 	mArmor = armor;
 }
 
-size_t RPStats::getArmor() const
+size_t RPStatsComponent::getArmor() const
 {
 	return mArmor;
 }
@@ -175,22 +175,22 @@ size_t RPStats::getArmor() const
  * @brief Set the value of player's maximum possible health
  * @param value Maximum player's health
  */
-void RPStats::setMaxHealth(size_t value)
+void RPStatsComponent::setMaxHealth(size_t value)
 {
 	mMaxHealth = value;
 }
 
-size_t RPStats::getMaxHealth() const
+size_t RPStatsComponent::getMaxHealth() const
 {
 	return mMaxHealth;
 }
 
-void RPStats::setBaseMaxHealth(size_t value)
+void RPStatsComponent::setBaseMaxHealth(size_t value)
 {
 	mBaseMaxHealth = value;
 }
 
-void RPStats::updateMaxHealth()
+void RPStatsComponent::updateMaxHealth()
 {
 	size_t result = mBaseMaxHealth;
 	for (size_t i = 1; i <= mLevel; i++) {
@@ -200,12 +200,12 @@ void RPStats::updateMaxHealth()
 	setMaxHealth(result);
 }
 
-void RPStats::setHealth(size_t value)
+void RPStatsComponent::setHealth(size_t value)
 {
 	mHealth = value;
 }
 
-void RPStats::increaseHealth(size_t value)
+void RPStatsComponent::increaseHealth(size_t value)
 {
 	if (mMaxHealth >= mHealth + value) {
 		mHealth += value;
@@ -215,12 +215,12 @@ void RPStats::increaseHealth(size_t value)
 	}
 }
 
-void RPStats::decreaseHealth(size_t value)
+void RPStatsComponent::decreaseHealth(size_t value)
 {
 	mHealth = (mHealth > value) ? mHealth - value : 0;
 }
 
-size_t RPStats::getHealth() const
+size_t RPStatsComponent::getHealth() const
 {
 	return mHealth;
 }
@@ -229,27 +229,27 @@ size_t RPStats::getHealth() const
  * @brief Update secondary stat - Attention which depends on
  *	primary stat Perception and skill Search
 */
-void RPStats::updateAttention()
+void RPStatsComponent::updateAttention()
 {
 	setSecondaryStatValue(SecondaryStats::Attention, std::floor(getPrimaryStatValue(PrimaryStats::Perception)
 		* ATTENTION_MODIFIER) + getSkillValue(Skills::Search));
 }
 
-void RPStats::setSecondaryStatValue(SecondaryStats name, uint16_t value)
+void RPStatsComponent::setSecondaryStatValue(SecondaryStats name, uint16_t value)
 {
 	mSecondaryStats.at(name) = value;
 }
 
-size_t RPStats::getSecondaryStatValue(SecondaryStats name) const
+size_t RPStatsComponent::getSecondaryStatValue(SecondaryStats name) const
 {
 	return mSecondaryStats.at(name);
 }
-std::unordered_map<SecondaryStats, int>& RPStats::getSecondaryStats()
+std::unordered_map<SecondaryStats, int>& RPStatsComponent::getSecondaryStats()
 {
 	return mSecondaryStats;
 }
 /*
-void RPStats::showSecondaryStats() const
+void RPStatsComponent::showSecondaryStats() const
 {
 	std::cout << "Secondary stats:\n";
 	std::cout << std::format("  Money - {}\n", getMoney());
@@ -262,7 +262,7 @@ void RPStats::showSecondaryStats() const
 	std::cout << "\n";
 }
 
-void RPStats::showPrimaryStats() const
+void RPStatsComponent::showPrimaryStats() const
 {
 	std::cout << "Primary stats:\n";
 	for (const auto& stat : mPrimaryStats) {
@@ -271,50 +271,50 @@ void RPStats::showPrimaryStats() const
 	std::cout << "\n";
 }
 */ 
-void RPStats::increasePrimaryStat(PrimaryStats name)
+void RPStatsComponent::increasePrimaryStat(PrimaryStats name)
 {
 	mPrimaryStats.at(name) += 1;
 }
 
-void RPStats::decreasePrimaryStat(PrimaryStats name)
+void RPStatsComponent::decreasePrimaryStat(PrimaryStats name)
 {
 	mPrimaryStats.at(name) -= 1;
 }
 
-size_t RPStats::getPrimaryStatValue(PrimaryStats name)
+size_t RPStatsComponent::getPrimaryStatValue(PrimaryStats name)
 {
 	return mPrimaryStats.at(name);
 }
-std::unordered_map<PrimaryStats, int>& RPStats::getPrimaryStats()
+std::unordered_map<PrimaryStats, int>& RPStatsComponent::getPrimaryStats()
 {
 	return mPrimaryStats;
 }
 
-void RPStats::setSkillValue(Skills name, uint16_t value)
+void RPStatsComponent::setSkillValue(Skills name, uint16_t value)
 {
 	mSkills.at(name) = value;
 }
 
-void RPStats::increaseSkill(Skills name)
+void RPStatsComponent::increaseSkill(Skills name)
 {
 	mSkills.at(name) += 1;
 }
 
-uint16_t RPStats::getSkillValue(Skills name)
+uint16_t RPStatsComponent::getSkillValue(Skills name)
 {
 	return mSkills.at(name);
 }
-std::unordered_map<Skills, int>& RPStats::getSkills()
+std::unordered_map<Skills, int>& RPStatsComponent::getSkills()
 {
 	return mSkills;
 }
 
-bool RPStats::isSkillExist(Skills name) const
+bool RPStatsComponent::isSkillExist(Skills name) const
 {
 	return (mSkills.find(name) != mSkills.end()) ? true : false;
 }
 /*
-std::string RPStats::showSkills()
+std::string RPStatsComponent::showSkills()
 {
 	std::string result{};
 	result.append("Skills:\n");
@@ -326,38 +326,38 @@ std::string RPStats::showSkills()
 	return result;
 }
 */ /*
-void RPStats::increaseSkillPoints(size_t value)
+void RPStatsComponent::increaseSkillPoints(size_t value)
 {
 	mSkillPoints += value;
 }
 
-void RPStats::decreaseSkillPoints(size_t value)
+void RPStatsComponent::decreaseSkillPoints(size_t value)
 {
 	mSkillPoints -= value;
 }
 
-size_t RPStats::getSkillPoints() const
+size_t RPStatsComponent::getSkillPoints() const
 {
 	return mSkillPoints;
 }
-std::map<size_t, size_t> RPStats::getLevelCap() const
+std::map<size_t, size_t> RPStatsComponent::getLevelCap() const
 {
 	return LevelCap;
 }
 
 // Get result of the last player's level up
-std::unordered_map<std::string, size_t> RPStats::getLevelupResult() const
+std::unordered_map<std::string, size_t> RPStatsComponent::getLevelupResult() const
 {
 	return Adventurer.at(mLevel);
 }
 
 /*
-size_t RPStats::getSkillPoints() const
+size_t RPStatsComponent::getSkillPoints() const
 {
 	return mSkillPoints;
 }
 
-void RPStats::updateStatsFromSkills()
+void RPStatsComponent::updateStatsFromSkills()
 {
 	updateMaxHealth();
 	updateDefence();

@@ -102,6 +102,9 @@
     <ClCompile Include="rp_stats_component.cpp">
       <Filter>Исходные файлы\RPSystem</Filter>
     </ClCompile>
+    <ClCompile Include="player_stats_screen.cpp">
+      <Filter>Исходные файлы\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_engine.h">
@@ -157,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="rp_stats.h">
       <Filter>Файлы заголовков\RPSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="player_stats_screen.h">
+      <Filter>Файлы заголовков\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

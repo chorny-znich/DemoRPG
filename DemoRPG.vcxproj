@@ -146,6 +146,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main_menu_screen.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="player_stats_screen.cpp" />
     <ClCompile Include="rp_stats_component.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +166,7 @@
     <ClInclude Include="ImGui\imstb_truetype.h" />
     <ClInclude Include="main_menu_screen.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="player_stats_screen.h" />
     <ClInclude Include="rp_stats.h" />
     <ClInclude Include="rp_stats_component.h" />
   </ItemGroup>

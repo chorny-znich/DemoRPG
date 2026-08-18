@@ -19,7 +19,7 @@ const float REACTION_MODIFIER_PERCEPTION = 0.25;
 /**
  * @brief The roleplay system
 */
-class RPStats
+class RPStatsComponent
 {
 protected:
 	const std::map<size_t, size_t> LevelCap{

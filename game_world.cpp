@@ -58,8 +58,8 @@ void GameWorld::update(float dt)
 void GameWorld::changeMap(uint16_t id, sf::Vector2i pos)
 {
   mMapManager.loadMap(id);
-  mMapManager.getCurrentMap().initLighting({static_cast<unsigned int>(gd::GraphicsResolution.x),
-    static_cast<unsigned int>(gd::GraphicsResolution.y)});
+  //mMapManager.getCurrentMap().initLighting({static_cast<unsigned int>(gd::GraphicsResolution.x),
+  //  static_cast<unsigned int>(gd::GraphicsResolution.y)});
   mGridController->getCursorComponent().setMapSize({ static_cast<int>(mMapManager.getCurrentMap().getMapSize().x),
     static_cast<int>(mMapManager.getCurrentMap().getMapSize().y) });
   mPlayer->spawn(pos);
