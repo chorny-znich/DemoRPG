@@ -22,7 +22,8 @@ const float REACTION_MODIFIER_PERCEPTION = 0.25;
 class RPStatsComponent
 {
 protected:
-	const std::map<size_t, size_t> LevelCap{
+	const std::map<uint16_t, uint16_t> LevelCap
+	{
 		{0, 0}, {1, 25}, {2, 100}, {3, 250}, {4, 500}, {5, 1000}
 	};
 	const std::map<size_t, std::unordered_map<std::string, size_t>> Adventurer
@@ -141,6 +142,6 @@ public:
 	//size_t getSkillPoints() const;
 	//void updateStatsFromSkills();
 
-	//std::map<size_t, size_t> getLevelCap() const;
+	const std::map<uint16_t, uint16_t>& getLevelCap() const;
 	//std::unordered_map<std::string, size_t> getLevelupResult() const;
 };

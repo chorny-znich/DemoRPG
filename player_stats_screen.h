@@ -10,8 +10,8 @@
 class PlayerStatsScreen
 {
 public:
-  PlayerStatsScreen(RPStatsComponent& stats);
-  void init();
+  PlayerStatsScreen();
+  void init(RPStatsComponent* stats);
   void update(float dt);
   void render(sf::RenderWindow& window);
 
@@ -19,14 +19,14 @@ public:
   void close();
   bool isVisible() const;
 private:
-  RPStatsComponent& mPlayerStats;
+  RPStatsComponent* mPlayerStats{nullptr};
 
   const sf::Vector2f PANEL_SIZE{400.f, 575.f};
   const sf::Color mPanelColor{ 0, 0, 0, 225 };
   sf::RectangleShape mPanel{ PANEL_SIZE };
   
   bool mVisible{ false };
-  /*
+
   sf::Sprite mPlayerSprite;
   sf::Text mPlayerNameValue;
   sf::Text mLevelText;
@@ -43,7 +43,7 @@ private:
   sf::Text mDamageValue;
   sf::Text mArmorText;
   sf::Text mArmorValue;
-
+  /*
   sf::RectangleShape mStatsDivider;
   sf::Text mStatsTitle;
   std::unordered_map<std::string, sf::Text> mPrimaryStatsText;

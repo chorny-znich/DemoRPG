@@ -22,5 +22,5 @@ private:
 	sf::View mUIView{ {gd::GraphicsResolution.x / 2.f, gd::GraphicsResolution.y / 2.f}, 
 		{gd::GraphicsResolution.x, gd::GraphicsResolution.y} };
 
-	PlayerStatsScreen mPlayerStatsScreen{GameWorld::instance().getPlayer().getRPStatsComponent()};
+	PlayerStatsScreen mPlayerStatsScreen;
 };

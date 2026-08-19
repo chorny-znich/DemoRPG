@@ -68,7 +68,7 @@ void AdventureScreen::init()
 {
 	ImGui::SFML::Init(dr::ImguiHelper::getWindow());
 	GameWorld::instance().init(mMainView);
-	mPlayerStatsScreen.init();
+	mPlayerStatsScreen.init(GameWorld::instance().getPlayer().getRPStatsComponent());
 }
 
 void AdventureScreen::handleInput(const sf::Event& event, sf::RenderWindow& window)

@@ -22,6 +22,8 @@ void Player::init()
 	mSprite.setScale({ 3.f, 3.f });
 	mMapPosition = { 1, 1 };
   setPosition({ mMapPosition.x * 128.f, mMapPosition.y * 128.f });
+
+  create();
 }
 
 void Player::update(float dt)
@@ -173,7 +175,42 @@ bool Player::isAnimated() const
  * @brief 
  * @return 
  */
-RPStatsComponent& Player::getRPStatsComponent()
+RPStatsComponent* Player::getRPStatsComponent()
 {
-  return mRPStats;
+  return &mRPStats;
+}
+
+/**
+ * @brief Load player's stats from the file
+ */
+void Player::create()
+{
+  dr::IniDocument doc = dr::loadIniDocument(gd::path::PlayerInfo.data());
+  dr::Section section = doc.getSection("Player");
+
+  mRPStats.setName(section.at("Name"));
+  mRPStats.setExperience(std::stoi(section.at("Experience")));
+  mRPStats.setBaseMaxHealth(std::stoi(section.at("Health")));
+  mRPStats.updateMaxHealth();
+  mRPStats.setHealth(std::stoul(section.at("Health")));
+  //spawn({ std::stoi(section.at("Position_x")), std::stoi(section.at("Position_y")) });
+  mRPStats.setDamage({ std::stoul(section.at("Damage_min")), std::stoul(section.at("Damage_max")) });
+  mRPStats.setMoney({ std::stoul(section.at("Money")) });
+  // set Stats
+  /*section = doc.getSection("Primary stats");
+  for (auto& stat : mRPStats.getPrimaryStats()) {
+    stat.second = std::stoul(section.at(stat.first));
+  }*/
+  // Set secondary stats
+  /*section = doc.getSection("Secondary stats");
+  for (auto& stat : mRPStats.getSecondaryStats()) {
+    stat.second = std::stoul(section.at(stat.first));
+  }
+  mRPStats.setBaseDefence(std::stoul(section.at("Defence")));
+  mRPStats.updateDefence();*/
+  // set Skills
+  /*section = doc.getSection("Skills");
+  for (auto& skill : mRPStats.getSkills()) {
+    skill.second = std::stoul(section.at(skill.first));
+  }*/
 }

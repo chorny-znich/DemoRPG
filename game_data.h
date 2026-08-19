@@ -2,6 +2,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <cstdint>
 #include <utility>
+#include <string_view>
 
 namespace gd
 {
@@ -21,4 +22,9 @@ namespace gd
 
   using Position = std::pair<int16_t, int16_t>;
   using Movement = std::pair<int16_t, int16_t>;
+
+  namespace path
+  {
+    const std::string_view PlayerInfo = "data/player.ini";
+  }
 }

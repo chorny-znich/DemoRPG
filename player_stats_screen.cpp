@@ -1,4 +1,5 @@
 #include "player_stats_screen.h"
+#include "sprite_database.h"
 #include "game_data.h"
 #include <disreality_engine.h>
 #include <format>
@@ -7,8 +8,8 @@
  * @brief 
  * @param stats Reference to the component which contains player's statistic
  */
-PlayerStatsScreen::PlayerStatsScreen(RPStatsComponent& stats) :
-  mPlayerStats{ stats }/*,
+PlayerStatsScreen::PlayerStatsScreen() :
+  mPlayerSprite(dr::Textures::get("player_texture")),
   mPlayerNameValue{ dr::TextManager::get("player_stats_screen_value") },
   mLevelText{ dr::TextManager::get("player_stats_screen_title") },
   mLevelValue{ dr::TextManager::get("player_stats_screen_value") },
@@ -23,8 +24,8 @@ PlayerStatsScreen::PlayerStatsScreen(RPStatsComponent& stats) :
   mDefenceText{ dr::TextManager::get("player_stats_screen_title") },
   mDefenceValue{ dr::TextManager::get("player_stats_screen_value") },
   mArmorText{ dr::TextManager::get("player_stats_screen_title") },
-  mArmorValue{ dr::TextManager::get("player_stats_screen_value") },
-
+  mArmorValue{ dr::TextManager::get("player_stats_screen_value") }/*,
+  
   mStatsDivider{ {PANEL_SIZE.x - 100.f, 5.f} },
   mStatsTitle{ dr::TextManager::get("player_stats_screen_title") },
 
@@ -76,46 +77,8 @@ PlayerStatsScreen::PlayerStatsScreen(RPStatsComponent& stats) :
   {"Dodge", dr::ImageButton({64.f, 64.f}, "plus_button")},
   {"Deft hands", dr::ImageButton({64.f, 64.f}, "plus_button")}
   }*/
-{/*
-  mPlayerSprite.setTexture(dr::Textures::get("player"));
-  mPlayerSprite.setTextureRect({ static_cast<int>(dr::Database::getSprite("player_idle_1").x),
-    static_cast<int>(dr::Database::getSprite("player_idle_1").y),
-    24, 32 });
-  mPlayerSprite.setScale({ 3.f, 3.f });
-  mPlayerSprite.setPosition({ PANEL_POSITION.x + 10.f, PANEL_POSITION.y + 20.f });
-
-  // Setup text
-  mPlayerNameValue.setPosition({ PANEL_POSITION.x + 125.f, PANEL_POSITION.y + 20.f });
-  mPlayerNameValue.setString(mPlayerStats.getName());
-  mLevelValue.setPosition({ PANEL_POSITION.x + 125.f, PANEL_POSITION.y + 50.f });
-  mLevelValue.setString("");
-  mLevelText.setPosition({ PANEL_POSITION.x + 150.f, PANEL_POSITION.y + 50.f });
-  mLevelText.setString("level");
-  mExpText.setPosition({ PANEL_POSITION.x + 250.f, PANEL_POSITION.y + 50.f });
-  mExpText.setString("EXP ");
-  mExpValue.setPosition({ PANEL_POSITION.x + 300.f, PANEL_POSITION.y + 50.f });
-  mExpValue.setString("");
-  mHealthText.setPosition({ PANEL_POSITION.x + 125.f, PANEL_POSITION.y + 75.f });
-  mHealthText.setString("HP ");
-  mHealthValue.setPosition({ PANEL_POSITION.x + 150.f, PANEL_POSITION.y + 75.f });
-  mHealthValue.setString("");
-  mAttackText.setPosition({ PANEL_POSITION.x + 125.f, PANEL_POSITION.y + 105.f });
-  mAttackText.setString("Attack");
-  mAttackValue.setPosition({ PANEL_POSITION.x + 185.f, PANEL_POSITION.y + 105.f });
-  mAttackValue.setString("");
-  mDamageText.setPosition({ PANEL_POSITION.x + 250.f, PANEL_POSITION.y + 105.f });
-  mDamageText.setString("Damage");
-  mDamageValue.setPosition({ PANEL_POSITION.x + 325.f, PANEL_POSITION.y + 105.f });
-  mDamageValue.setString("");
-  mDefenceText.setPosition({ PANEL_POSITION.x + 125.f, PANEL_POSITION.y + 130.f });
-  mDefenceText.setString("Defence");
-  mDefenceValue.setPosition({ PANEL_POSITION.x + 200.f, PANEL_POSITION.y + 130.f });
-  mDefenceValue.setString("");
-  mArmorText.setPosition({ PANEL_POSITION.x + 250.f, PANEL_POSITION.y + 130.f });
-  mArmorText.setString("Armor");
-  mArmorValue.setPosition({ PANEL_POSITION.x + 325.f, PANEL_POSITION.y + 130.f });
-  mArmorValue.setString("");
-
+{
+  /*
   mStatsDivider.setPosition(PANEL_POSITION.x + 45.f, PANEL_POSITION.y + 165.f);
   mStatsDivider.setFillColor(sf::Color(255, 239, 213, 200));
 
@@ -183,14 +146,54 @@ PlayerStatsScreen::PlayerStatsScreen(RPStatsComponent& stats) :
 /**
  * @brief Initialize data
  */
-void PlayerStatsScreen::init()
+void PlayerStatsScreen::init(RPStatsComponent* stats)
 {
+  mPlayerStats = stats;
+
   mPanel.setPosition({
    gd::GraphicsResolution.x / 2 - PANEL_SIZE.x / 2,
    gd::GraphicsResolution.y / 2 - PANEL_SIZE.y / 2
     });
   mPanel.setFillColor(mPanelColor);
   const sf::Vector2f PANEL_POSITION = mPanel.getPosition();
+
+  mPlayerSprite.setTextureRect({ { static_cast<int>(dr::SpriteDatabase::instance().getSpriteCoords(69).x),
+    static_cast<int>(dr::SpriteDatabase::instance().getSpriteCoords(69).y)},
+    {24, 32} });
+  mPlayerSprite.setScale({ 3.f, 3.f });
+  mPlayerSprite.setPosition({ PANEL_POSITION.x + 10.f, PANEL_POSITION.y + 20.f });
+
+  // Setup text
+  mPlayerNameValue.setPosition({ PANEL_POSITION.x + 125.f, PANEL_POSITION.y + 20.f });
+  mPlayerNameValue.setString(mPlayerStats->getName());
+  mLevelValue.setPosition({ PANEL_POSITION.x + 125.f, PANEL_POSITION.y + 50.f });
+  mLevelValue.setString("");
+  mLevelText.setPosition({ PANEL_POSITION.x + 150.f, PANEL_POSITION.y + 50.f });
+  mLevelText.setString("level");
+  mExpText.setPosition({ PANEL_POSITION.x + 250.f, PANEL_POSITION.y + 50.f });
+  mExpText.setString("EXP ");
+  mExpValue.setPosition({ PANEL_POSITION.x + 300.f, PANEL_POSITION.y + 50.f });
+  mExpValue.setString("");
+  mHealthText.setPosition({ PANEL_POSITION.x + 125.f, PANEL_POSITION.y + 75.f });
+  mHealthText.setString("HP ");
+  mHealthValue.setPosition({ PANEL_POSITION.x + 150.f, PANEL_POSITION.y + 75.f });
+  mHealthValue.setString("");
+  mAttackText.setPosition({ PANEL_POSITION.x + 125.f, PANEL_POSITION.y + 105.f });
+  mAttackText.setString("Attack");
+  mAttackValue.setPosition({ PANEL_POSITION.x + 185.f, PANEL_POSITION.y + 105.f });
+  mAttackValue.setString("");
+  mDamageText.setPosition({ PANEL_POSITION.x + 250.f, PANEL_POSITION.y + 105.f });
+  mDamageText.setString("Damage");
+  mDamageValue.setPosition({ PANEL_POSITION.x + 325.f, PANEL_POSITION.y + 105.f });
+  mDamageValue.setString("");
+  mDefenceText.setPosition({ PANEL_POSITION.x + 125.f, PANEL_POSITION.y + 130.f });
+  mDefenceText.setString("Defence");
+  mDefenceValue.setPosition({ PANEL_POSITION.x + 200.f, PANEL_POSITION.y + 130.f });
+  mDefenceValue.setString("");
+  mArmorText.setPosition({ PANEL_POSITION.x + 250.f, PANEL_POSITION.y + 130.f });
+  mArmorText.setString("Armor");
+  mArmorValue.setPosition({ PANEL_POSITION.x + 325.f, PANEL_POSITION.y + 130.f });
+  mArmorValue.setString("");
 }
 
 /**
@@ -200,18 +203,18 @@ void PlayerStatsScreen::init()
 void PlayerStatsScreen::update(float dt)
 {
   if (mVisible) 
-  {/*
-    mLevelValue.setString(std::to_string(mPlayerStats.getLevel()));
-    mExpValue.setString(std::format("{}/{}", mPlayerStats.getExperience(),
-      mPlayerStats.getLevelCap().at(mPlayerStats.getLevel() + 1)));
+  {
+    mLevelValue.setString(std::to_string(mPlayerStats->getLevel()));
+    mExpValue.setString(std::format("{}/{}", mPlayerStats->getExperience(),
+      mPlayerStats->getLevelCap().at(mPlayerStats->getLevel() + 1)));
     mHealthValue.setString(std::format("{}/{}",
-      mPlayerStats.getHealth(), mPlayerStats.getMaxHealth()));
-    mAttackValue.setString(std::format("{}", mPlayerStats.getSecondaryStatValue("Attack")));
-    mDamageValue.setString(std::format("{} - {}", mPlayerStats.getDamage().x,
-      mPlayerStats.getDamage().y));
-    mDefenceValue.setString(std::to_string(mPlayerStats.getSecondaryStatValue("Defence")));
-    mArmorValue.setString(std::to_string(mPlayerStats.getArmor()));
-
+      mPlayerStats->getHealth(), mPlayerStats->getMaxHealth()));
+    mAttackValue.setString(std::format("{}", mPlayerStats->getSecondaryStatValue(SecondaryStats::Attack)));
+    mDamageValue.setString(std::format("{} - {}", mPlayerStats->getDamage().x,
+      mPlayerStats->getDamage().y));
+    mDefenceValue.setString(std::to_string(mPlayerStats->getSecondaryStatValue(SecondaryStats::Defence)));
+    mArmorValue.setString(std::to_string(mPlayerStats->getArmor()));
+    /*
     for (auto& [stat, text] : mPrimaryStatsValue) {
       text.setString(std::to_string(mPlayerStats.getPrimaryStatValue(stat)));
     }
@@ -235,8 +238,7 @@ void PlayerStatsScreen::update(float dt)
   if (mVisible) 
   {
     window.draw(mPanel);
-    /*  window.draw(mPlayerSprite);
-
+    window.draw(mPlayerSprite);
     window.draw(mPlayerNameValue);
     window.draw(mLevelValue);
     window.draw(mLevelText);
@@ -252,7 +254,7 @@ void PlayerStatsScreen::update(float dt)
     window.draw(mDefenceValue);
     window.draw(mArmorText);
     window.draw(mArmorValue);
-
+    /*
     window.draw(mStatsDivider);
     window.draw(mStatsTitle);
 

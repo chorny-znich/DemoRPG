@@ -42,7 +42,7 @@ public:
 	/*
 	void setPlayerState(PlayerState state);
 	PlayerState getPlayerState() const;*/
-	RPStatsComponent& getRPStatsComponent();
+	RPStatsComponent* getRPStatsComponent();
 	/*
 	Inventory& getInventory();
 	Equipment& getEquipment();*/
@@ -62,4 +62,6 @@ public:
 		bool mMoveUp{ false };
 		bool mMoveDown{ false };
 		bool mIsAnimated{ false };
+
+		void create();
 };

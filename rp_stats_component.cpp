@@ -340,11 +340,16 @@ size_t RPStatsComponent::getSkillPoints() const
 {
 	return mSkillPoints;
 }
-std::map<size_t, size_t> RPStatsComponent::getLevelCap() const
+*/
+/**
+ * @brief 
+ * @return 
+ */
+const std::map<uint16_t, uint16_t>& RPStatsComponent::getLevelCap() const
 {
 	return LevelCap;
 }
-
+/*
 // Get result of the last player's level up
 std::unordered_map<std::string, size_t> RPStatsComponent::getLevelupResult() const
 {
