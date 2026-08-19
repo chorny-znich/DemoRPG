@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include "rp_stats_component.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -12,7 +11,8 @@ class PlayerStatsScreen
 {
 public:
   PlayerStatsScreen(RPStatsComponent& stats);
-  void update(sf::Time dt);
+  void init();
+  void update(float dt);
   void render(sf::RenderWindow& window);
 
   void show();
@@ -20,12 +20,13 @@ public:
   bool isVisible() const;
 private:
   RPStatsComponent& mPlayerStats;
-  const sf::Vector2f PANEL_SIZE{ 400.f, 575.f };
-  const sf::Vector2f POSITION{ 500.f, 400.f };
-  sf::RectangleShape mPanel{ PANEL_SIZE };
-  const sf::Color mPanelColor{ 0, 0, 0, 225 };
-  bool mVisible{ false };
 
+  const sf::Vector2f PANEL_SIZE{400.f, 575.f};
+  const sf::Color mPanelColor{ 0, 0, 0, 225 };
+  sf::RectangleShape mPanel{ PANEL_SIZE };
+  
+  bool mVisible{ false };
+  /*
   sf::Sprite mPlayerSprite;
   sf::Text mPlayerNameValue;
   sf::Text mLevelText;
@@ -59,5 +60,5 @@ private:
 
   std::unordered_map<std::string, dr::ImageButton> mSkillsPlusButtons;
   std::unordered_map<std::string, dr::ImageButton> mSkillsMinusButtons;
-  std::unordered_map<std::string, sf::Text> mSkillsCalcValues;
+  std::unordered_map<std::string, sf::Text> mSkillsCalcValues;*/
 };

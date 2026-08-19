@@ -5,10 +5,10 @@
 
 /**
  * @brief 
- * @param stats 
+ * @param stats Reference to the component which contains player's statistic
  */
 PlayerStatsScreen::PlayerStatsScreen(RPStatsComponent& stats) :
-  mPlayerStats{ stats },
+  mPlayerStats{ stats }/*,
   mPlayerNameValue{ dr::TextManager::get("player_stats_screen_value") },
   mLevelText{ dr::TextManager::get("player_stats_screen_title") },
   mLevelValue{ dr::TextManager::get("player_stats_screen_value") },
@@ -75,16 +75,8 @@ PlayerStatsScreen::PlayerStatsScreen(RPStatsComponent& stats) :
   {"Athletic", dr::ImageButton({64.f, 64.f}, "plus_button")},
   {"Dodge", dr::ImageButton({64.f, 64.f}, "plus_button")},
   {"Deft hands", dr::ImageButton({64.f, 64.f}, "plus_button")}
-  }
-{
-  mPanel.setPosition({
-    GameData::GraphicResolution.x / 2 - PANEL_SIZE.x / 2,
-    GameData::GraphicResolution.y / 2 - PANEL_SIZE.y / 2
-    });
-  mPanel.setFillColor(mPanelColor);
-
-  const sf::Vector2f PANEL_POSITION = mPanel.getPosition();
-
+  }*/
+{/*
   mPlayerSprite.setTexture(dr::Textures::get("player"));
   mPlayerSprite.setTextureRect({ static_cast<int>(dr::Database::getSprite("player_idle_1").x),
     static_cast<int>(dr::Database::getSprite("player_idle_1").y),
@@ -185,16 +177,30 @@ PlayerStatsScreen::PlayerStatsScreen(RPStatsComponent& stats) :
     text.setPosition(startPosition.x + 125.f, startPosition.y + 245.f + iteration * VERT_STEP);
     text.setString("");
     iteration++;
-  }
+  }*/
+}
+
+/**
+ * @brief Initialize data
+ */
+void PlayerStatsScreen::init()
+{
+  mPanel.setPosition({
+   gd::GraphicsResolution.x / 2 - PANEL_SIZE.x / 2,
+   gd::GraphicsResolution.y / 2 - PANEL_SIZE.y / 2
+    });
+  mPanel.setFillColor(mPanelColor);
+  const sf::Vector2f PANEL_POSITION = mPanel.getPosition();
 }
 
 /**
  * @brief update the logic
  * @param dt - time that the single frame takes
  */
-void PlayerStats::update(sf::Time dt)
+void PlayerStatsScreen::update(float dt)
 {
-  if (mVisible) {
+  if (mVisible) 
+  {/*
     mLevelValue.setString(std::to_string(mPlayerStats.getLevel()));
     mExpValue.setString(std::format("{}/{}", mPlayerStats.getExperience(),
       mPlayerStats.getLevelCap().at(mPlayerStats.getLevel() + 1)));
@@ -216,7 +222,7 @@ void PlayerStats::update(sf::Time dt)
     mSkillPointsValue.setString(std::to_string(mPlayerStats.getSkillPoints()));
     for (auto& [skill, text] : mSkillsValue) {
       text.setString(std::to_string(mPlayerStats.getSkillValue(skill)));
-    }
+    }*/
   }
 }
 
@@ -224,11 +230,12 @@ void PlayerStats::update(sf::Time dt)
  * @brief Draw the player's stats panel on the screen
  * @param window - window that draw
  */
-void PlayerStats::render(sf::RenderWindow& window)
+ void PlayerStatsScreen::render(sf::RenderWindow& window)
 {
-  if (mVisible) {
+  if (mVisible) 
+  {
     window.draw(mPanel);
-    window.draw(mPlayerSprite);
+    /*  window.draw(mPlayerSprite);
 
     window.draw(mPlayerNameValue);
     window.draw(mLevelValue);
@@ -271,14 +278,14 @@ void PlayerStats::render(sf::RenderWindow& window)
     }
     for (auto& [stat, text] : mSkillsValue) {
       window.draw(text);
-    }
+    }*/
   }
 }
 
 /**
  * @brief Show the panel
  */
-void PlayerStats::show()
+void PlayerStatsScreen::show()
 {
   mVisible = true;
 }
@@ -286,7 +293,7 @@ void PlayerStats::show()
 /**
  * @brief Close the panel
  */
-void PlayerStats::close()
+void PlayerStatsScreen::close()
 {
   mVisible = false;
 }
@@ -295,7 +302,7 @@ void PlayerStats::close()
  * @brief State of panel's visibility
  * @return if the panel is visible
  */
-bool PlayerStats::isVisible() const
+bool PlayerStatsScreen::isVisible() const
 {
   return mVisible;
 }

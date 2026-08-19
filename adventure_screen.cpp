@@ -42,6 +42,22 @@ struct AdventureScreen::ScreenInputVisitor
 		}
 	}
 
+
+	void operator()(const sf::Event::KeyPressed key)
+	{
+		if (key.code == sf::Keyboard::Key::P)
+		{
+			if (screen.mPlayerStatsScreen.isVisible())
+			{
+				screen.mPlayerStatsScreen.close();
+			}
+			else
+			{
+				screen.mPlayerStatsScreen.show();
+			}
+		}
+	}
+
 	void operator()(const auto&) {};
 };
 
@@ -52,6 +68,7 @@ void AdventureScreen::init()
 {
 	ImGui::SFML::Init(dr::ImguiHelper::getWindow());
 	GameWorld::instance().init(mMainView);
+	mPlayerStatsScreen.init();
 }
 
 void AdventureScreen::handleInput(const sf::Event& event, sf::RenderWindow& window)
@@ -64,6 +81,7 @@ void AdventureScreen::update(float dt)
 {
 	ImGui::SFML::Update(dr::ImguiHelper::getWindow(), dr::ImguiHelper::getTime());
 	GameWorld::instance().update(dt);
+	mPlayerStatsScreen.update(dt);
 	mMainView.setCenter(GameWorld::instance().getPlayer().getPosition());
 }
 
@@ -73,7 +91,9 @@ void AdventureScreen::render(sf::RenderWindow& window)
 	window.draw(GameWorld::instance().getMapManager().getCurrentMap());
 	window.draw(GameWorld::instance().getPlayer());
 	GameWorld::instance().getGridController().getCursorComponent().render(window);
+	
 	window.setView(mUIView);
+	mPlayerStatsScreen.render(window);
 
 	ImGui::SFML::Render(window);
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include "rp_stats_component.h"
 #include "game_data.h"
 #include <disreality_engine.h>
 
@@ -40,9 +41,9 @@ public:
 	bool isAnimated() const;
 	/*
 	void setPlayerState(PlayerState state);
-	PlayerState getPlayerState() const;
-	RPStats& getRPStatsComponent();
-
+	PlayerState getPlayerState() const;*/
+	RPStatsComponent& getRPStatsComponent();
+	/*
 	Inventory& getInventory();
 	Equipment& getEquipment();*/
 	private:
@@ -51,8 +52,8 @@ public:
 		gd::MoveDirections mMoveDirection{ gd::MoveDirections::NONE };
 		float mMoveDestination{};
 		
-		/*RPStats mRPStats;
-		Inventory mInventory;
+		RPStatsComponent mRPStats;
+		/*Inventory mInventory;
 		Equipment mEquipment;
 		*/
 		float mSpeed{ 400.f };

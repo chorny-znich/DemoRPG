@@ -168,3 +168,12 @@ bool Player::isAnimated() const
 {
   return mIsAnimated;
 }
+
+/**
+ * @brief 
+ * @return 
+ */
+RPStatsComponent& Player::getRPStatsComponent()
+{
+  return mRPStats;
+}

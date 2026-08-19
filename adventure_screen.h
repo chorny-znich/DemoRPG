@@ -1,7 +1,7 @@
 #pragma once
 #include "game_world.h"
 #include "player.h"
-#include "grid_controller.h"
+#include "player_stats_screen.h"
 #include "game_data.h"
 #include <disreality_engine.h>
 #include <SFML/Graphics/Texture.hpp>
@@ -21,4 +21,6 @@ private:
 		{gd::GraphicsResolution.x, gd::GraphicsResolution.y} };
 	sf::View mUIView{ {gd::GraphicsResolution.x / 2.f, gd::GraphicsResolution.y / 2.f}, 
 		{gd::GraphicsResolution.x, gd::GraphicsResolution.y} };
+
+	PlayerStatsScreen mPlayerStatsScreen{GameWorld::instance().getPlayer().getRPStatsComponent()};
 };

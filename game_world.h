@@ -48,7 +48,6 @@ public:
 
 	GameplayState getGameplayState() const;
 private:
-	
 	GameplayState mState{ GameplayState::PLAYER_INPUT };
 
 	dr::MapManager mMapManager;
