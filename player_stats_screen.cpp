@@ -6,10 +6,9 @@
 
 /**
  * @brief 
- * @param stats Reference to the component which contains player's statistic
  */
 PlayerStatsScreen::PlayerStatsScreen() :
-  mPlayerSprite(dr::Textures::get("player_texture")),
+  mPlayerSprite{ dr::Textures::get("player_texture") },
   mPlayerNameValue{ dr::TextManager::get("player_stats_screen_value") },
   mLevelText{ dr::TextManager::get("player_stats_screen_title") },
   mLevelValue{ dr::TextManager::get("player_stats_screen_value") },
@@ -24,123 +23,15 @@ PlayerStatsScreen::PlayerStatsScreen() :
   mDefenceText{ dr::TextManager::get("player_stats_screen_title") },
   mDefenceValue{ dr::TextManager::get("player_stats_screen_value") },
   mArmorText{ dr::TextManager::get("player_stats_screen_title") },
-  mArmorValue{ dr::TextManager::get("player_stats_screen_value") }/*,
+  mArmorValue{ dr::TextManager::get("player_stats_screen_value") },
   
   mStatsDivider{ {PANEL_SIZE.x - 100.f, 5.f} },
   mStatsTitle{ dr::TextManager::get("player_stats_screen_title") },
-
-  mPrimaryStatsText{
-    {"Strength", dr::TextManager::get("player_stats_screen_title")},
-    {"Stamina", dr::TextManager::get("player_stats_screen_title")},
-    {"Dexterity", dr::TextManager::get("player_stats_screen_title")},
-    {"Perception", dr::TextManager::get("player_stats_screen_title")},
-    {"Intellect", dr::TextManager::get("player_stats_screen_title")},
-    {"Charisma", dr::TextManager::get("player_stats_screen_title")}
-  },
-  mPrimaryStatsValue{
-    {"Strength", dr::TextManager::get("player_stats_screen_value")},
-    {"Stamina", dr::TextManager::get("player_stats_screen_value")},
-    {"Dexterity", dr::TextManager::get("player_stats_screen_value")},
-    {"Perception", dr::TextManager::get("player_stats_screen_value")},
-    {"Intellect", dr::TextManager::get("player_stats_screen_value")},
-    {"Charisma", dr::TextManager::get("player_stats_screen_value")}
-  },
-  mSecondaryStatsText{
-   {"Attention", dr::TextManager::get("player_stats_screen_title")},
-   {"Reaction", dr::TextManager::get("player_stats_screen_title")},
-   {"Sight", dr::TextManager::get("player_stats_screen_title")},
-  },
-  mSecondaryStatsValue{
-  {"Attention", dr::TextManager::get("player_stats_screen_value")},
-  {"Reaction", dr::TextManager::get("player_stats_screen_value")},
-  {"Sight", dr::TextManager::get("player_stats_screen_value")},
-  },
   mSkillsDivider{ {PANEL_SIZE.x - 100.f, 5.f} },
   mSkillsTitle{ dr::TextManager::get("player_stats_screen_title") },
   mSkillPointsText{ dr::TextManager::get("player_stats_screen_title") },
-  mSkillPointsValue{ dr::TextManager::get("player_stats_screen_value") },
-  mSkillsText{
-  {"Search", dr::TextManager::get("player_stats_screen_title")},
-  {"Athletic", dr::TextManager::get("player_stats_screen_title")},
-  {"Dodge", dr::TextManager::get("player_stats_screen_title")},
-  {"Deft hands", dr::TextManager::get("player_stats_screen_title")}
-  },
-  mSkillsValue{
-  {"Search", dr::TextManager::get("player_stats_screen_value")},
-  {"Athletic", dr::TextManager::get("player_stats_screen_value")},
-  {"Dodge", dr::TextManager::get("player_stats_screen_value")},
-  {"Deft hands", dr::TextManager::get("player_stats_screen_value")},
-  },
-  mSkillsPlusButtons{
-  {"Search", dr::ImageButton({64.f, 64.f}, "plus_button")},
-  {"Athletic", dr::ImageButton({64.f, 64.f}, "plus_button")},
-  {"Dodge", dr::ImageButton({64.f, 64.f}, "plus_button")},
-  {"Deft hands", dr::ImageButton({64.f, 64.f}, "plus_button")}
-  }*/
+  mSkillPointsValue{ dr::TextManager::get("player_stats_screen_value") }
 {
-  /*
-  mStatsDivider.setPosition(PANEL_POSITION.x + 45.f, PANEL_POSITION.y + 165.f);
-  mStatsDivider.setFillColor(sf::Color(255, 239, 213, 200));
-
-  mStatsTitle.setPosition(PANEL_POSITION.x + PANEL_SIZE.x / 2 - 100.f, PANEL_POSITION.y + 172.f);
-  mStatsTitle.setString("Primary/Secondary stats");
-
-  sf::Vector2f startPosition{ PANEL_POSITION.x + 25.f, PANEL_POSITION.y + 205.f };
-  const float VERT_STEP{ 25.f };
-  int iteration{ 0 };
-
-  for (auto& [stat, text] : mPrimaryStatsText) {
-    text.setPosition(startPosition.x, startPosition.y + iteration * VERT_STEP);
-    text.setString(stat);
-    iteration++;
-  }
-
-  iteration = 0;
-  for (auto& [stat, text] : mPrimaryStatsValue) {
-    text.setPosition(startPosition.x + 125.f, startPosition.y + iteration * VERT_STEP);
-    text.setString("");
-    iteration++;
-  }
-
-  iteration = 0;
-  for (auto& [stat, text] : mSecondaryStatsText) {
-    text.setPosition(startPosition.x + 200.f, startPosition.y + iteration * VERT_STEP);
-    text.setString(stat);
-    iteration++;
-  }
-
-  iteration = 0;
-  for (auto& [stat, text] : mSecondaryStatsValue) {
-    text.setPosition(startPosition.x + 325.f, startPosition.y + iteration * VERT_STEP);
-    text.setString("");
-    iteration++;
-  }
-
-  mSkillsDivider.setPosition(startPosition.x + 25.f, startPosition.y + 175.f);
-  mSkillsDivider.setFillColor(sf::Color(255, 239, 213, 200));
-
-  mSkillsTitle.setPosition(startPosition.x + PANEL_SIZE.x / 2 - 50.f, startPosition.y + 182.f);
-  mSkillsTitle.setString("Skills");
-
-  mSkillPointsText.setPosition(startPosition.x, startPosition.y + 210.f);
-  mSkillPointsText.setString("Skill points");
-  mSkillPointsValue.setPosition(startPosition.x + 125.f, startPosition.y + 210.f);
-  mSkillPointsValue.setString("");
-
-
-  iteration = 0;
-  for (auto& [skill, text] : mSkillsText) {
-    text.setPosition(startPosition.x, startPosition.y + 245.f + iteration * VERT_STEP);
-    text.setString(skill);
-    iteration++;
-  }
-
-  iteration = 0;
-  for (auto& [skill, text] : mSkillsValue) {
-    text.setPosition(startPosition.x + 125.f, startPosition.y + 245.f + iteration * VERT_STEP);
-    text.setString("");
-    iteration++;
-  }*/
 }
 
 /**
@@ -154,7 +45,7 @@ void PlayerStatsScreen::init(RPStatsComponent* stats)
    gd::GraphicsResolution.x / 2 - PANEL_SIZE.x / 2,
    gd::GraphicsResolution.y / 2 - PANEL_SIZE.y / 2
     });
-  mPanel.setFillColor(mPanelColor);
+  mPanel.setFillColor(PANEL_COLOR);
   const sf::Vector2f PANEL_POSITION = mPanel.getPosition();
 
   mPlayerSprite.setTextureRect({ { static_cast<int>(dr::SpriteDatabase::instance().getSpriteCoords(69).x),
@@ -194,6 +85,72 @@ void PlayerStatsScreen::init(RPStatsComponent* stats)
   mArmorText.setString("Armor");
   mArmorValue.setPosition({ PANEL_POSITION.x + 325.f, PANEL_POSITION.y + 130.f });
   mArmorValue.setString("");
+
+  // Block with primary/secondary stats/skills
+  for (const auto& [key, value] : mPrimaryStatsName)
+  {
+    mPrimaryStatsText.emplace(key, dr::TextManager::get("player_stats_screen_title"));
+    mPrimaryStatsValue.emplace(key, dr::TextManager::get("player_stats_screen_value"));
+  }
+
+  for (const auto& [key, value] : mSecondaryStatsName)
+  {
+    mSecondaryStatsText.emplace(key, dr::TextManager::get("player_stats_screen_title"));
+    mSecondaryStatsValue.emplace(key, dr::TextManager::get("player_stats_screen_value"));
+  }
+
+  for (const auto& [key, value] : mSkillsName)
+  {
+    mSkillsText.emplace(key, dr::TextManager::get("player_stats_screen_title"));
+    mSkillsValue.emplace(key, dr::TextManager::get("player_stats_screen_value"));
+    mSkillsPlusButtons.emplace(key, dr::ImageButton({ 64.f, 64.f }, 1, 1));
+  }
+
+  mStatsDivider.setPosition({ PANEL_POSITION.x + 45.f, PANEL_POSITION.y + 165.f });
+  mStatsDivider.setFillColor(sf::Color(255, 239, 213, 200));
+
+  mStatsTitle.setPosition({ PANEL_POSITION.x + PANEL_SIZE.x / 2 - 100.f, PANEL_POSITION.y + 172.f });
+  mStatsTitle.setString("Primary/Secondary stats");
+
+  sf::Vector2f startPosition{ PANEL_POSITION.x + 25.f, PANEL_POSITION.y + 205.f };
+  const float VERT_STEP{ 25.f };
+  int iteration{ 0 };
+
+  for (auto& [stat, text] : mPrimaryStatsText)
+  {
+    text.setPosition({ startPosition.x, startPosition.y + iteration * VERT_STEP });
+    text.setString(mPrimaryStatsName.at(stat));
+    mPrimaryStatsValue.at(stat).setPosition({startPosition.x + 125.f, startPosition.y + iteration * VERT_STEP});
+    iteration++;
+  }
+ 
+  iteration = 0;
+  for (auto& [stat, text] : mSecondaryStatsText) 
+  {
+    text.setPosition({ startPosition.x + 200.f, startPosition.y + iteration * VERT_STEP });
+    text.setString(mSecondaryStatsName.at(stat));
+    mSecondaryStatsValue.at(stat).setPosition({ startPosition.x + 325.f, startPosition.y + iteration * VERT_STEP });
+    iteration++;
+  }
+
+  mSkillsDivider.setPosition({ startPosition.x + 25.f, startPosition.y + 175.f });
+  mSkillsDivider.setFillColor(sf::Color(255, 239, 213, 200));
+
+  mSkillsTitle.setPosition({ startPosition.x + PANEL_SIZE.x / 2 - 50.f, startPosition.y + 182.f });
+  mSkillsTitle.setString("Skills");
+
+  mSkillPointsText.setPosition({ startPosition.x, startPosition.y + 210.f });
+  mSkillPointsText.setString("Skill points");
+  mSkillPointsValue.setPosition({ startPosition.x + 125.f, startPosition.y + 210.f });
+
+  iteration = 0;
+  for (auto& [skill, text] : mSkillsText) 
+  {
+    text.setPosition({ startPosition.x, startPosition.y + 245.f + iteration * VERT_STEP });
+    text.setString(mSkillsName.at(skill));
+    mSkillsValue.at(skill).setPosition({ startPosition.x + 125.f, startPosition.y + 245.f + iteration * VERT_STEP });
+    iteration++;
+  }
 }
 
 /**
@@ -202,9 +159,9 @@ void PlayerStatsScreen::init(RPStatsComponent* stats)
  */
 void PlayerStatsScreen::update(float dt)
 {
-  if (mVisible) 
+  if (mVisible && mNeedsUpdate) 
   {
-    mLevelValue.setString(std::to_string(mPlayerStats->getLevel()));
+    mLevelValue.setString(std::format("{}", mPlayerStats->getLevel()));
     mExpValue.setString(std::format("{}/{}", mPlayerStats->getExperience(),
       mPlayerStats->getLevelCap().at(mPlayerStats->getLevel() + 1)));
     mHealthValue.setString(std::format("{}/{}",
@@ -212,20 +169,23 @@ void PlayerStatsScreen::update(float dt)
     mAttackValue.setString(std::format("{}", mPlayerStats->getSecondaryStatValue(SecondaryStats::Attack)));
     mDamageValue.setString(std::format("{} - {}", mPlayerStats->getDamage().x,
       mPlayerStats->getDamage().y));
-    mDefenceValue.setString(std::to_string(mPlayerStats->getSecondaryStatValue(SecondaryStats::Defence)));
-    mArmorValue.setString(std::to_string(mPlayerStats->getArmor()));
-    /*
-    for (auto& [stat, text] : mPrimaryStatsValue) {
-      text.setString(std::to_string(mPlayerStats.getPrimaryStatValue(stat)));
+    mDefenceValue.setString(std::format("{}", mPlayerStats->getSecondaryStatValue(SecondaryStats::Defence)));
+    mArmorValue.setString(std::format("{}", mPlayerStats->getArmor()));
+    
+    for (auto& [stat, text] : mPrimaryStatsValue) 
+    {
+      text.setString(std::format("{}", mPlayerStats->getPrimaryStatValue(stat)));
     }
-    for (auto& [stat, text] : mSecondaryStatsValue) {
-      text.setString(std::to_string(mPlayerStats.getSecondaryStatValue(stat)));
+    for (auto& [stat, text] : mSecondaryStatsValue)
+    {
+      text.setString(std::format("{}", mPlayerStats->getSecondaryStatValue(stat)));
     }
-
-    mSkillPointsValue.setString(std::to_string(mPlayerStats.getSkillPoints()));
+    
+    mSkillPointsValue.setString(std::to_string(mPlayerStats->getSkillPoints()));
     for (auto& [skill, text] : mSkillsValue) {
-      text.setString(std::to_string(mPlayerStats.getSkillValue(skill)));
-    }*/
+      text.setString(std::format("{}", mPlayerStats->getSkillValue(skill)));
+    }
+    mNeedsUpdate = false;
   }
 }
 
@@ -233,7 +193,7 @@ void PlayerStatsScreen::update(float dt)
  * @brief Draw the player's stats panel on the screen
  * @param window - window that draw
  */
- void PlayerStatsScreen::render(sf::RenderWindow& window)
+ void PlayerStatsScreen::render(sf::RenderWindow& window) const
 {
   if (mVisible) 
   {
@@ -254,33 +214,39 @@ void PlayerStatsScreen::update(float dt)
     window.draw(mDefenceValue);
     window.draw(mArmorText);
     window.draw(mArmorValue);
-    /*
+    
     window.draw(mStatsDivider);
     window.draw(mStatsTitle);
 
-    for (auto& [stat, text] : mPrimaryStatsText) {
+    for (const auto& [stat, text] : mPrimaryStatsText) 
+    {
       window.draw(text);
     }
-    for (auto& [stat, text] : mPrimaryStatsValue) {
+    for (const auto& [stat, text] : mPrimaryStatsValue) 
+    {
       window.draw(text);
     }
-    for (auto& [stat, text] : mSecondaryStatsText) {
+    for (const auto& [stat, text] : mSecondaryStatsText) 
+    {
       window.draw(text);
     }
-    for (auto& [stat, text] : mSecondaryStatsValue) {
+    for (const auto& [stat, text] : mSecondaryStatsValue) 
+    {
       window.draw(text);
     }
-
+    
     window.draw(mSkillsDivider);
     window.draw(mSkillsTitle);
     window.draw(mSkillPointsText);
     window.draw(mSkillPointsValue);
-    for (auto& [skill, text] : mSkillsText) {
+    for (const auto& [skill, text] : mSkillsText) 
+    {
       window.draw(text);
     }
-    for (auto& [stat, text] : mSkillsValue) {
+    for (auto& [stat, text] : mSkillsValue)
+    {
       window.draw(text);
-    }*/
+    }
   }
 }
 
@@ -290,6 +256,7 @@ void PlayerStatsScreen::update(float dt)
 void PlayerStatsScreen::show()
 {
   mVisible = true;
+  mNeedsUpdate = true;
 }
 
 /**

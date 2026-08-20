@@ -120,17 +120,17 @@ void RPStatsComponent::setBaseDefence(size_t value)
 {
 	mBaseDefence = value;
 }
-/*
+
 void RPStatsComponent::updateDefence()
 {
 	size_t result = mBaseDefence;
 	/*for (size_t i = 1; i < mLevel; i++) {
 		result += Adventurer.at(i).at("defence");
-	}*/ /*
-	result += mSkills.at("Dodge");
-	setSecondaryStatValue("Defence", result);
+	}*/ 
+	result += mSkills.at(Skills::Dodge);
+	setSecondaryStatValue(SecondaryStats::Defence, result);
 }
-*/
+
 void RPStatsComponent::setDamage(sf::Vector2u dmg)
 {
 	mDamage = dmg;
@@ -248,29 +248,7 @@ std::unordered_map<SecondaryStats, int>& RPStatsComponent::getSecondaryStats()
 {
 	return mSecondaryStats;
 }
-/*
-void RPStatsComponent::showSecondaryStats() const
-{
-	std::cout << "Secondary stats:\n";
-	std::cout << std::format("  Money - {}\n", getMoney());
-	std::cout << std::format("  Health - {}\n", getMaxHealth());
-	std::cout << std::format("  Attack - {}\n", getSecondaryStatValue("Attack"));
-	std::cout << std::format("  Ranged attack - {}\n", getSecondaryStatValue("Ranged attack"));
-	std::cout << std::format("  Defence - {}\n", getSecondaryStatValue("Defence"));
-	std::cout << std::format("  Attention - {}\n", getSecondaryStatValue("Attention"));
-	std::cout << std::format("  Reaction - {}\n", getSecondaryStatValue("Reaction"));
-	std::cout << "\n";
-}
 
-void RPStatsComponent::showPrimaryStats() const
-{
-	std::cout << "Primary stats:\n";
-	for (const auto& stat : mPrimaryStats) {
-		std::cout << std::format("  {} - {}\n", stat.first, stat.second);
-	}
-	std::cout << "\n";
-}
-*/ 
 void RPStatsComponent::increasePrimaryStat(PrimaryStats name)
 {
 	mPrimaryStats.at(name) += 1;
@@ -314,18 +292,7 @@ bool RPStatsComponent::isSkillExist(Skills name) const
 	return (mSkills.find(name) != mSkills.end()) ? true : false;
 }
 /*
-std::string RPStatsComponent::showSkills()
-{
-	std::string result{};
-	result.append("Skills:\n");
-	for (const auto& [skill, value] : mSkills) {
-		result.append(std::format("  {} -- {}\n", skill, value));
-	}
-	result.append("\n");
 
-	return result;
-}
-*/ /*
 void RPStatsComponent::increaseSkillPoints(size_t value)
 {
 	mSkillPoints += value;
@@ -355,13 +322,13 @@ std::unordered_map<std::string, size_t> RPStatsComponent::getLevelupResult() con
 {
 	return Adventurer.at(mLevel);
 }
+*/
 
-/*
 size_t RPStatsComponent::getSkillPoints() const
 {
 	return mSkillPoints;
 }
-
+/*
 void RPStatsComponent::updateStatsFromSkills()
 {
 	updateMaxHealth();

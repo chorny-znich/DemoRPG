@@ -190,5 +190,8 @@
     <None Include="data\animation_list.ini">
       <Filter>Файлы ресурсов</Filter>
     </None>
+    <None Include="data\player.ini">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
   </ItemGroup>
 </Project>

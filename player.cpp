@@ -196,21 +196,22 @@ void Player::create()
   //spawn({ std::stoi(section.at("Position_x")), std::stoi(section.at("Position_y")) });
   mRPStats.setDamage({ std::stoul(section.at("Damage_min")), std::stoul(section.at("Damage_max")) });
   mRPStats.setMoney({ std::stoul(section.at("Money")) });
-  // set Stats
-  /*section = doc.getSection("Primary stats");
+  // set primary Stats
+  section = doc.getSection("Primary stats");
   for (auto& stat : mRPStats.getPrimaryStats()) {
-    stat.second = std::stoul(section.at(stat.first));
-  }*/
+    stat.second = std::stoul(section.at(mPrimaryStatsName.at(stat.first).data()));
+  }
   // Set secondary stats
-  /*section = doc.getSection("Secondary stats");
+  section = doc.getSection("Secondary stats");
   for (auto& stat : mRPStats.getSecondaryStats()) {
-    stat.second = std::stoul(section.at(stat.first));
+    stat.second = std::stoul(section.at(mSecondaryStatsName.at(stat.first).data()));
   }
   mRPStats.setBaseDefence(std::stoul(section.at("Defence")));
-  mRPStats.updateDefence();*/
+  mRPStats.updateDefence();
   // set Skills
-  /*section = doc.getSection("Skills");
-  for (auto& skill : mRPStats.getSkills()) {
-    skill.second = std::stoul(section.at(skill.first));
-  }*/
+  section = doc.getSection("Skills");
+  for (auto& skill : mRPStats.getSkills()) 
+  {
+    skill.second = std::stoul(section.at(mSkillsName.at(skill.first).data()));
+  }
 }

@@ -100,7 +100,7 @@ public:
 	size_t getMoney() const;
 	size_t& getMoney();
 	void setBaseDefence(size_t value);
-	//void updateDefence();
+	void updateDefence();
 	void setDamage(sf::Vector2u dmg);
 	sf::Vector2u getDamage() const;
 	size_t getDamageValue() const;
@@ -124,22 +124,21 @@ public:
 	void decreasePrimaryStat(PrimaryStats name);
 	size_t getPrimaryStatValue(PrimaryStats name);
 	std::unordered_map<PrimaryStats, int>& getPrimaryStats();
-	//void showPrimaryStats() const;
+	
 	// Secondary stats
 	void setSecondaryStatValue(SecondaryStats stat, uint16_t value);
 	size_t getSecondaryStatValue(SecondaryStats stat) const;
 	std::unordered_map<SecondaryStats, int>& getSecondaryStats();
-	//void showSecondaryStats() const;
+	
 	// Skills
 	void setSkillValue(Skills name, uint16_t value);
 	void increaseSkill(Skills name);
 	uint16_t getSkillValue(Skills name);
 	bool isSkillExist(Skills name) const;
 	std::unordered_map<Skills, int>& getSkills();
-	//std::string showSkills();
 	//void increaseSkillPoints(size_t value);
 	//void decreaseSkillPoints(size_t value);
-	//size_t getSkillPoints() const;
+	size_t getSkillPoints() const;
 	//void updateStatsFromSkills();
 
 	const std::map<uint16_t, uint16_t>& getLevelCap() const;
