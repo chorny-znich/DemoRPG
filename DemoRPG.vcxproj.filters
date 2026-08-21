@@ -114,6 +114,12 @@
     <ClCompile Include="money.cpp">
       <Filter>Исходные файлы\Loot</Filter>
     </ClCompile>
+    <ClCompile Include="object_manager.cpp">
+      <Filter>Исходные файлы\Loot</Filter>
+    </ClCompile>
+    <ClCompile Include="random_placement.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_engine.h">
@@ -175,6 +181,15 @@
     </ClInclude>
     <ClInclude Include="money.h">
       <Filter>Файлы заголовков\Loot</Filter>
+    </ClInclude>
+    <ClInclude Include="object_manager.h">
+      <Filter>Файлы заголовков\Loot</Filter>
+    </ClInclude>
+    <ClInclude Include="sprite_id.h">
+      <Filter>Файлы заголовков\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="random_placement.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -102,7 +102,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
       <AdditionalIncludeDirectories>D:\vargar\repository\lib\DisRealityEngine\include;D:\vargar\repository\game\DemoRPG\ImGui;D:\vargar\repository\lib\SFML3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4834;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -146,8 +146,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main_menu_screen.cpp" />
     <ClCompile Include="money.cpp" />
+    <ClCompile Include="object_manager.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="player_stats_screen.cpp" />
+    <ClCompile Include="random_placement.cpp" />
     <ClCompile Include="rp_stats_component.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +159,8 @@
     <ClInclude Include="game_engine.h" />
     <ClInclude Include="game_world.h" />
     <ClInclude Include="grid_controller.h" />
+    <ClInclude Include="random_placement.h" />
+    <ClInclude Include="sprite_id.h" />
     <ClInclude Include="ImGui\imconfig.h" />
     <ClInclude Include="ImGui\imgui-SFML.h" />
     <ClInclude Include="ImGui\imgui-SFML_export.h" />
@@ -167,6 +171,7 @@
     <ClInclude Include="ImGui\imstb_truetype.h" />
     <ClInclude Include="main_menu_screen.h" />
     <ClInclude Include="money.h" />
+    <ClInclude Include="object_manager.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="player_stats_screen.h" />
     <ClInclude Include="rp_stats.h" />

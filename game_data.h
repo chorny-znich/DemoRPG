@@ -26,5 +26,6 @@ namespace gd
   namespace path
   {
     const std::string_view PlayerInfo = "data/player.ini";
+    const std::string_view GameObjectsPath = "data/objects/";
   }
 }

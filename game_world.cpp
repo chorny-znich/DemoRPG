@@ -12,6 +12,7 @@ void GameWorld::init(sf::View& view)
   mGridController->getCursorComponent().setMapSize({ static_cast<int>(mMapManager.getCurrentMap().getMapSize().x),
     static_cast<int>(mMapManager.getCurrentMap().getMapSize().y) });
   mGridController->getCursorComponent().init();
+  mObjectManager.createObjects(std::format("{}objects_{}.ini", gd::path::GameObjectsPath, mMapManager.getCurrentMapIndex()));
 }
 
 void GameWorld::update(float dt)

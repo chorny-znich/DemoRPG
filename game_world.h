@@ -1,6 +1,7 @@
 #pragma once
 #include "player.h"
 #include "grid_controller.h"
+#include "object_manager.h"
 #include <disreality_engine.h>
 #include <SFML/Graphics/View.hpp>
 #include <memory>
@@ -53,4 +54,5 @@ private:
 	dr::MapManager mMapManager;
 	std::unique_ptr<Player> mPlayer{};
 	std::unique_ptr<GridController> mGridController{};
+	ObjectManager mObjectManager;
 };
