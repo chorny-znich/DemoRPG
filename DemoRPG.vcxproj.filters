@@ -55,6 +55,12 @@
     <Filter Include="Исходные файлы\RPSystem">
       <UniqueIdentifier>{7cfb589e-166a-4c53-8dd4-1b88929a4e0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Loot">
+      <UniqueIdentifier>{65544971-0adc-4bff-a447-c47b0afae6da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Loot">
+      <UniqueIdentifier>{631435e4-23c4-4002-b514-97138e921c05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -104,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="player_stats_screen.cpp">
       <Filter>Исходные файлы\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="money.cpp">
+      <Filter>Исходные файлы\Loot</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="player_stats_screen.h">
       <Filter>Файлы заголовков\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="money.h">
+      <Filter>Файлы заголовков\Loot</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
