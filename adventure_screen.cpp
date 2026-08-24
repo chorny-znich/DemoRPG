@@ -69,6 +69,8 @@ void AdventureScreen::init()
 	ImGui::SFML::Init(dr::ImguiHelper::getWindow());
 	GameWorld::instance().init(mMainView);
 	mPlayerStatsScreen.init(GameWorld::instance().getPlayer().getRPStatsComponent());
+	mGameLog.init();
+	mGameLog.setPosition({ 5.f, 800.f });
 }
 
 void AdventureScreen::handleInput(const sf::Event& event, sf::RenderWindow& window)
@@ -89,10 +91,17 @@ void AdventureScreen::render(sf::RenderWindow& window)
 {
 	window.setView(mMainView);
 	window.draw(GameWorld::instance().getMapManager().getCurrentMap());
+
+	for (const auto& obj : GameWorld::instance().getObjectManager().getObjects())
+	{
+		window.draw(obj->getSprite());
+	}
+
 	window.draw(GameWorld::instance().getPlayer());
 	GameWorld::instance().getGridController().getCursorComponent().render(window);
 	
 	window.setView(mUIView);
+	mGameLog.render(window);
 	mPlayerStatsScreen.render(window);
 
 	ImGui::SFML::Render(window);

@@ -46,6 +46,7 @@ public:
 	dr::MapManager& getMapManager();
 	Player& getPlayer();
 	GridController& getGridController();
+	ObjectManager& getObjectManager();
 
 	GameplayState getGameplayState() const;
 private:

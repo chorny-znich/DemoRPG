@@ -268,12 +268,12 @@ void ObjectManager::createRandomObjects(dr::Map& map)
 void ObjectManager::createObjects(std::vector<std::unique_ptr<dr::GameObject>> objects)
 {
 }
-
+*/
 const std::vector<std::unique_ptr<dr::GameObject>>& ObjectManager::getObjects() const
 {
-  // TODO: вставьте здесь оператор return
+  return mObjects;
 }
-
+/*
 std::vector<std::unique_ptr<dr::GameObject>>& ObjectManager::getObjects()
 {
   return

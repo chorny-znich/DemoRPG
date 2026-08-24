@@ -12,9 +12,9 @@ class ObjectManager
 public:
   void createObjects(const std::string& filename);
   void createRandomObjects(dr::Map& map);
-  /*void createObjects(std::vector<std::unique_ptr<dr::GameObject>> objects);
+  //void createObjects(std::vector<std::unique_ptr<dr::GameObject>> objects);
   const std::vector<std::unique_ptr<dr::GameObject>>& getObjects() const;
-  std::vector<std::unique_ptr<dr::GameObject>>& getObjects();
+  /*std::vector<std::unique_ptr<dr::GameObject>>& getObjects();
   std::unique_ptr<dr::GameObject>& getObject(sf::Vector2i pos);
   bool isObject(sf::Vector2i pos);
   void destroyObject(sf::Vector2i pos);*/

@@ -13,6 +13,7 @@ void GameWorld::init(sf::View& view)
     static_cast<int>(mMapManager.getCurrentMap().getMapSize().y) });
   mGridController->getCursorComponent().init();
   mObjectManager.createObjects(std::format("{}objects_{}.ini", gd::path::GameObjectsPath, mMapManager.getCurrentMapIndex()));
+  mObjectManager.createRandomObjects(mMapManager.getCurrentMap());
 }
 
 void GameWorld::update(float dt)
@@ -121,6 +122,11 @@ Player& GameWorld::getPlayer()
 GridController& GameWorld::getGridController()
 {
   return *mGridController;
+}
+
+ObjectManager& GameWorld::getObjectManager()
+{
+  return mObjectManager;
 }
 
 GameplayState GameWorld::getGameplayState() const
