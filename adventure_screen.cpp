@@ -22,7 +22,6 @@ struct AdventureScreen::ScreenInputVisitor
 		sf::Vector2f mouseViewCoords = window.mapPixelToCoords(mouseMoved.position);
 		GameWorld::instance().getGridController().handleInput(mouseMoved.position, window);
 		GameWorld::instance().checkMovementPossibility();
-		
 	}
 
 	/**
@@ -41,7 +40,6 @@ struct AdventureScreen::ScreenInputVisitor
 			}
 		}
 	}
-
 
 	void operator()(const sf::Event::KeyPressed key)
 	{
@@ -69,8 +67,8 @@ void AdventureScreen::init()
 	ImGui::SFML::Init(dr::ImguiHelper::getWindow());
 	GameWorld::instance().init(mMainView);
 	mPlayerStatsScreen.init(GameWorld::instance().getPlayer().getRPStatsComponent());
-	mGameLog.init();
-	mGameLog.setPosition({ 5.f, 800.f });
+	dr::Log::instance().init({400.f, 250.f}, {5.f, 800.f}, "game_log");
+	dr::Log::instance().addMessage("Start logging");
 }
 
 void AdventureScreen::handleInput(const sf::Event& event, sf::RenderWindow& window)
@@ -85,6 +83,7 @@ void AdventureScreen::update(float dt)
 	GameWorld::instance().update(dt);
 	mPlayerStatsScreen.update(dt);
 	mMainView.setCenter(GameWorld::instance().getPlayer().getPosition());
+	dr::Log::instance().update();
 }
 
 void AdventureScreen::render(sf::RenderWindow& window)
@@ -101,7 +100,7 @@ void AdventureScreen::render(sf::RenderWindow& window)
 	GameWorld::instance().getGridController().getCursorComponent().render(window);
 	
 	window.setView(mUIView);
-	mGameLog.render(window);
+	dr::Log::instance().render(window);
 	mPlayerStatsScreen.render(window);
 
 	ImGui::SFML::Render(window);

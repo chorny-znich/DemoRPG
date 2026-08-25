@@ -22,6 +22,7 @@ void GameWorld::update(float dt)
   if (mState == GameplayState::PLAYER_ANIMATION && !mPlayer->isAnimated())
   {
     mState = GameplayState::PLAYER_INPUT;
+    dr::Log::instance().addMessage("player input");
   }
 
   dr::Map& currentMap = GameWorld::instance().getMapManager().getCurrentMap();
@@ -41,6 +42,7 @@ void GameWorld::update(float dt)
   {
   case GameplayState::PLAYER_INPUT:
     currentState = "player input";
+    
     break;
   case GameplayState::PLAYER_ANIMATION:
     currentState = "player animation";

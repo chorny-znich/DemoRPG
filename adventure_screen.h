@@ -23,5 +23,4 @@ private:
 		{gd::GraphicsResolution.x, gd::GraphicsResolution.y} };
 
 	PlayerStatsScreen mPlayerStatsScreen;
-	dr::Log mGameLog{ {400.f, 250.f} };
 };
