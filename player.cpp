@@ -180,6 +180,11 @@ RPStatsComponent* Player::getRPStatsComponent()
   return &mRPStats;
 }
 
+EnvironmentComponent* Player::getEnvironment()
+{
+  return &mEnvironment;
+}
+
 /**
  * @brief Load player's stats from the file
  */

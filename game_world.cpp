@@ -22,7 +22,6 @@ void GameWorld::update(float dt)
   if (mState == GameplayState::PLAYER_ANIMATION && !mPlayer->isAnimated())
   {
     mState = GameplayState::PLAYER_INPUT;
-    dr::Log::instance().addMessage("player input");
   }
 
   dr::Map& currentMap = GameWorld::instance().getMapManager().getCurrentMap();
@@ -67,6 +66,7 @@ void GameWorld::changeMap(uint16_t id, sf::Vector2i pos)
   mGridController->getCursorComponent().setMapSize({ static_cast<int>(mMapManager.getCurrentMap().getMapSize().x),
     static_cast<int>(mMapManager.getCurrentMap().getMapSize().y) });
   mPlayer->spawn(pos);
+  mPlayer->getEnvironment()->spawn(&mMapManager.getCurrentMap());
 }
 
 bool GameWorld::isLocationPassable()

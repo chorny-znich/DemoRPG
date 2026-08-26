@@ -1,5 +1,6 @@
 #pragma once
 #include "rp_stats_component.h"
+#include "environment_component.h"
 #include "game_data.h"
 #include <disreality_engine.h>
 
@@ -43,6 +44,7 @@ public:
 	void setPlayerState(PlayerState state);
 	PlayerState getPlayerState() const;*/
 	RPStatsComponent* getRPStatsComponent();
+	EnvironmentComponent* getEnvironment();
 	/*
 	Inventory& getInventory();
 	Equipment& getEquipment();*/
@@ -53,6 +55,7 @@ public:
 		float mMoveDestination{};
 		
 		RPStatsComponent mRPStats;
+		EnvironmentComponent mEnvironment;
 		/*Inventory mInventory;
 		Equipment mEquipment;
 		*/

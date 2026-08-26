@@ -3,9 +3,15 @@
 #include <cstdint>
 #include <utility>
 #include <string_view>
+#include <array>
 
 namespace gd
 {
+  const sf::Vector2f GraphicsResolution{ 1920.f, 1080.f };
+
+  using Position = std::pair<int16_t, int16_t>;
+  using Movement = std::pair<int16_t, int16_t>;
+
   /**
    * @brief Moving directions. Used by GridController
    */
@@ -18,10 +24,29 @@ namespace gd
     DOWN
   };
 
-  const sf::Vector2f GraphicsResolution{ 1920.f, 1080.f };
+  /**
+  * @brief Map directions. Used by EnvironmentComponent. Geographical position on the map
+  */
+  enum class MapDirections
+  {
+    CURRENT,
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST,
+    COUNT
+  };
 
-  using Position = std::pair<int16_t, int16_t>;
-  using Movement = std::pair<int16_t, int16_t>;
+  /**
+    * @brief Normal coordinates of the MapDirections
+  */
+  inline const std::array<Position, 5> mCoordDirections{
+    std::pair{0, 0},
+    std::pair{0, -1},
+    std::pair{1, 0},
+    std::pair{0, 1},
+    std::pair{-1, 0}
+  };
 
   namespace path
   {
