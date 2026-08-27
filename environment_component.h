@@ -15,6 +15,7 @@ class EnvironmentComponent
 public:
   void spawn(dr::Map* map);
   void check(gd::Position pos, int sight);
+  const Environment& get() const;
 private:
   dr::Map* mCurrentMap{ nullptr };
   Environment mEnvironment;

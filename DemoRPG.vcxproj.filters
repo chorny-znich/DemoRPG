@@ -235,5 +235,8 @@
     <None Include="data\objects\objects_1.ini">
       <Filter>Файлы ресурсов\Loot</Filter>
     </None>
+    <None Include="data\objects\objects_2.ini">
+      <Filter>Файлы ресурсов\Loot</Filter>
+    </None>
   </ItemGroup>
 </Project>

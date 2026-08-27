@@ -12,21 +12,25 @@ void GameWorld::init(sf::View& view)
   mGridController->getCursorComponent().setMapSize({ static_cast<int>(mMapManager.getCurrentMap().getMapSize().x),
     static_cast<int>(mMapManager.getCurrentMap().getMapSize().y) });
   mGridController->getCursorComponent().init();
-  mObjectManager.createObjects(std::format("{}objects_{}.ini", gd::path::GameObjectsPath, mMapManager.getCurrentMapIndex()));
-  mObjectManager.createRandomObjects(mMapManager.getCurrentMap());
 }
 
 void GameWorld::update(float dt)
 {
   mPlayer->update(dt);
+
+  // Moment when the player stop moving
   if (mState == GameplayState::PLAYER_ANIMATION && !mPlayer->isAnimated())
   {
     mState = GameplayState::PLAYER_INPUT;
+    mPlayer->getEnvironment()->check(
+      { mPlayer->getMapPosition().x, mPlayer->getMapPosition().y },
+      mPlayer->getRPStatsComponent()->getSecondaryStatValue(SecondaryStats::Sight));
+    checkPlayerEnvironment();
   }
 
-  dr::Map& currentMap = GameWorld::instance().getMapManager().getCurrentMap();
-  sf::Vector2i playerTile = GameWorld::instance().getPlayer().getMapPosition();
-  uint16_t locID = playerTile.y * currentMap.getMapSize().y + playerTile.x;
+  dr::Map& currentMap = mMapManager.getCurrentMap();
+  sf::Vector2i playerTile = mPlayer->getMapPosition();
+  uint16_t locID = playerTile.y * currentMap.getMapSize().x + playerTile.x;
   dr::Location& loc = currentMap.getLocation(locID);
   if (loc.isTransfer)
   {
@@ -35,6 +39,7 @@ void GameWorld::update(float dt)
 
   mGridController->getCursorComponent().update(dt);
 
+  //--------------------------------------------------------------------------
   // DEBUG SECTION
   std::string currentState{};
   switch (mState)
@@ -50,7 +55,7 @@ void GameWorld::update(float dt)
   ImGui::Begin("Debug window");
   ImGui::Text(currentState.c_str());
   ImGui::End();
-  //
+  //---------------------------------------------------------------------------
 }
 
 /**
@@ -65,11 +70,14 @@ void GameWorld::changeMap(uint16_t id, sf::Vector2i pos)
   //  static_cast<unsigned int>(gd::GraphicsResolution.y)});
   mGridController->getCursorComponent().setMapSize({ static_cast<int>(mMapManager.getCurrentMap().getMapSize().x),
     static_cast<int>(mMapManager.getCurrentMap().getMapSize().y) });
+  mObjectManager.createObjects(std::format("{}objects_{}.ini", gd::path::GameObjectsPath, mMapManager.getCurrentMapIndex()));
+  mObjectManager.createRandomObjects(mMapManager.getCurrentMap());
   mPlayer->spawn(pos);
   mPlayer->getEnvironment()->spawn(&mMapManager.getCurrentMap());
   mPlayer->getEnvironment()->check(
     { GameWorld::instance().getPlayer().getMapPosition().x, GameWorld::instance().getPlayer().getMapPosition().y },
     GameWorld::instance().getPlayer().getRPStatsComponent()->getSecondaryStatValue(SecondaryStats::Sight));
+  checkPlayerEnvironment();
 }
 
 bool GameWorld::isLocationPassable()
@@ -137,4 +145,40 @@ ObjectManager& GameWorld::getObjectManager()
 GameplayState GameWorld::getGameplayState() const
 {
   return mState;
+}
+
+void GameWorld::checkPlayerEnvironment()
+{
+  for (const auto& direction : mPlayer->getEnvironment()->get()) 
+  {
+    sf::Vector2i locPosition = { static_cast<int>(direction.second[0]->mPosition.x),
+      static_cast<int>(direction.second[0]->mPosition.y)};
+    if (mObjectManager.isObject(locPosition)) 
+    {
+      auto& object = mObjectManager.getObject(locPosition);
+      if (!object->isVisible()) 
+      {
+        dr::Log::instance().addMessage("Maybee the hidden object here");
+      }
+      if (!object->isVisible() && checkVisibility(object->getVisibility())) 
+      {
+        dr::Log::instance().addMessage(std::format("You see {}", object->getName()));
+        object->setVisibleStatus(true);
+      }
+    }
+  }
+}
+
+/**
+ * @brief Check if the player can see game's object
+ * @param value - Current value of the SecondaryStats::Attention
+ * @return result of the checking as a boolean value
+ */
+bool GameWorld::checkVisibility(int16_t value)
+{
+  int16_t randomValue = dr::EngineUtility::getRandomInRange(gd::DICE.x, gd::DICE.y);
+  int16_t attention = mPlayer->getRPStatsComponent()->getSecondaryStatValue(SecondaryStats::Attention);
+  dr::Log::instance().addMessage(std::format("Attention:{} Dice:{} Value to check:{} \n",
+    attention, randomValue, value));
+  return attention + randomValue >= value;
 }

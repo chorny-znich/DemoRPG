@@ -12,6 +12,8 @@ namespace gd
   using Position = std::pair<int16_t, int16_t>;
   using Movement = std::pair<int16_t, int16_t>;
 
+  constexpr sf::Vector2u DICE{ 1, 12 };
+
   /**
    * @brief Moving directions. Used by GridController
    */

@@ -65,10 +65,10 @@ struct AdventureScreen::ScreenInputVisitor
 void AdventureScreen::init()
 {
 	ImGui::SFML::Init(dr::ImguiHelper::getWindow());
+	dr::Log::instance().init({ 400.f, 250.f }, { 5.f, 800.f }, "game_log");
+	dr::Log::instance().addMessage("Start logging");
 	GameWorld::instance().init(mMainView);
 	mPlayerStatsScreen.init(GameWorld::instance().getPlayer().getRPStatsComponent());
-	dr::Log::instance().init({400.f, 250.f}, {5.f, 800.f}, "game_log");
-	dr::Log::instance().addMessage("Start logging");
 }
 
 void AdventureScreen::handleInput(const sf::Event& event, sf::RenderWindow& window)
@@ -93,7 +93,10 @@ void AdventureScreen::render(sf::RenderWindow& window)
 
 	for (const auto& obj : GameWorld::instance().getObjectManager().getObjects())
 	{
-		window.draw(obj->getSprite());
+		if (obj->isVisible())
+		{
+			window.draw(obj->getSprite());
+		}
 	}
 
 	window.draw(GameWorld::instance().getPlayer());

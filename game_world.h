@@ -49,6 +49,9 @@ public:
 	ObjectManager& getObjectManager();
 
 	GameplayState getGameplayState() const;
+
+	void checkPlayerEnvironment();
+	bool checkVisibility(int16_t value);
 private:
 	GameplayState mState{ GameplayState::PLAYER_INPUT };
 

@@ -32,3 +32,8 @@ void EnvironmentComponent::check(gd::Position pos, int sight)
 		}
 	}
 }
+
+const Environment& EnvironmentComponent::get() const
+{
+	return mEnvironment;
+}

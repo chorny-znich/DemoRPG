@@ -278,17 +278,33 @@ std::vector<std::unique_ptr<dr::GameObject>>& ObjectManager::getObjects()
 {
   return
 }
+*/
 
 std::unique_ptr<dr::GameObject>& ObjectManager::getObject(sf::Vector2i pos)
 {
-  return nullptr;
+  for (auto& object : mObjects) 
+  {
+    if (pos.x == object->getPosition().x && pos.y == object->getPosition().y) 
+    {
+      return object;
+    }
+  }
+  throw std::runtime_error("the objects doesn't exist at this position");
 }
 
 bool ObjectManager::isObject(sf::Vector2i pos)
 {
+  for (const auto& object : mObjects) 
+  {
+    if (object->getPosition() == pos) 
+    {
+      return true;
+    }
+  }
+
   return false;
 }
-
+/*
 void ObjectManager::destroyObject(sf::Vector2i pos)
 {
 }
