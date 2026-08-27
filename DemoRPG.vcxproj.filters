@@ -127,7 +127,7 @@
       <Filter>Исходные файлы\Loot</Filter>
     </ClCompile>
     <ClCompile Include="environment_component.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

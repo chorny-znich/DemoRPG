@@ -67,6 +67,9 @@ void GameWorld::changeMap(uint16_t id, sf::Vector2i pos)
     static_cast<int>(mMapManager.getCurrentMap().getMapSize().y) });
   mPlayer->spawn(pos);
   mPlayer->getEnvironment()->spawn(&mMapManager.getCurrentMap());
+  mPlayer->getEnvironment()->check(
+    { GameWorld::instance().getPlayer().getMapPosition().x, GameWorld::instance().getPlayer().getMapPosition().y },
+    GameWorld::instance().getPlayer().getRPStatsComponent()->getSecondaryStatValue(SecondaryStats::Sight));
 }
 
 bool GameWorld::isLocationPassable()

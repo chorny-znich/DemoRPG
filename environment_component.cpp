@@ -20,11 +20,11 @@ void EnvironmentComponent::check(gd::Position pos, int sight)
 
 	for (uint16_t i{ 1 }; i < static_cast<uint16_t>(gd::MapDirections::COUNT); i++)
 	{
-		for (uint16_t j{ 1 }; j <= sight; i++)
+		for (uint16_t j{ 1 }; j <= sight; j++)
 		{
-			dr::Location* loc = &mCurrentMap->getLocation(pos.first + gd::mCoordDirections[j - 1].first +
-				(pos.second + gd::mCoordDirections[j - 1].second) * mCurrentMap->getMapSize().x);
-			mEnvironment[static_cast<gd::MapDirections>(i - 1)].push_back(loc);
+			dr::Location* loc = &mCurrentMap->getLocation(pos.first + gd::mCoordDirections[i].first * j +
+				(pos.second + gd::mCoordDirections[i].second * j) * mCurrentMap->getMapSize().x);
+			mEnvironment[static_cast<gd::MapDirections>(i)].push_back(loc);
 			if (!loc->mPassable)
 			{
 				break;
