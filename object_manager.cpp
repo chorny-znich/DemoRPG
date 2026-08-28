@@ -17,6 +17,7 @@ void ObjectManager::createObjects(const std::string& filename)
   std::unordered_map<std::string, size_t> objects;
   dr::IniDocument doc = dr::loadIniDocument(filename);
   dr::Section section = doc.getSection("general");
+  std::int16_t mapWidth = std::stoi(section.at("map_width"));
   objects.insert({"money", std::stoul(section.at("Money_amount"))});
   /*objects.insert({ "potion", std::stoul(section.at("Potion_amount")) });
   objects.insert({ "weapon", std::stoul(section.at("Weapon_amount")) });
@@ -54,7 +55,7 @@ void ObjectManager::createObjects(const std::string& filename)
     }
     else
     {
-      mObjects.push_back(std::move(money));
+      mObjects[money->getPosition().x + money->getPosition().y * mapWidth] = std::move(money);
     }
   }
   // Create potion objects
@@ -269,7 +270,7 @@ void ObjectManager::createObjects(std::vector<std::unique_ptr<dr::GameObject>> o
 {
 }
 */
-const std::vector<std::unique_ptr<dr::GameObject>>& ObjectManager::getObjects() const
+const std::unordered_map<std::uint16_t, std::unique_ptr<dr::GameObject>>& ObjectManager::getObjects() const
 {
   return mObjects;
 }
@@ -280,29 +281,18 @@ std::vector<std::unique_ptr<dr::GameObject>>& ObjectManager::getObjects()
 }
 */
 
-std::unique_ptr<dr::GameObject>& ObjectManager::getObject(sf::Vector2i pos)
+std::unique_ptr<dr::GameObject>& ObjectManager::getObject(std::uint16_t locID)
 {
-  for (auto& object : mObjects) 
+  if (!isObject(locID))
   {
-    if (pos.x == object->getPosition().x && pos.y == object->getPosition().y) 
-    {
-      return object;
-    }
+    throw std::runtime_error("the objects doesn't exist at this position");
   }
-  throw std::runtime_error("the objects doesn't exist at this position");
+  return mObjects.at(locID);
 }
 
-bool ObjectManager::isObject(sf::Vector2i pos)
+bool ObjectManager::isObject(std::uint16_t locID)
 {
-  for (const auto& object : mObjects) 
-  {
-    if (object->getPosition() == pos) 
-    {
-      return true;
-    }
-  }
-
-  return false;
+  return mObjects.contains(locID);
 }
 /*
 void ObjectManager::destroyObject(sf::Vector2i pos)

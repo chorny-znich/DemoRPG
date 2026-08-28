@@ -240,11 +240,11 @@ void RPStatsComponent::setSecondaryStatValue(SecondaryStats name, uint16_t value
 	mSecondaryStats.at(name) = value;
 }
 
-size_t RPStatsComponent::getSecondaryStatValue(SecondaryStats name) const
+std::int16_t RPStatsComponent::getSecondaryStatValue(SecondaryStats name) const
 {
 	return mSecondaryStats.at(name);
 }
-std::unordered_map<SecondaryStats, int>& RPStatsComponent::getSecondaryStats()
+std::unordered_map<SecondaryStats, std::int16_t>& RPStatsComponent::getSecondaryStats()
 {
 	return mSecondaryStats;
 }
@@ -259,11 +259,11 @@ void RPStatsComponent::decreasePrimaryStat(PrimaryStats name)
 	mPrimaryStats.at(name) -= 1;
 }
 
-size_t RPStatsComponent::getPrimaryStatValue(PrimaryStats name)
+std::int16_t RPStatsComponent::getPrimaryStatValue(PrimaryStats name)
 {
 	return mPrimaryStats.at(name);
 }
-std::unordered_map<PrimaryStats, int>& RPStatsComponent::getPrimaryStats()
+std::unordered_map<PrimaryStats, std::int16_t>& RPStatsComponent::getPrimaryStats()
 {
 	return mPrimaryStats;
 }
@@ -278,11 +278,11 @@ void RPStatsComponent::increaseSkill(Skills name)
 	mSkills.at(name) += 1;
 }
 
-uint16_t RPStatsComponent::getSkillValue(Skills name)
+std::int16_t RPStatsComponent::getSkillValue(Skills name)
 {
 	return mSkills.at(name);
 }
-std::unordered_map<Skills, int>& RPStatsComponent::getSkills()
+std::unordered_map<Skills, std::int16_t>& RPStatsComponent::getSkills()
 {
 	return mSkills;
 }

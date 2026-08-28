@@ -197,11 +197,11 @@
     <ClInclude Include="sprite_id.h">
       <Filter>Файлы заголовков\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="random_placement.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="environment_component.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="random_placement.h">
+      <Filter>Файлы заголовков\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

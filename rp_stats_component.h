@@ -34,7 +34,7 @@ protected:
 		{4, {{"attack", 0}, {"defence", 1}, {"health", 0}, {"skill point", 1}}},
 		{5, {{"attack", 1}, {"defence", 0}, {"health", 5}, {"skill point", 2}}}
 	};
-	std::unordered_map<PrimaryStats, int> mPrimaryStats
+	std::unordered_map<PrimaryStats, std::int16_t> mPrimaryStats
 	{
 		{PrimaryStats::Strength, 1},
 		{PrimaryStats::Stamina, 1},
@@ -43,7 +43,7 @@ protected:
 		{PrimaryStats::Intellect, 1},
 		{PrimaryStats::Charisma, 1}
 	};
-	std::unordered_map<SecondaryStats, int> mSecondaryStats
+	std::unordered_map<SecondaryStats, std::int16_t> mSecondaryStats
 	{
 		{SecondaryStats::Attack, 0},
 		{SecondaryStats::Ranged_Attack, 0},
@@ -52,7 +52,7 @@ protected:
 		{SecondaryStats::Reaction, 0},
 		{SecondaryStats::Sight, 0}
 	};
-	std::unordered_map<Skills, int> mSkills
+	std::unordered_map<Skills, std::int16_t> mSkills
 	{
 		{Skills::Search, 0},
 		{Skills::Athletic, 0},
@@ -122,20 +122,20 @@ public:
 	// Primary stats
 	void increasePrimaryStat(PrimaryStats name);
 	void decreasePrimaryStat(PrimaryStats name);
-	size_t getPrimaryStatValue(PrimaryStats name);
-	std::unordered_map<PrimaryStats, int>& getPrimaryStats();
+	std::int16_t getPrimaryStatValue(PrimaryStats name);
+	std::unordered_map<PrimaryStats, std::int16_t>& getPrimaryStats();
 	
 	// Secondary stats
 	void setSecondaryStatValue(SecondaryStats stat, uint16_t value);
-	size_t getSecondaryStatValue(SecondaryStats stat) const;
-	std::unordered_map<SecondaryStats, int>& getSecondaryStats();
+	std::int16_t getSecondaryStatValue(SecondaryStats stat) const;
+	std::unordered_map<SecondaryStats, std::int16_t>& getSecondaryStats();
 	
 	// Skills
 	void setSkillValue(Skills name, uint16_t value);
 	void increaseSkill(Skills name);
-	uint16_t getSkillValue(Skills name);
+	std::int16_t getSkillValue(Skills name);
 	bool isSkillExist(Skills name) const;
-	std::unordered_map<Skills, int>& getSkills();
+	std::unordered_map<Skills, std::int16_t>& getSkills();
 	//void increaseSkillPoints(size_t value);
 	//void decreaseSkillPoints(size_t value);
 	size_t getSkillPoints() const;

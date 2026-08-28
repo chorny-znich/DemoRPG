@@ -93,9 +93,9 @@ void AdventureScreen::render(sf::RenderWindow& window)
 
 	for (const auto& obj : GameWorld::instance().getObjectManager().getObjects())
 	{
-		if (obj->isVisible())
+		if (obj.second->isVisible())
 		{
-			window.draw(obj->getSprite());
+			window.draw(obj.second->getSprite());
 		}
 	}
 

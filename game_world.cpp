@@ -1,5 +1,5 @@
 #include "game_world.h"
-
+#include "money.h"
 #include <imgui.h>
 #include <imgui-SFML.h>
 
@@ -18,23 +18,11 @@ void GameWorld::update(float dt)
 {
   mPlayer->update(dt);
 
-  // Moment when the player stop moving
-  if (mState == GameplayState::PLAYER_ANIMATION && !mPlayer->isAnimated())
+  switch (mState)
   {
-    mState = GameplayState::PLAYER_INPUT;
-    mPlayer->getEnvironment()->check(
-      { mPlayer->getMapPosition().x, mPlayer->getMapPosition().y },
-      mPlayer->getRPStatsComponent()->getSecondaryStatValue(SecondaryStats::Sight));
-    checkPlayerEnvironment();
-  }
-
-  dr::Map& currentMap = mMapManager.getCurrentMap();
-  sf::Vector2i playerTile = mPlayer->getMapPosition();
-  uint16_t locID = playerTile.y * currentMap.getMapSize().x + playerTile.x;
-  dr::Location& loc = currentMap.getLocation(locID);
-  if (loc.isTransfer)
-  {
-    changeMap(loc.mapTransfer.targetMapId, loc.mapTransfer.targetTilePos);
+  case GameplayState::PLAYER_ANIMATION:
+    isPlayerStopMoving();
+    break;
   }
 
   mGridController->getCursorComponent().update(dt);
@@ -153,9 +141,10 @@ void GameWorld::checkPlayerEnvironment()
   {
     sf::Vector2i locPosition = { static_cast<int>(direction.second[0]->mPosition.x),
       static_cast<int>(direction.second[0]->mPosition.y)};
-    if (mObjectManager.isObject(locPosition)) 
+    if (mObjectManager.isObject(mMapManager.getCurrentMap().getLocationID(locPosition)))
     {
-      auto& object = mObjectManager.getObject(locPosition);
+      auto& object = mObjectManager.getObject(
+        mObjectManager.isObject(mMapManager.getCurrentMap().getLocationID(locPosition)));
       if (!object->isVisible()) 
       {
         dr::Log::instance().addMessage("Maybee the hidden object here");
@@ -181,4 +170,57 @@ bool GameWorld::checkVisibility(int16_t value)
   dr::Log::instance().addMessage(std::format("Attention:{} Dice:{} Value to check:{} \n",
     attention, randomValue, value));
   return attention + randomValue >= value;
+}
+
+/**
+ * @brief Check if the character stopped moving and ready to get player's input
+ * @return 
+ */
+bool GameWorld::isPlayerStopMoving()
+{
+  if (!mPlayer->isAnimated())
+  {
+    mState = GameplayState::PLAYER_INPUT;
+    mPlayer->getEnvironment()->check(
+      { mPlayer->getMapPosition().x, mPlayer->getMapPosition().y },
+      mPlayer->getRPStatsComponent()->getSecondaryStatValue(SecondaryStats::Sight));
+    checkPlayerEnvironment();
+
+    dr::Map& currentMap = mMapManager.getCurrentMap();
+    sf::Vector2i playerTile = mPlayer->getMapPosition();
+    uint16_t locID = playerTile.y * currentMap.getMapSize().x + playerTile.x;
+    dr::Location& loc = currentMap.getLocation(locID);
+    if (loc.isTransfer)
+    {
+      changeMap(loc.mapTransfer.targetMapId, loc.mapTransfer.targetTilePos);
+    }
+    return true;
+  }
+  return false;
+}
+
+/**
+ * @brief Pick up various items on the map
+ */
+void GameWorld::pickItem()
+{
+  /*sf::Vector2i playerPos = mPlayer->getMapPosition();
+  dr::Location& playerLoc = mMapManager.getCurrentMap().getLocation(
+    playerPos.y * mMapManager.getCurrentMap().getMapSize().x + playerPos.x);
+  if (mObjectManager.isObject(playerPos)) 
+  {
+    std::unique_ptr<dr::GameObject> object = std::move(mObjectManager.getObject(playerPos));
+    if (object->getType() == GameObjectType::MONEY) {
+      auto pMoneyObject = std::static_pointer_cast<Money>(object);
+      auto& playerStats = mPlayer.getRPStatsComponent();
+      playerStats.increaseMoney(pMoneyObject->getAmount());
+      //mConsoleUI.addToHud(UI_Type::LOCATION_INFO, std::format("You pick up ${}", pMoneyObject->getAmount()), 1);
+      mObjectManager.destroyObject(playerPos);
+      mRenderComponent.updateGameLayer(mObjectManager.getObjects());
+    }
+  }
+
+  checkPlayerEnvironment(mPlayer.getMapPosition());
+  mUpdatePlayerActions = true;
+  mActionList.clear();*/
 }

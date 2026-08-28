@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <string_view>
 
-enum class PrimaryStats : uint8_t
+enum class PrimaryStats : std::uint8_t
 {
   Strength,
   Stamina, 
@@ -14,7 +14,7 @@ enum class PrimaryStats : uint8_t
   COUNT
 };
 
-enum class SecondaryStats : uint8_t
+enum class SecondaryStats : std::uint8_t
 {
   Attack,
   Ranged_Attack,
@@ -24,7 +24,7 @@ enum class SecondaryStats : uint8_t
   Sight
 };
 
-enum class Skills : uint8_t
+enum class Skills : std::uint8_t
 {
   Search,
   Athletic,

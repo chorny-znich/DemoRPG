@@ -52,6 +52,9 @@ public:
 
 	void checkPlayerEnvironment();
 	bool checkVisibility(int16_t value);
+	bool isPlayerStopMoving();
+
+	void pickItem();
 private:
 	GameplayState mState{ GameplayState::PLAYER_INPUT };
 
