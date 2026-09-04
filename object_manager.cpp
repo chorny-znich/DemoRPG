@@ -261,7 +261,13 @@ void ObjectManager::createRandomObjects(dr::Map& map)
   {
     obj->setPosition({ pos.x, pos.y });
   }
-  std::move(mRandomObjects.begin(), mRandomObjects.end(), std::back_inserter(mObjects));
+  //std::move(mRandomObjects.begin(), mRandomObjects.end(), std::back_inserter(mObjects));
+  for (auto& obj : mRandomObjects)
+  {
+    auto tileID = obj->getPosition().x + obj->getPosition().y * map.getMapSize().x;
+    mObjects[tileID] = std::move(obj);
+  }
+  
   mRandomObjects.clear();
 }
 /*

@@ -184,6 +184,7 @@
     <None Include="data\animations\player_animation.ini" />
     <None Include="data\animation_list.ini" />
     <None Include="data\maps\map_1.ini" />
+    <None Include="data\maps\map_2.ini" />
     <None Include="data\objects\objects_1.ini" />
     <None Include="data\objects\objects_2.ini" />
     <None Include="data\player.ini" />

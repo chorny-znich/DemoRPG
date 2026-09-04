@@ -238,5 +238,8 @@
     <None Include="data\objects\objects_2.ini">
       <Filter>Файлы ресурсов\Loot</Filter>
     </None>
+    <None Include="data\maps\map_2.ini">
+      <Filter>Файлы ресурсов\Map</Filter>
+    </None>
   </ItemGroup>
 </Project>

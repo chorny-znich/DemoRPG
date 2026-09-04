@@ -139,12 +139,14 @@ void GameWorld::checkPlayerEnvironment()
 {
   for (const auto& direction : mPlayer->getEnvironment()->get()) 
   {
-    sf::Vector2i locPosition = { static_cast<int>(direction.second[0]->mPosition.x),
-      static_cast<int>(direction.second[0]->mPosition.y)};
-    if (mObjectManager.isObject(mMapManager.getCurrentMap().getLocationID(locPosition)))
+    //sf::Vector2i locPosition = { static_cast<int>(direction.second[0]->mPosition.x),
+    //  static_cast<int>(direction.second[0]->mPosition.y)};
+    std::uint16_t locID = mMapManager.getCurrentMap().getLocationID(
+      { static_cast<int>(direction.second[0]->mPosition.x),
+        static_cast<int>(direction.second[0]->mPosition.y) });
+    if (mObjectManager.isObject(locID))
     {
-      auto& object = mObjectManager.getObject(
-        mObjectManager.isObject(mMapManager.getCurrentMap().getLocationID(locPosition)));
+      auto& object = mObjectManager.getObject(locID);
       if (!object->isVisible()) 
       {
         dr::Log::instance().addMessage("Maybee the hidden object here");
