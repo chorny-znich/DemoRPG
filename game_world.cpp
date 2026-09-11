@@ -42,6 +42,7 @@ void GameWorld::update(float dt)
   }
   ImGui::Begin("Debug window");
   ImGui::Text(currentState.c_str());
+  ImGui::Text(std::format("Money: {}", mPlayer->getRPStatsComponent()->getMoney()).c_str());
   ImGui::End();
   //---------------------------------------------------------------------------
 }
@@ -187,6 +188,7 @@ bool GameWorld::isPlayerStopMoving()
       { mPlayer->getMapPosition().x, mPlayer->getMapPosition().y },
       mPlayer->getRPStatsComponent()->getSecondaryStatValue(SecondaryStats::Sight));
     checkPlayerEnvironment();
+    autoPickItem();
 
     dr::Map& currentMap = mMapManager.getCurrentMap();
     sf::Vector2i playerTile = mPlayer->getMapPosition();
@@ -199,6 +201,31 @@ bool GameWorld::isPlayerStopMoving()
     return true;
   }
   return false;
+}
+
+/**
+ * @brief Player automatic pick up the loot at his tile
+ */
+void GameWorld::autoPickItem()
+{
+  sf::Vector2i playerPos = mPlayer->getMapPosition();
+  std::uint16_t locID = mMapManager.getLocationID(playerPos);
+  dr::Location& playerLoc = mMapManager.getCurrentMap().getLocation(locID);
+  
+  if (mObjectManager.isObject(locID))
+  {
+    std::unique_ptr<dr::GameObject>& object = mObjectManager.getObject(locID);
+    if (object->getType() == GameObjectType::MONEY) 
+    {
+      auto moneyObject = static_cast<Money*>(object.get());
+      auto& playerStats = *mPlayer->getRPStatsComponent();
+      playerStats.increaseMoney(moneyObject->getAmount());
+      dr::Log::instance().addMessage(std::format("You pick up ${}", moneyObject->getAmount()));
+      mObjectManager.destroyObject(locID);
+    }
+  }
+
+  checkPlayerEnvironment();
 }
 
 /**

@@ -300,8 +300,8 @@ bool ObjectManager::isObject(std::uint16_t locID)
 {
   return mObjects.contains(locID);
 }
-/*
-void ObjectManager::destroyObject(sf::Vector2i pos)
+
+void ObjectManager::destroyObject(std::uint16_t locID)
 {
+  mObjects.erase(locID);
 }
-*/

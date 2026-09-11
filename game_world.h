@@ -54,6 +54,7 @@ public:
 	bool checkVisibility(int16_t value);
 	bool isPlayerStopMoving();
 
+	void autoPickItem();
 	void pickItem();
 private:
 	GameplayState mState{ GameplayState::PLAYER_INPUT };

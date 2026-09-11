@@ -18,7 +18,7 @@ public:
   //std::vector<std::unique_ptr<dr::GameObject>>& getObjects();
   std::unique_ptr<dr::GameObject>& getObject(std::uint16_t locID);
   bool isObject(std::uint16_t locID);
-  //void destroyObject(sf::Vector2i pos);
+  void destroyObject(std::uint16_t locID);
 private:
   std::unordered_map<std::uint16_t, std::unique_ptr<dr::GameObject>> mObjects;
   std::vector<std::unique_ptr<dr::GameObject>> mRandomObjects;
