@@ -144,6 +144,7 @@
     <ClCompile Include="ImGui\imgui_draw.cpp" />
     <ClCompile Include="ImGui\imgui_tables.cpp" />
     <ClCompile Include="ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="inventory_cell.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main_menu_screen.cpp" />
     <ClCompile Include="money.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="game_engine.h" />
     <ClInclude Include="game_world.h" />
     <ClInclude Include="grid_controller.h" />
+    <ClInclude Include="inventory_cell.h" />
     <ClInclude Include="random_placement.h" />
     <ClInclude Include="sprite_id.h" />
     <ClInclude Include="ImGui\imconfig.h" />

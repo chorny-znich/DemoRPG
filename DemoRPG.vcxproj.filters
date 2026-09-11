@@ -67,6 +67,12 @@
     <Filter Include="Файлы заголовков\Component">
       <UniqueIdentifier>{e13a6968-1163-4782-aafe-eda36144e61a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Player\Inventory">
+      <UniqueIdentifier>{895a0d15-bd59-4bee-97bf-56d5c4f2dfb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Player\Inventory">
+      <UniqueIdentifier>{d0c4f7c2-ab82-457d-8164-c3155b47a3db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -128,6 +134,9 @@
     </ClCompile>
     <ClCompile Include="environment_component.cpp">
       <Filter>Исходные файлы\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="inventory_cell.cpp">
+      <Filter>Исходные файлы\Player\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="random_placement.h">
       <Filter>Файлы заголовков\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="inventory_cell.h">
+      <Filter>Файлы заголовков\Player\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
