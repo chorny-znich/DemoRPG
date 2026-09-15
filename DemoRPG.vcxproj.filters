@@ -138,6 +138,12 @@
     <ClCompile Include="inventory_cell.cpp">
       <Filter>Исходные файлы\Player\Inventory</Filter>
     </ClCompile>
+    <ClCompile Include="inventory.cpp">
+      <Filter>Исходные файлы\Player\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="player_inventory_screen.cpp">
+      <Filter>Исходные файлы\Player\Inventory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_engine.h">
@@ -213,6 +219,12 @@
       <Filter>Файлы заголовков\Game</Filter>
     </ClInclude>
     <ClInclude Include="inventory_cell.h">
+      <Filter>Файлы заголовков\Player\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="player_inventory_screen.h">
+      <Filter>Файлы заголовков\Player\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="inventory.h">
       <Filter>Файлы заголовков\Player\Inventory</Filter>
     </ClInclude>
   </ItemGroup>

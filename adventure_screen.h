@@ -2,6 +2,7 @@
 #include "game_world.h"
 #include "player.h"
 #include "player_stats_screen.h"
+#include "player_inventory_screen.h"
 #include "game_data.h"
 #include <disreality_engine.h>
 #include <SFML/Graphics/Texture.hpp>
@@ -23,4 +24,5 @@ private:
 		{gd::GraphicsResolution.x, gd::GraphicsResolution.y} };
 
 	PlayerStatsScreen mPlayerStatsScreen;
+	PlayerInventoryScreen mPlayerInventoryScreen;
 };

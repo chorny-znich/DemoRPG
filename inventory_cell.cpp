@@ -9,20 +9,24 @@ InventoryCell::InventoryCell(std::uint8_t index, sf::Vector2f pos) :
   mCell.setFillColor(CELL_COLOR);
 }
 
-void InventoryCell::render(sf::RenderTarget& target)
+void InventoryCell::render(sf::RenderTarget& target) const
 {
   target.draw(mCell);
-  target.draw(*mSprite);
+  if (mSprite != nullptr)
+  {
+    target.draw(*mSprite);
+  }
 }
 
-void InventoryCell::setCellSprite(sf::Sprite sprite)
+void InventoryCell::setCellSprite(const sf::Sprite& sprite)
 {
   mSprite = std::make_unique<sf::Sprite>(sprite);
+  mSprite->setPosition(mPosition);
 }
 
 sf::Sprite* InventoryCell::getCellSprite()
 {
-  return mSprite.get();
+  return mSprite != nullptr ? mSprite.get() : nullptr;
 }
 
 sf::Vector2f InventoryCell::getPosition() const

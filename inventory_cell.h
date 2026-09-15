@@ -14,14 +14,14 @@ class InventoryCell
 {
 public:
   InventoryCell(std::uint8_t index, sf::Vector2f pos);
-  void render(sf::RenderTarget& target);
-  void setCellSprite(sf::Sprite sprite);
+  void render(sf::RenderTarget& target) const;
+  void setCellSprite(const sf::Sprite& sprite);
   sf::Sprite* getCellSprite();
   sf::Vector2f getPosition() const;
   std::uint8_t getIndex() const;
 private:
-  const sf::Vector2f CELL_SIZE{ 50.f, 50.f };
-  const sf::Color CELL_COLOR{ 255, 255, 255, 175 };
+  static inline constexpr sf::Vector2f CELL_SIZE{ 50.f, 50.f };
+  static inline constexpr sf::Color CELL_COLOR{ 255, 255, 255, 175 };
   std::uint8_t mIndex{ 0 };
   sf::Vector2f mPosition{ 0.f, 0.f };
   //bool mEmpty{ true };

@@ -54,6 +54,18 @@ struct AdventureScreen::ScreenInputVisitor
 				screen.mPlayerStatsScreen.show();
 			}
 		}
+
+		else if (key.code == sf::Keyboard::Key::I)
+		{
+			if (screen.mPlayerInventoryScreen.isVisible())
+			{
+				screen.mPlayerInventoryScreen.close();
+			}
+			else
+			{
+				screen.mPlayerInventoryScreen.show();
+			}
+		}
 	}
 
 	void operator()(const auto&) {};
@@ -105,6 +117,7 @@ void AdventureScreen::render(sf::RenderWindow& window)
 	window.setView(mUIView);
 	dr::Log::instance().render(window);
 	mPlayerStatsScreen.render(window);
+	mPlayerInventoryScreen.render(window);
 
 	ImGui::SFML::Render(window);
 }
