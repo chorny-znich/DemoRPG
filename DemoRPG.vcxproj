@@ -155,6 +155,7 @@
     <ClCompile Include="player_stats_screen.cpp" />
     <ClCompile Include="random_placement.cpp" />
     <ClCompile Include="rp_stats_component.cpp" />
+    <ClCompile Include="weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="about_screen.h" />
@@ -184,6 +185,7 @@
     <ClInclude Include="player_stats_screen.h" />
     <ClInclude Include="rp_stats.h" />
     <ClInclude Include="rp_stats_component.h" />
+    <ClInclude Include="weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config\engine_config.ini" />

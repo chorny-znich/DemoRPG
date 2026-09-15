@@ -144,6 +144,9 @@
     <ClCompile Include="player_inventory_screen.cpp">
       <Filter>Исходные файлы\Player\Inventory</Filter>
     </ClCompile>
+    <ClCompile Include="weapon.cpp">
+      <Filter>Исходные файлы\Loot</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_engine.h">
@@ -226,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="inventory.h">
       <Filter>Файлы заголовков\Player\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="weapon.h">
+      <Filter>Файлы заголовков\Loot</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
