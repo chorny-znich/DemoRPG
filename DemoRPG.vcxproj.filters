@@ -73,6 +73,12 @@
     <Filter Include="Исходные файлы\Player\Inventory">
       <UniqueIdentifier>{d0c4f7c2-ab82-457d-8164-c3155b47a3db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Data">
+      <UniqueIdentifier>{ab83e4b4-aa6f-41bb-ac6b-e5d4190200de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Data">
+      <UniqueIdentifier>{790f2dea-ec9e-4f28-b927-c0e40d7fa635}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -146,6 +152,9 @@
     </ClCompile>
     <ClCompile Include="weapon.cpp">
       <Filter>Исходные файлы\Loot</Filter>
+    </ClCompile>
+    <ClCompile Include="game_database.cpp">
+      <Filter>Исходные файлы\Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +242,12 @@
     <ClInclude Include="weapon.h">
       <Filter>Файлы заголовков\Loot</Filter>
     </ClInclude>
+    <ClInclude Include="items.h">
+      <Filter>Файлы заголовков\Loot</Filter>
+    </ClInclude>
+    <ClInclude Include="game_database.h">
+      <Filter>Файлы заголовков\Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="config\engine_config.ini">
@@ -270,6 +285,9 @@
     </None>
     <None Include="data\maps\map_2.ini">
       <Filter>Файлы ресурсов\Map</Filter>
+    </None>
+    <None Include="data\items.ini">
+      <Filter>Файлы ресурсов\Loot</Filter>
     </None>
   </ItemGroup>
 </Project>

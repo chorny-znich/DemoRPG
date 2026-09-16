@@ -1,10 +1,12 @@
 #include "game_world.h"
+#include "game_database.h"
 #include "money.h"
 #include <imgui.h>
 #include <imgui-SFML.h>
 
 void GameWorld::init(sf::View& view)
 {
+  GameDatabase::instance().init();
   mPlayer = std::make_unique<Player>(sf::IntRect{ {0, 32}, {24, 32} }, dr::Textures::get("player_texture"));
   mPlayer->init();
   mGridController = std::make_unique<GridController>(view);

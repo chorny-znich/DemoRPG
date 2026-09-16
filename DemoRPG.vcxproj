@@ -135,6 +135,7 @@
     <ClCompile Include="about_screen.cpp" />
     <ClCompile Include="adventure_screen.cpp" />
     <ClCompile Include="environment_component.cpp" />
+    <ClCompile Include="game_database.cpp" />
     <ClCompile Include="game_engine.cpp" />
     <ClCompile Include="game_world.cpp" />
     <ClCompile Include="grid_controller.cpp" />
@@ -162,11 +163,13 @@
     <ClInclude Include="adventure_screen.h" />
     <ClInclude Include="environment_component.h" />
     <ClInclude Include="game_data.h" />
+    <ClInclude Include="game_database.h" />
     <ClInclude Include="game_engine.h" />
     <ClInclude Include="game_world.h" />
     <ClInclude Include="grid_controller.h" />
     <ClInclude Include="inventory.h" />
     <ClInclude Include="inventory_cell.h" />
+    <ClInclude Include="items.h" />
     <ClInclude Include="player_inventory_screen.h" />
     <ClInclude Include="random_placement.h" />
     <ClInclude Include="sprite_id.h" />
@@ -191,6 +194,7 @@
     <None Include="config\engine_config.ini" />
     <None Include="data\animations\player_animation.ini" />
     <None Include="data\animation_list.ini" />
+    <None Include="data\items.ini" />
     <None Include="data\maps\map_1.ini" />
     <None Include="data\maps\map_2.ini" />
     <None Include="data\objects\objects_1.ini" />

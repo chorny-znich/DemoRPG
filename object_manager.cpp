@@ -1,5 +1,6 @@
 #include "object_manager.h"
 #include "money.h"
+#include "weapon.h"
 #include "random_placement.h"
 #include "sprite_id.h"
 #include <string>
@@ -19,9 +20,9 @@ void ObjectManager::createObjects(const std::string& filename)
   dr::Section section = doc.getSection("general");
   std::int16_t mapWidth = std::stoi(section.at("map_width"));
   objects.insert({"money", std::stoul(section.at("Money_amount"))});
-  /*objects.insert({ "potion", std::stoul(section.at("Potion_amount")) });
+  //objects.insert({ "potion", std::stoul(section.at("Potion_amount")) });
   objects.insert({ "weapon", std::stoul(section.at("Weapon_amount")) });
-  objects.insert({ "armor", std::stoul(section.at("Armor_amount")) });
+  /*objects.insert({ "armor", std::stoul(section.at("Armor_amount")) });
   objects.insert({ "door", std::stoul(section.at("Door_amount")) });
   objects.insert({ "trap", std::stoul(section.at("Trap_amount")) });
   objects.insert({ "consumable", std::stoul(section.at("Consumable_amount")) });*/
@@ -93,14 +94,14 @@ void ObjectManager::createObjects(const std::string& filename)
         mRandomObjects.push_back(mObjects.back());
       }
     }
-  }
+  }*/
   // Create weapon objects
-  for (size_t i{ 1 }; i <= objects.at("weapon"); i++) {
+/*  for (size_t i{1}; i <= objects.at("weapon"); i++) {
     bool randomPosition = false;
     std::string sectionName = "weapon_" + std::to_string(i);
     dr::Section section = doc.getSection(sectionName);
     if (section.at("Type") == "WEAPON") {
-      size_t itemId = std::stoul(section.at("Id"));
+      uint16_t itemId = std::stoul(section.at("Id"));
       auto object = std::static_pointer_cast<Weapon>(Data::getItem(itemId));
       GameObjectSubType type = object->getSubType();
       std::shared_ptr<Weapon> pWeapon = std::make_shared<Weapon>(type, object->getSprite());
@@ -124,9 +125,9 @@ void ObjectManager::createObjects(const std::string& filename)
         mRandomObjects.push_back(mObjects.back());
       }
     }
-  }
+  }*/
   // Create armor objects
-  for (size_t i{ 1 }; i <= objects.at("armor"); i++) {
+ /* for (size_t i{1}; i <= objects.at("armor"); i++) {
     bool randomPosition = false;
     std::string sectionName = "armor_" + std::to_string(i);
     dr::Section section = doc.getSection(sectionName);
