@@ -22,6 +22,9 @@ void GameWorld::update(float dt)
 
   switch (mState)
   {
+  case GameplayState::PLAYER_INPUT:
+    showPlayerActions();
+    break;
   case GameplayState::PLAYER_ANIMATION:
     isPlayerStopMoving();
     break;
@@ -158,6 +161,10 @@ void GameWorld::checkPlayerEnvironment()
       {
         dr::Log::instance().addMessage(std::format("You see {}", object->getName()));
         object->setVisibleStatus(true);
+        if (object->getType() == GameObjectType::WEAPON)
+        {
+          mPlayerActions.add(ActionType::PICK);
+        }
       }
     }
   }
@@ -254,4 +261,22 @@ void GameWorld::pickItem()
   checkPlayerEnvironment(mPlayer.getMapPosition());
   mUpdatePlayerActions = true;
   mActionList.clear();*/
+}
+
+void GameWorld::showPlayerActions()
+{
+  // Player action's menu
+  if (mPlayerActions.hasCommand()) 
+  {
+    ImGui::Begin("Actions");
+    for (const auto& action : mPlayerActions.getCommands()) 
+    {
+      std::string uniqueID = action.mLabel + "##";
+      if (ImGui::Button(uniqueID.c_str(), {200, 50})) 
+      {
+        action.mFunc();
+      }
+    }
+    ImGui::End();
+  }
 }

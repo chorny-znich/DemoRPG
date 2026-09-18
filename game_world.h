@@ -2,6 +2,7 @@
 #include "player.h"
 #include "grid_controller.h"
 #include "object_manager.h"
+#include "player_actions.h"
 #include <disreality_engine.h>
 #include <SFML/Graphics/View.hpp>
 #include <memory>
@@ -56,6 +57,7 @@ public:
 
 	void autoPickItem();
 	void pickItem();
+	void showPlayerActions();
 private:
 	GameplayState mState{ GameplayState::PLAYER_INPUT };
 
@@ -63,4 +65,5 @@ private:
 	std::unique_ptr<Player> mPlayer{};
 	std::unique_ptr<GridController> mGridController{};
 	ObjectManager mObjectManager;
+	PlayerActions mPlayerActions{*this};
 };

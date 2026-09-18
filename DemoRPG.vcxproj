@@ -152,6 +152,7 @@
     <ClCompile Include="money.cpp" />
     <ClCompile Include="object_manager.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="player_actions.cpp" />
     <ClCompile Include="player_inventory_screen.cpp" />
     <ClCompile Include="player_stats_screen.cpp" />
     <ClCompile Include="random_placement.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="inventory.h" />
     <ClInclude Include="inventory_cell.h" />
     <ClInclude Include="items.h" />
+    <ClInclude Include="player_actions.h" />
     <ClInclude Include="player_inventory_screen.h" />
     <ClInclude Include="random_placement.h" />
     <ClInclude Include="sprite_id.h" />
