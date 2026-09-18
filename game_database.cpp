@@ -8,7 +8,7 @@
  */
 void GameDatabase::init()
 {
-  std::unordered_map<std::string, std::uint8_t> items;
+  std::unordered_map<std::string, std::uint16_t> items;
   dr::IniDocument doc = dr::loadIniDocument(std::string(gd::path::ItemsInfo));
   dr::Section section = doc.getSection("general");
   items.insert({ "potion", std::stoul(section.at("Potion_amount")) });
@@ -36,22 +36,17 @@ void GameDatabase::init()
   {
     std::string sectionName = std::format("weapon_{}", i);
     dr::Section section = doc.getSection(sectionName);
-    if (section.at("Type") == "WEAPON") 
+    if (section.at("Type") == "WEAPON")
     {
       std::uint16_t spriteID{ static_cast<uint16_t>(std::stoul(section.at("Sprite"))) };
-      std::uint16_t spriteIconID { static_cast<uint16_t>(std::stoul(section.at("Sprite_icon"))) };
+      std::uint16_t spriteIconID{ static_cast<uint16_t>(std::stoul(section.at("Sprite_icon"))) };
       std::unique_ptr<Weapon> weapon;
-      if (section.at("Weapon_type") == "MELEE") 
-      {
-        weapon = std::make_unique<Weapon>(spriteID, spriteIconID, GameObjectSubType::MELEE);
-      }
-      else 
-      {
-        weapon = std::make_unique<Weapon>(spriteID, spriteIconID, GameObjectSubType::RANGED);
-      }
+      const std::string weaponType = section.at("Weapon_type");
+      weapon = weaponType == "MELEE" ? std::make_unique<Weapon>(spriteID, spriteIconID, GameObjectSubType::MELEE) :
+        std::make_unique<Weapon>(spriteID, spriteIconID, GameObjectSubType::RANGED);
       weapon->setName(section.at("Name"));
-      
-      //pWeapon->setInventoryIcon(iconSprite);
+      weapon->setItemSpriteID(spriteID);
+      weapon->setIconSpriteID(spriteIconID);
       weapon->setDamage({ static_cast<uint16_t>(std::stoul(section.at("Damage_min"))), 
         static_cast<uint16_t>(std::stoul(section.at("Damage_max"))) });
       weapon->setPrice(std::stoul(section.at("Price")));
@@ -116,7 +111,7 @@ void GameDatabase::init()
  * @param id identifier of the item
  * @return 
  */
-dr::GameObject* GameDatabase::getItem(std::uint8_t id)
+dr::GameObject* GameDatabase::getItem(std::uint16_t id)
 {
   return mItemDatabase.at(id).get();
 }

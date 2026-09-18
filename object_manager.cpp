@@ -1,4 +1,5 @@
 #include "object_manager.h"
+#include "game_database.h"
 #include "money.h"
 #include "weapon.h"
 #include "random_placement.h"
@@ -17,7 +18,7 @@ void ObjectManager::createObjects(const std::string& filename)
   mRandomObjects.clear();
   std::unordered_map<std::string, size_t> objects;
   dr::IniDocument doc = dr::loadIniDocument(filename);
-  dr::Section section = doc.getSection("general");
+  const dr::Section& section = doc.getSection("general");
   std::int16_t mapWidth = std::stoi(section.at("map_width"));
   objects.insert({"money", std::stoul(section.at("Money_amount"))});
   //objects.insert({ "potion", std::stoul(section.at("Potion_amount")) });
@@ -34,7 +35,7 @@ void ObjectManager::createObjects(const std::string& filename)
     std::unique_ptr<Money> money = std::make_unique<Money>(static_cast<uint16_t>(SpriteID::GOLD), 
       static_cast<uint16_t>(SpriteID::GOLD));
     std::string sectionName = std::format("money_{}", i);
-    dr::Section section = doc.getSection(sectionName);
+    const dr::Section& section = doc.getSection(sectionName);
     money->setName(dr::StringManager::get("money"));
     if (section.at("Position_x") != RANDOM_STATE && section.at("Position_y") != RANDOM_STATE)
     {
@@ -45,9 +46,9 @@ void ObjectManager::createObjects(const std::string& filename)
       randomPosition = true;
     }
     money->setAmount(dr::EngineUtility::getRandomInRange(
-      std::stoul(section.at("Amount_min")), std::stoul(section.at("Amount_max"))
+      std::stoi(section.at("Amount_min")), std::stoi(section.at("Amount_max"))
     ));
-    money->setVisibility(std::stoul(section.at("Visibility")));
+    money->setVisibility(std::stoi(section.at("Visibility")));
 
     // Push object with the random placement
     if (randomPosition) 
@@ -96,36 +97,42 @@ void ObjectManager::createObjects(const std::string& filename)
     }
   }*/
   // Create weapon objects
-/*  for (size_t i{1}; i <= objects.at("weapon"); i++) {
+  for (size_t i{1}; i <= objects.at("weapon"); i++) 
+  {
     bool randomPosition = false;
     std::string sectionName = "weapon_" + std::to_string(i);
-    dr::Section section = doc.getSection(sectionName);
-    if (section.at("Type") == "WEAPON") {
-      uint16_t itemId = std::stoul(section.at("Id"));
-      auto object = std::static_pointer_cast<Weapon>(Data::getItem(itemId));
+    const dr::Section& section = doc.getSection(sectionName);
+    if (section.at("Type") == "WEAPON") 
+    {
+      uint16_t itemId = std::stoi(section.at("Id"));
+      auto object = static_cast<Weapon*>(GameDatabase::instance().getItem(itemId));
       GameObjectSubType type = object->getSubType();
-      std::shared_ptr<Weapon> pWeapon = std::make_shared<Weapon>(type, object->getSprite());
-      pWeapon->setId(itemId);
-      pWeapon->setName(object->getName());
-      pWeapon->setInventoryIcon(object->getInventoryIcon());
-      pWeapon->setDamage(object->getDamage());
+      std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(object->getItemSpriteID(), 
+        object->getIconSpriteID(), type);
+      weapon->setId(itemId);
+      weapon->setName(object->getName());
+      weapon->setDamage(object->getDamage());
       if (section.at("Position_x") != "random" && section.at("Position_y") != "random") {
-        pWeapon->setPosition({ std::stoi(section.at("Position_x")), std::stoi(section.at("Position_y")) });
+        weapon->setPosition({ std::stoi(section.at("Position_x")), std::stoi(section.at("Position_y")) });
       }
       else {
         randomPosition = true;
       }
-      pWeapon->setWeaponType(object->getWeaponType());
-      pWeapon->setWeaponDistance(object->getWeaponDistance());
-      pWeapon->setPrice(object->getPrice());
-      pWeapon->setVisibility(std::stoul(section.at("Visibility")));
-      mObjects.push_back(std::move(pWeapon));
+      weapon->setWeaponType(object->getWeaponType());
+      weapon->setWeaponDistance(object->getWeaponDistance());
+      weapon->setPrice(object->getPrice());
+      weapon->setVisibility(std::stoi(section.at("Visibility")));
       // Push object with the random placement
-      if (randomPosition) {
-        mRandomObjects.push_back(mObjects.back());
+      if (randomPosition) 
+      {
+        mRandomObjects.push_back(std::move(weapon));
+      }
+      else
+      {
+        mObjects[weapon->getPosition().x + weapon->getPosition().y * mapWidth] = std::move(weapon);
       }
     }
-  }*/
+  }
   // Create armor objects
  /* for (size_t i{1}; i <= objects.at("armor"); i++) {
     bool randomPosition = false;
@@ -253,11 +260,6 @@ void ObjectManager::createRandomObjects(dr::Map& map)
   std::vector<sf::Vector2i> positions = rp.place();
   auto iter = positions.begin();
   // Place objects with the random placement
-  /*for (auto& item : mRandomObjects)
-  {
-    item->setPosition({ iter->x, iter->y });
-    iter++;
-  }*/
   for (auto&& [obj, pos] : std::views::zip(mRandomObjects, positions))
   {
     obj->setPosition({ pos.x, pos.y });

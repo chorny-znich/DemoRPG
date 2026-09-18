@@ -20,7 +20,7 @@ public:
   }
 
   void init();
-  dr::GameObject* getItem(std::uint8_t id);
+  dr::GameObject* getItem(std::uint16_t id);
   //static Enemy& getEnemy(size_t id);
 private:
   std::unordered_map<size_t, std::shared_ptr<dr::GameObject>> mItemDatabase;
