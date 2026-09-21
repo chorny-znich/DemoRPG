@@ -15,7 +15,8 @@ enum class ActionType
 struct Action
 {
 	sf::String mLabel{};
-	std::function<void()> mFunc;
+	std::function<void(std::uint16_t)> mFunc;
+	std::uint16_t mLocID{0};
 };
 
 class GameWorld;
@@ -24,7 +25,7 @@ class PlayerActions
 {
 public:
 	PlayerActions(GameWorld& gameWorld);
-	void add(ActionType type);
+	void add(ActionType type, std::uint16_t id);
 	const std::vector<Action>& getCommands() const;
 	bool hasCommand() const;
 private:

@@ -1,15 +1,16 @@
 #include "player_actions.h"
 #include "game_world.h"
 #include "disreality_engine.h"
+#include <iostream>
 
 PlayerActions::PlayerActions(GameWorld& gameWorld)
 {
 	mActions = 
 	{
 		{ ActionType::PICK,
-			{dr::StringManager::get("pick"), [&gameWorld]()
+			{dr::StringManager::get("pick"), [&gameWorld](std::uint16_t id)
 				{
-					gameWorld.pickItem();
+					gameWorld.pickItem(id);
 				}
 			}
 		}/*,
@@ -19,9 +20,11 @@ PlayerActions::PlayerActions(GameWorld& gameWorld)
 	};
 }
 
-void PlayerActions::add(ActionType type)
+void PlayerActions::add(ActionType type, std::uint16_t id)
 {
-  mActionList.push_back(mActions.at(type));
+	Action action = mActions.at(type);
+	action.mLocID = id;
+  mActionList.push_back(action);
 }
 
 const std::vector<Action>& PlayerActions::getCommands() const

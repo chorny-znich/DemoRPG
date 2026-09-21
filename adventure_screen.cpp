@@ -77,6 +77,11 @@ struct AdventureScreen::ScreenInputVisitor
 void AdventureScreen::init()
 {
 	ImGui::SFML::Init(dr::ImguiHelper::getWindow());
+	ImGuiIO& io = ImGui::GetIO();
+	io.FontDefault = io.Fonts->AddFontFromFileTTF("assets/font/arial.ttf", 16.f, nullptr,
+		io.Fonts->GetGlyphRangesCyrillic());
+	ImGui::SFML::UpdateFontTexture();
+
 	dr::Log::instance().init({ 400.f, 250.f }, { 5.f, 800.f }, "game_log");
 	dr::Log::instance().addMessage("Start logging");
 	GameWorld::instance().init(mMainView);

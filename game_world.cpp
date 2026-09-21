@@ -163,7 +163,7 @@ void GameWorld::checkPlayerEnvironment()
         object->setVisibleStatus(true);
         if (object->getType() == GameObjectType::WEAPON)
         {
-          mPlayerActions.add(ActionType::PICK);
+          mPlayerActions.add(ActionType::PICK, locID);
         }
       }
     }
@@ -240,7 +240,7 @@ void GameWorld::autoPickItem()
 /**
  * @brief Pick up various items on the map
  */
-void GameWorld::pickItem()
+void GameWorld::pickItem(std::uint16_t id)
 {
   /*sf::Vector2i playerPos = mPlayer->getMapPosition();
   dr::Location& playerLoc = mMapManager.getCurrentMap().getLocation(
@@ -271,10 +271,11 @@ void GameWorld::showPlayerActions()
     ImGui::Begin("Actions");
     for (const auto& action : mPlayerActions.getCommands()) 
     {
-      std::string uniqueID = action.mLabel + "##";
+      auto tempUtf8 = action.mLabel.toUtf8();
+      std::string uniqueID( tempUtf8.begin(), tempUtf8.end() );
       if (ImGui::Button(uniqueID.c_str(), {200, 50})) 
       {
-        action.mFunc();
+        action.mFunc(action.mLocID);
       }
     }
     ImGui::End();

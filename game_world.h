@@ -56,7 +56,7 @@ public:
 	bool isPlayerStopMoving();
 
 	void autoPickItem();
-	void pickItem();
+	void pickItem(std::uint16_t id);
 	void showPlayerActions();
 private:
 	GameplayState mState{ GameplayState::PLAYER_INPUT };
