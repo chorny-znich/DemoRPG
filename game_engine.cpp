@@ -5,6 +5,8 @@
 void GameEngine::init()
 {
   dr::Engine::init();
+  dr::SpriteDatabase::instance().load("data/tile_map.ini");
+  dr::SpriteDatabase::instance().load("data/icon_map.ini");
 }
 
 /**

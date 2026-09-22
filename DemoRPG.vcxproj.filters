@@ -295,5 +295,8 @@
     <None Include="data\items.ini">
       <Filter>Файлы ресурсов\Loot</Filter>
     </None>
+    <None Include="data\icon_map.ini">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
   </ItemGroup>
 </Project>

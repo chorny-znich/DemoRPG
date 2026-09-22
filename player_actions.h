@@ -28,6 +28,7 @@ public:
 	void add(ActionType type, std::uint16_t id);
 	const std::vector<Action>& getCommands() const;
 	bool hasCommand() const;
+	void clear();
 private:
 	std::unordered_map<ActionType, Action> mActions;
 	std::vector<Action> mActionList;

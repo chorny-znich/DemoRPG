@@ -36,3 +36,8 @@ bool PlayerActions::hasCommand() const
 {
 	return mActionList.size();
 }
+
+void PlayerActions::clear()
+{
+	mActionList.clear();
+}

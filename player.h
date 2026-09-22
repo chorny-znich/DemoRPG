@@ -1,6 +1,7 @@
 #pragma once
 #include "rp_stats_component.h"
 #include "environment_component.h"
+#include "inventory.h"
 #include "game_data.h"
 #include <disreality_engine.h>
 
@@ -45,9 +46,9 @@ public:
 	PlayerState getPlayerState() const;*/
 	RPStatsComponent* getRPStatsComponent();
 	EnvironmentComponent* getEnvironment();
-	/*
+	
 	Inventory& getInventory();
-	Equipment& getEquipment();*/
+	//Equipment& getEquipment();
 	private:
 		sf::Vector2i mMapPosition{ 2, 2 };
 		gd::Movement mMovement{ 0, 0 };
@@ -56,9 +57,9 @@ public:
 		
 		RPStatsComponent mRPStats;
 		EnvironmentComponent mEnvironment;
-		/*Inventory mInventory;
-		Equipment mEquipment;
-		*/
+		Inventory mInventory;
+		//Equipment mEquipment;
+		
 		float mSpeed{ 400.f };
 		bool mMoveLeft{ false };
 		bool mMoveRight{ false };

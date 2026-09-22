@@ -6,6 +6,8 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <vector>
 
+class Inventory;
+
 /**
  * @brief User interface for player's inventory, equipment and some related stats
  */
@@ -13,7 +15,7 @@ class PlayerInventoryScreen
 {
 public:
   PlayerInventoryScreen();
-  void update();
+  void update(Inventory& inventory);
   void render(sf::RenderTarget& target);
   // visibility of the UI
   void show();

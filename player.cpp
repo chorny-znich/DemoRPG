@@ -185,6 +185,11 @@ EnvironmentComponent* Player::getEnvironment()
   return &mEnvironment;
 }
 
+Inventory& Player::getInventory()
+{
+  return mInventory;
+}
+
 /**
  * @brief Load player's stats from the file
  */
@@ -204,12 +209,12 @@ void Player::create()
   // set primary Stats
   section = doc.getSection("Primary stats");
   for (auto& stat : mRPStats.getPrimaryStats()) {
-    stat.second = std::stoul(section.at(mPrimaryStatsName.at(stat.first).data()));
+    stat.second = std::stoi(section.at(mPrimaryStatsName.at(stat.first).data()));
   }
   // Set secondary stats
   section = doc.getSection("Secondary stats");
   for (auto& stat : mRPStats.getSecondaryStats()) {
-    stat.second = std::stoul(section.at(mSecondaryStatsName.at(stat.first).data()));
+    stat.second = std::stoi(section.at(mSecondaryStatsName.at(stat.first).data()));
   }
   mRPStats.setBaseDefence(std::stoul(section.at("Defence")));
   mRPStats.updateDefence();

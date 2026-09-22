@@ -63,6 +63,7 @@ struct AdventureScreen::ScreenInputVisitor
 			}
 			else
 			{
+				screen.mPlayerInventoryScreen.update(GameWorld::instance().getPlayer().getInventory());
 				screen.mPlayerInventoryScreen.show();
 			}
 		}

@@ -1,6 +1,6 @@
 #include "player_inventory_screen.h"
+#include "inventory.h"
 #include <SFML/Graphics/RenderTarget.hpp>
-#include <iostream>
 
 PlayerInventoryScreen::PlayerInventoryScreen()
 {
@@ -10,6 +10,20 @@ PlayerInventoryScreen::PlayerInventoryScreen()
   mEquipmentPanel.setPosition(EQUIPMENT_PANEL_POSITION);
   createInventoryCells();
   createEquipmentCells();
+}
+
+void PlayerInventoryScreen::update(Inventory& inventory)
+{
+  int itemIndex = 0;
+  for (auto& item : inventory.getItems()) 
+  {
+    sf::Vector2f pos = mInventoryCells[itemIndex].getPosition();
+    sf::Sprite sprite = item->getInventoryIcon();
+    
+    sprite.setPosition(pos);
+    mInventoryCells[itemIndex].setCellSprite(sprite);
+    itemIndex++;
+  }
 }
 
 void PlayerInventoryScreen::render(sf::RenderTarget& target)

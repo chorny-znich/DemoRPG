@@ -1,6 +1,9 @@
 #include "inventory_cell.h"
 #include <SFML/Graphics/RenderTarget.hpp>
 
+#include <iostream>
+#include <format>
+
 InventoryCell::InventoryCell(std::uint8_t index, sf::Vector2f pos) :
   mIndex{ index },
   mPosition{ pos }

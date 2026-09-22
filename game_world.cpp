@@ -1,6 +1,7 @@
 #include "game_world.h"
 #include "game_database.h"
 #include "money.h"
+#include "weapon.h"
 #include <imgui.h>
 #include <imgui-SFML.h>
 
@@ -242,25 +243,22 @@ void GameWorld::autoPickItem()
  */
 void GameWorld::pickItem(std::uint16_t id)
 {
-  /*sf::Vector2i playerPos = mPlayer->getMapPosition();
-  dr::Location& playerLoc = mMapManager.getCurrentMap().getLocation(
-    playerPos.y * mMapManager.getCurrentMap().getMapSize().x + playerPos.x);
-  if (mObjectManager.isObject(playerPos)) 
+  if (mObjectManager.isObject(id)) 
   {
-    std::unique_ptr<dr::GameObject> object = std::move(mObjectManager.getObject(playerPos));
-    if (object->getType() == GameObjectType::MONEY) {
-      auto pMoneyObject = std::static_pointer_cast<Money>(object);
-      auto& playerStats = mPlayer.getRPStatsComponent();
-      playerStats.increaseMoney(pMoneyObject->getAmount());
-      //mConsoleUI.addToHud(UI_Type::LOCATION_INFO, std::format("You pick up ${}", pMoneyObject->getAmount()), 1);
-      mObjectManager.destroyObject(playerPos);
-      mRenderComponent.updateGameLayer(mObjectManager.getObjects());
+    std::unique_ptr<dr::GameObject>& object = mObjectManager.getObject(id);
+    
+    if (object->getType() == GameObjectType::WEAPON) 
+    {
+      auto weaponObject = static_cast<Weapon*>(object.get());
+      mPlayer->getInventory().add(std::move(object));
+      dr::Log::instance().addMessage(std::format("You pick up a {}", weaponObject->getName()));
+      mObjectManager.destroyObject(id);
+      //mPlayer.getInventory().update();
     }
   }
-
-  checkPlayerEnvironment(mPlayer.getMapPosition());
-  mUpdatePlayerActions = true;
-  mActionList.clear();*/
+  
+  checkPlayerEnvironment();
+  mPlayerActions.clear();
 }
 
 void GameWorld::showPlayerActions()
